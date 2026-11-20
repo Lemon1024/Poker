@@ -1,0 +1,26 @@
+{
+  "apk": "poker-equity-android-v1.apk",
+  "sha256": "8d2ba9b520076ca9b099fa80d176b6a72f826edb72b1ed2296d250f71db769ff",
+  "build_tools": "35.0.0",
+  "android_api": 35,
+  "min_api": 28,
+  "signature_verified": true,
+  "zip_alignment_verified": true,
+  "edition": "equity",
+  "package": "org.rivernotes.poker",
+  "version_code": 1,
+  "sources": {
+    "tools/build_android.py": "4006c617eea034f0c17852641e9cde32ebfe1e96824a78ebba618bbe1a6ab019",
+    "android/AndroidManifest.xml": "2234293bbe6aa9e9e53930e21a0622b223e140c48099b4f687d22531a6bf76a0",
+    "android/src/org/rivernotes/poker/HistoryStore.java": "cbd92f04939d6f49e78bac9ec49a76d875405e15e6645607bfd2f37ac01ebc4b",
+    "android/src/org/rivernotes/poker/MainActivity.java": "b99211dfc0dbf871483aad9b480cd91c02583fd6cad93fd70291b109e65b0d2e"
+  },
+  "assets": {
+    "index.html": "3493ed8648d512f17167998c3cb96e768d8e3d086ea669a8a6eabe170eaa9b77",
+    "web/style.css": "7ef774dc2d45ac9eabce2e5b3267b4fc009595295c52e5dff83e478a5e260086",
+    "web/equity.js": "bc8f539979053c257298e984ceb966f529fc8b1cd18891960d863de6b65191a2",
+    "web/runner.js": "f3bd144b87baa6e204aa9bbdacebb60d463cd8e8ca1ae36f68f11cac974ed32b",
+    "web/app.js": "e0b7a64c3033de40786be77fc6f1e5b3339a2b0384d3096b2bf603e41a61e462"
+  },
+  "device_status": "See independent emulator report"
+}

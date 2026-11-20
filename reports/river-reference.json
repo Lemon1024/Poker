@@ -1,0 +1,168 @@
+{
+  "status": "passed",
+  "reference": "b-inary/wasm-postflop (upstream Rust postflop-solver)",
+  "source": "https://github.com/b-inary/wasm-postflop",
+  "published_assets": [
+    {
+      "name": "solver-single.js",
+      "url": "https://wasm-postflop.pages.dev/7a023623e45ca364f00b.js",
+      "sha256": "f0564d649d26dc91b327592fbccd27c899581a4dc82ff4b3a5025b065c604060"
+    },
+    {
+      "name": "solver-single.wasm",
+      "url": "https://wasm-postflop.pages.dev/7e7987ad18d75b6fce10.wasm",
+      "sha256": "4d360a1217bd30a1830497239a9df9951dc20c742d3c3335ceef7cd415a50b2e"
+    }
+  ],
+  "node": "v24.16.0",
+  "units": "All EVs and exploitability in chips; pot_fraction normalized by root pot.",
+  "high_reach": "Unconditional information-set reach times action probability >= 0.01. Cross-profile sample requires this under both profiles.",
+  "checks": [
+    "identical root hand weights, private hands, and action sets at every public history",
+    "independent best response of exported external policy",
+    "same-policy EV tolerances: 0.001 chips at root, 0.01 on high-reach actions",
+    "overlap of independent root game-value intervals"
+  ],
+  "benchmarks": [
+    {
+      "fixture": "gto_river_small_v1.json",
+      "fixture_sha256": "cdfbab50a8a85c528b3007a525bfaed6fe82531d1b7ebd0004a966fda4db5c1e",
+      "histories": 8,
+      "action_slots": 160,
+      "local": {
+        "iterations": 16384,
+        "root_ev": [
+          61.34908891909373,
+          38.65091108090627
+        ],
+        "exploitability": 0.08196883882632733,
+        "oop_game_value_interval": [
+          61.26000156977631,
+          61.42393924742896
+        ]
+      },
+      "external": {
+        "iterations": 4096,
+        "root_ev": [
+          61.342224133333325,
+          38.6578378
+        ],
+        "exploitability": 0.0003147125244140625
+      },
+      "replay_external_policy": {
+        "root_ev": [
+          61.34215538003069,
+          38.65784461996931
+        ],
+        "exploitability": 0.00031749875597952837,
+        "pot_fraction": 0.000003174987559795284,
+        "oop_game_value_interval": [
+          61.3418789187333,
+          61.34251391624526
+        ],
+        "high_reach_action_evs": {
+          "actions": 55,
+          "mean_absolute_chips": 0.00003626782706540149,
+          "maximum_absolute_chips": 0.00029999999998153726,
+          "worst": {
+            "history": "root",
+            "hand": "8c 8d",
+            "action": "bet:100",
+            "external_reach": 0.07787039999999999,
+            "external_ev": 149.999,
+            "replay_ev": 149.99929999999998,
+            "delta": 0.00029999999998153726
+          }
+        }
+      },
+      "cross_solver": {
+        "root_ev_abs_delta_chips": 0.006864785760406278,
+        "high_reach_action_evs": {
+          "actions": 52,
+          "mean_absolute_chips": 0.6842713699038836,
+          "maximum_absolute_chips": 3.262429544869647,
+          "worst": {
+            "history": "check",
+            "hand": "Qh Kh",
+            "action": "check",
+            "external_reach": 0.05411802493666667,
+            "local_reach": 0.056783022570390994,
+            "external_ev": 81.1265,
+            "local_ev": 77.86407045513035,
+            "delta": 3.262429544869647
+          }
+        }
+      }
+    },
+    {
+      "fixture": "gto_river_weighted_v1.json",
+      "fixture_sha256": "deb6f18e51a8fd20f17e19599987434828e042310e1e130cb8df2ba79cf4f6f2",
+      "histories": 8,
+      "action_slots": 160,
+      "local": {
+        "iterations": 12288,
+        "root_ev": [
+          62.235403631376485,
+          37.764596368623515
+        ],
+        "exploitability": 0.09215021153108083,
+        "oop_game_value_interval": [
+          62.15460342123651,
+          62.33890384429867
+        ]
+      },
+      "external": {
+        "iterations": 4096,
+        "root_ev": [
+          62.26273651105651,
+          37.73730948402948
+        ],
+        "exploitability": 0.00008535385131835938
+      },
+      "replay_external_policy": {
+        "root_ev": [
+          62.26267585190747,
+          37.73732414809253
+        ],
+        "exploitability": 0.00008147299594796209,
+        "pot_fraction": 8.147299594796209e-7,
+        "oop_game_value_interval": [
+          62.26263230500366,
+          62.26279525099556
+        ],
+        "high_reach_action_evs": {
+          "actions": 44,
+          "mean_absolute_chips": 0.000041196478046653664,
+          "maximum_absolute_chips": 0.00047509888003105516,
+          "worst": {
+            "history": "root",
+            "hand": "8c 8d",
+            "action": "check",
+            "external_reach": 0.03182845208845209,
+            "external_ev": 149.999,
+            "replay_ev": 149.99947509888003,
+            "delta": 0.00047509888003105516
+          }
+        }
+      },
+      "cross_solver": {
+        "root_ev_abs_delta_chips": 0.02733287968002429,
+        "high_reach_action_evs": {
+          "actions": 41,
+          "mean_absolute_chips": 0.4918289621309393,
+          "maximum_absolute_chips": 9.002347411018766,
+          "worst": {
+            "history": "check/bet:100",
+            "hand": "Qs As",
+            "action": "call",
+            "external_reach": 0.014741837837837838,
+            "local_reach": 0.014661837104880922,
+            "external_ev": 0,
+            "local_ev": 9.002347411018766,
+            "delta": 9.002347411018766
+          }
+        }
+      }
+    }
+  ]
+}

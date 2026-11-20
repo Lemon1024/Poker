@@ -1,0 +1,262 @@
+{
+  "fixture_schema_version": 1,
+  "artifact_role": "development_contract_fixture_not_application",
+  "cases": [
+    {
+      "case_id": "known_card_collision",
+      "validation_level": "runtime",
+      "expected_error_code": "DUPLICATE_KNOWN_CARD",
+      "request": {
+        "schema_version": 1,
+        "request_id": "fixture-preflop-asah-kskh",
+        "mode": "preflop_fixed",
+        "method": "exact",
+        "hero": [
+          "As",
+          "Ah"
+        ],
+        "villain": [
+          "Ks",
+          "As"
+        ],
+        "board": []
+      }
+    },
+    {
+      "case_id": "hero_board_collision",
+      "validation_level": "runtime",
+      "expected_error_code": "DUPLICATE_KNOWN_CARD",
+      "request": {
+        "schema_version": 1,
+        "request_id": "fixture-river-asqs-qd8s2s7h3c",
+        "mode": "combo_analysis",
+        "method": "exact",
+        "hero": [
+          "As",
+          "Qs"
+        ],
+        "board": [
+          "Qd",
+          "8s",
+          "2s",
+          "7h",
+          "As"
+        ],
+        "range": {
+          "kind": "uniform"
+        }
+      }
+    },
+    {
+      "case_id": "all_blocked_range",
+      "validation_level": "runtime",
+      "expected_error_code": "EMPTY_EFFECTIVE_RANGE",
+      "request": {
+        "schema_version": 1,
+        "request_id": "fixture-river-asqs-qd8s2s7h3c",
+        "mode": "combo_analysis",
+        "method": "exact",
+        "hero": [
+          "As",
+          "Qs"
+        ],
+        "board": [
+          "Qd",
+          "8s",
+          "2s",
+          "7h",
+          "3c"
+        ],
+        "range": {
+          "kind": "weighted",
+          "combos": [
+            {
+              "cards": [
+                "As",
+                "Kh"
+              ],
+              "weight": 1.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "all_zero_range",
+      "validation_level": "runtime",
+      "expected_error_code": "EMPTY_EFFECTIVE_RANGE",
+      "request": {
+        "schema_version": 1,
+        "request_id": "fixture-river-asqs-qd8s2s7h3c",
+        "mode": "combo_analysis",
+        "method": "exact",
+        "hero": [
+          "As",
+          "Qs"
+        ],
+        "board": [
+          "Qd",
+          "8s",
+          "2s",
+          "7h",
+          "3c"
+        ],
+        "range": {
+          "kind": "weighted",
+          "combos": [
+            {
+              "cards": [
+                "Kh",
+                "Kd"
+              ],
+              "weight": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "empty_weighted_range",
+      "validation_level": "runtime",
+      "expected_error_code": "EMPTY_EFFECTIVE_RANGE",
+      "request": {
+        "schema_version": 1,
+        "request_id": "fixture-river-asqs-qd8s2s7h3c",
+        "mode": "combo_analysis",
+        "method": "exact",
+        "hero": [
+          "As",
+          "Qs"
+        ],
+        "board": [
+          "Qd",
+          "8s",
+          "2s",
+          "7h",
+          "3c"
+        ],
+        "range": {
+          "kind": "weighted",
+          "combos": []
+        }
+      }
+    },
+    {
+      "case_id": "duplicate_unordered_range_combo",
+      "validation_level": "runtime",
+      "expected_error_code": "DUPLICATE_RANGE_COMBO",
+      "request": {
+        "schema_version": 1,
+        "request_id": "fixture-river-asqs-qd8s2s7h3c",
+        "mode": "combo_analysis",
+        "method": "exact",
+        "hero": [
+          "As",
+          "Qs"
+        ],
+        "board": [
+          "Qd",
+          "8s",
+          "2s",
+          "7h",
+          "3c"
+        ],
+        "range": {
+          "kind": "weighted",
+          "combos": [
+            {
+              "cards": [
+                "Kh",
+                "Kd"
+              ],
+              "weight": 0.5
+            },
+            {
+              "cards": [
+                "Kd",
+                "Kh"
+              ],
+              "weight": 0.3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "noncanonical_ten",
+      "validation_level": "schema",
+      "expected_error_code": "INVALID_REQUEST",
+      "request": {
+        "schema_version": 1,
+        "request_id": "fixture-preflop-asah-kskh",
+        "mode": "preflop_fixed",
+        "method": "exact",
+        "hero": [
+          "10s",
+          "Ah"
+        ],
+        "villain": [
+          "Ks",
+          "Kh"
+        ],
+        "board": []
+      }
+    },
+    {
+      "case_id": "invalid_board_length",
+      "validation_level": "schema",
+      "expected_error_code": "INVALID_REQUEST",
+      "request": {
+        "schema_version": 1,
+        "request_id": "fixture-river-asqs-qd8s2s7h3c",
+        "mode": "combo_analysis",
+        "method": "exact",
+        "hero": [
+          "As",
+          "Qs"
+        ],
+        "board": [
+          "Qd",
+          "8s"
+        ],
+        "range": {
+          "kind": "uniform"
+        }
+      }
+    },
+    {
+      "case_id": "negative_weight",
+      "validation_level": "schema",
+      "expected_error_code": "INVALID_REQUEST",
+      "request": {
+        "schema_version": 1,
+        "request_id": "fixture-river-asqs-qd8s2s7h3c",
+        "mode": "combo_analysis",
+        "method": "exact",
+        "hero": [
+          "As",
+          "Qs"
+        ],
+        "board": [
+          "Qd",
+          "8s",
+          "2s",
+          "7h",
+          "3c"
+        ],
+        "range": {
+          "kind": "weighted",
+          "combos": [
+            {
+              "cards": [
+                "Kh",
+                "Kd"
+              ],
+              "weight": -0.1
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

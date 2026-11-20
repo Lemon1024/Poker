@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "project": "poker_study_mobile",
+  "spec_version": "1.0",
+  "current_execution_plan": "LOCAL_HTML_PLAN.md",
+  "default_execution": "Use LOCAL_HTML_PLAN.md for active stages H0-H4, Android and GTO. The T00-T12 tasks below are the archived v1.0 native-first design.",
+  "blocked_dependency_rule": "Platform-only blocks never block independent host/core work. T10 depends only on T09, so the river GTO core can be implemented without Flutter. T12 may report an honest partial-platform delivery after all available work is complete; blocked is never passed, and M2-only binaries are not labeled M3.",
+  "tasks": [
+    {
+      "id": "T00",
+      "title": "环境检查与项目布局",
+      "depends_on": [],
+      "status": "planned",
+      "deliverables": [
+        "读取已有仓库与适用约束",
+        "检测工具链和设备",
+        "创建reports/ENVIRONMENT.md与STATUS.md"
+      ],
+      "acceptance": [
+        "记录实际版本与平台缺项",
+        "保留已有修改"
+      ]
+    },
+    {
+      "id": "T01",
+      "title": "冻结请求结果与原生接口",
+      "depends_on": [
+        "T00"
+      ],
+      "status": "planned",
+      "deliverables": [
+        "实现schema对应模型与语义校验",
+        "冻结C ABI和生命周期",
+        "锁定依赖与第三方许可"
+      ],
+      "acceptance": [
+        "schema与模型一致",
+        "非法输入与过滤规则明确"
+      ]
+    },
+    {
+      "id": "T02",
+      "title": "生产牌力评估与独立参考",
+      "depends_on": [
+        "T01"
+      ],
+      "status": "planned",
+      "deliverables": [
+        "实现牌编码和适配器",
+        "实现独立最佳五张参考",
+        "创建CMake库和测试"
+      ],
+      "acceptance": [
+        "52张编码映射通过",
+        "牌型边界与差分通过"
+      ]
+    },
+    {
+      "id": "T03",
+      "title": "翻前固定手牌精确计算",
+      "depends_on": [
+        "T02"
+      ],
+      "status": "planned",
+      "deliverables": [
+        "枚举48选5",
+        "输出双方完整统计",
+        "提供CLI"
+      ],
+      "acceptance": [
+        "整数金标1410336/9308/292660",
+        "总数1712304"
+      ]
+    },
+    {
+      "id": "T04",
+      "title": "翻后逐组合与范围分析",
+      "depends_on": [
+        "T02"
+      ],
+      "status": "planned",
+      "deliverables": [
+        "组合生成",
+        "当前关系与补牌枚举",
+        "weighted聚合",
+        "确定性输出"
+      ],
+      "acceptance": [
+        "河牌884/6/100",
+        "组合规模1081/1035/990",
+        "全范围与weighted不变量通过"
+      ]
+    },
+    {
+      "id": "T05",
+      "title": "FFI与可取消任务调度",
+      "depends_on": [
+        "T03",
+        "T04"
+      ],
+      "status": "planned",
+      "deliverables": [
+        "实现有限step任务",
+        "Dart绑定与后台isolate",
+        "所有权和取消",
+        "旧request隔离"
+      ],
+      "acceptance": [
+        "取消真正停止计算",
+        "反复生命周期无错误",
+        "未完成不输出概率"
+      ]
+    },
+    {
+      "id": "T06",
+      "title": "手机界面与范围编辑",
+      "depends_on": [
+        "T01"
+      ],
+      "status": "planned",
+      "deliverables": [
+        "选牌与导航",
+        "组合列表和详情",
+        "独立筛选",
+        "范围编辑",
+        "窄屏适配"
+      ],
+      "acceptance": [
+        "测试布局可用",
+        "生产代码不把预览fixture当结果"
+      ]
+    },
+    {
+      "id": "T07",
+      "title": "真实接入与历史缓存",
+      "depends_on": [
+        "T05",
+        "T06"
+      ],
+      "status": "planned",
+      "deliverables": [
+        "连接真实核心",
+        "历史与SQLite",
+        "规范化缓存",
+        "错误与恢复"
+      ],
+      "acceptance": [
+        "金标在实际界面一致",
+        "缓存不串request",
+        "无假结果"
+      ]
+    },
+    {
+      "id": "T08",
+      "title": "平台构建与移动验证",
+      "depends_on": [
+        "T07"
+      ],
+      "status": "planned",
+      "deliverables": [
+        "Android开发APK",
+        "条件具备时iOS构建",
+        "模拟器/设备运行",
+        "性能记录"
+      ],
+      "acceptance": [
+        "各平台各等级有证据或明确blocked",
+        "性能只填实测"
+      ]
+    },
+    {
+      "id": "T09",
+      "title": "CFR与最佳响应基准",
+      "depends_on": [
+        "T03",
+        "T04"
+      ],
+      "status": "planned",
+      "deliverables": [
+        "小型扑克CFR",
+        "正确平均策略",
+        "独立BR与NashConv",
+        "信息集验证"
+      ],
+      "acceptance": [
+        "对照参考算法",
+        "BR无隐藏信息泄漏",
+        "平均策略误差可测"
+      ]
+    },
+    {
+      "id": "T10",
+      "title": "受限河牌GTO内核",
+      "depends_on": [
+        "T09"
+      ],
+      "status": "planned",
+      "deliverables": [
+        "固定范围河牌树",
+        "CFR平均策略和行动EV",
+        "独立BR与精度检查",
+        "主机CLI及检查点",
+        "固定小范围GTO基准"
+      ],
+      "acceptance": [
+        "gto_river_small_v1基准独立BR测得exploitability/root_pot<=0.001",
+        "至少一个非退化固定基准实际收敛",
+        "联合合法手牌对权重为0时明确拒绝",
+        "超时返回未收敛不能代替通过"
+      ]
+    },
+    {
+      "id": "T11",
+      "title": "河牌GTO手机策略接入",
+      "depends_on": [
+        "T10",
+        "T07"
+      ],
+      "status": "planned",
+      "deliverables": [
+        "独立GTO接口与后台任务",
+        "双方范围与模型输入",
+        "策略频率和行动EV页面",
+        "收敛/未达目标/取消状态"
+      ],
+      "acceptance": [
+        "页面来自真实GTO内核",
+        "手机集成状态有证据",
+        "修改后执行必要FFI与界面验证"
+      ]
+    },
+    {
+      "id": "T12",
+      "title": "交付与文档",
+      "depends_on": [
+        "T08",
+        "T11"
+      ],
+      "status": "planned",
+      "deliverables": [
+        "源码和锁文件",
+        "可完成的构建物",
+        "VALIDATION/PERFORMANCE/DELIVERY",
+        "使用说明",
+        "对后续修改影响的平台重新构建并记录源码版本"
+      ],
+      "acceptance": [
+        "M1/M2/M3分别报告",
+        "平台状态分别报告",
+        "剩余阻碍与恢复步骤明确",
+        "包含M3的构建物必须来自策略接入后的源码；旧M2构建明确标记"
+      ]
+    }
+  ]
+}

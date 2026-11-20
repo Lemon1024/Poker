@@ -1,0 +1,14 @@
+✔ independent five-card oracle handles category and kicker boundaries (37.3489ms)
+✔ three locked seeds satisfy preflop, flop and turn statistical acceptance (649.3678ms)
+✔ every uniform river row matches an independently scored legal opponent (47.003ms)
+✔ weights, blockers and zero-weight hand filtering match fixture and individual rows (2.1164ms)
+✔ structurally and semantically invalid input raises an error before simulation (1.2201ms)
+✔ flop and turn full ranges cover all legal combos; summaries match row means (2440.206ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3286.5957

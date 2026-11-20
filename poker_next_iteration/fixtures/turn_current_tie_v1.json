@@ -1,0 +1,100 @@
+{
+  "fixture_schema_version": 1,
+  "fixture_id": "turn_current_tie_v1",
+  "artifact_role": "reference_fixture_not_production_result",
+  "model": {
+    "players": 2,
+    "deck_size": 52,
+    "extra_dead_cards": [],
+    "all_remaining_public_cards_dealt": true
+  },
+  "request": {
+    "schema_version": 1,
+    "request_id": "turn_current_tie_v1",
+    "mode": "combo_analysis",
+    "method": "exact",
+    "hero": [
+      "As",
+      "Kh"
+    ],
+    "board": [
+      "2s",
+      "3s",
+      "4s",
+      "9d"
+    ],
+    "range": {
+      "kind": "weighted",
+      "combos": [
+        {
+          "cards": [
+            "Ac",
+            "Kd"
+          ],
+          "weight": 1.0
+        }
+      ]
+    }
+  },
+  "expected": {
+    "rows": [
+      {
+        "cards": [
+          "Ac",
+          "Kd"
+        ],
+        "weight": 1.0,
+        "current_relation": "tied",
+        "wins": 9,
+        "ties": 35,
+        "losses": 0,
+        "total": 44,
+        "win_probability": {
+          "numerator": 9,
+          "denominator": 44
+        },
+        "tie_probability": {
+          "numerator": 35,
+          "denominator": 44
+        },
+        "loss_probability": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "equity": {
+          "numerator": 53,
+          "denominator": 88
+        }
+      }
+    ],
+    "aggregate": {
+      "win_probability": {
+        "numerator": 9,
+        "denominator": 44
+      },
+      "tie_probability": {
+        "numerator": 35,
+        "denominator": 44
+      },
+      "loss_probability": {
+        "numerator": 0,
+        "denominator": 1
+      },
+      "equity": {
+        "numerator": 53,
+        "denominator": 88
+      }
+    },
+    "winning_rivers": [
+      "5s",
+      "6s",
+      "7s",
+      "8s",
+      "9s",
+      "Ts",
+      "Js",
+      "Qs",
+      "Ks"
+    ]
+  }
+}

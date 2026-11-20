@@ -1,0 +1,136 @@
+{
+  "fixture_schema_version": 1,
+  "fixture_id": "flop_weighted_v1",
+  "artifact_role": "reference_fixture_not_production_result",
+  "model": {
+    "players": 2,
+    "deck_size": 52,
+    "extra_dead_cards": [],
+    "all_remaining_public_cards_dealt": true
+  },
+  "request": {
+    "schema_version": 1,
+    "request_id": "flop_weighted_v1",
+    "mode": "combo_analysis",
+    "method": "exact",
+    "hero": [
+      "As",
+      "Ah"
+    ],
+    "board": [
+      "Kc",
+      "7d",
+      "2h"
+    ],
+    "range": {
+      "kind": "weighted",
+      "combos": [
+        {
+          "cards": [
+            "Kd",
+            "Kh"
+          ],
+          "weight": 0.75
+        },
+        {
+          "cards": [
+            "Qc",
+            "Qd"
+          ],
+          "weight": 0.25
+        }
+      ]
+    }
+  },
+  "expected": {
+    "rows": [
+      {
+        "cards": [
+          "Kd",
+          "Kh"
+        ],
+        "weight": 0.75,
+        "current_relation": "losing",
+        "wins": 85,
+        "ties": 0,
+        "losses": 905,
+        "total": 990,
+        "win_probability": {
+          "numerator": 17,
+          "denominator": 198
+        },
+        "tie_probability": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "loss_probability": {
+          "numerator": 181,
+          "denominator": 198
+        },
+        "equity": {
+          "numerator": 17,
+          "denominator": 198
+        }
+      },
+      {
+        "cards": [
+          "Qc",
+          "Qd"
+        ],
+        "weight": 0.25,
+        "current_relation": "winning",
+        "wins": 907,
+        "ties": 0,
+        "losses": 83,
+        "total": 990,
+        "win_probability": {
+          "numerator": 907,
+          "denominator": 990
+        },
+        "tie_probability": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "loss_probability": {
+          "numerator": 83,
+          "denominator": 990
+        },
+        "equity": {
+          "numerator": 907,
+          "denominator": 990
+        }
+      }
+    ],
+    "aggregate": {
+      "win_probability": {
+        "numerator": 581,
+        "denominator": 1980
+      },
+      "tie_probability": {
+        "numerator": 0,
+        "denominator": 1
+      },
+      "loss_probability": {
+        "numerator": 1399,
+        "denominator": 1980
+      },
+      "equity": {
+        "numerator": 581,
+        "denominator": 1980
+      }
+    },
+    "selected_next_cards": [
+      {
+        "card": "3s",
+        "probability": {
+          "numerator": 1,
+          "denominator": 45
+        },
+        "conditional_equity": {
+          "numerator": 3,
+          "denominator": 11
+        }
+      }
+    ]
+  }
+}

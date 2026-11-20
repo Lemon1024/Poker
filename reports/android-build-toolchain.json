@@ -1,0 +1,34 @@
+{
+  "sdk_source": "https://dl.google.com/android/repository/repository2-1.xml",
+  "sdk_license": "android-sdk-license",
+  "official_archive_verification": "archive length & SHA-1 as published in HTTPS repository metadata",
+  "components": [
+    {
+      "package": "build-tools;35.0.0",
+      "url": "https://dl.google.com/android/repository/build-tools_r35_windows.zip",
+      "size": 59878107,
+      "manifest_sha1": "af059bb67cf7786f45ee0db85e2d24985df1b4b6",
+      "verified_archive_sha256": "5753c679a1b90bcf6fbc9945a2ce39dfb9e74f1df0831a1e1866ae5b594326f0"
+    },
+    {
+      "package": "platforms;android-35",
+      "url": "https://dl.google.com/android/repository/platform-35_r02.zip",
+      "size": 64273788,
+      "manifest_sha1": "0bb560a90a7a2cbd0dd8348224d518b638fe7949",
+      "verified_archive_sha256": "0988cacad01b38a18a47bac14a0695f246bc76c1b06c0eeb8eb0dc825ab0c8e0"
+    }
+  ],
+  "jdk": {
+    "home": ".work/toolchain/jdk17.0.21_1",
+    "distribution": "Amazon Corretto 17.0.21.1.2",
+    "java_version": "17.0.21.1",
+    "javac_version": "17.0.21.1",
+    "archive": ".work/toolchain/corretto-17.zip",
+    "bytes": 188398640,
+    "sha256": "2c8f079d861a42574718085186dccd0a15376dd6922f6abd395b4be436d780c2",
+    "source": "https://corretto.aws/downloads/resources/17.0.21.1.2/amazon-corretto-17.0.21.1.2-windows-x64-jdk.zip",
+    "checksum_source": "https://corretto.aws/downloads/latest_sha256/amazon-corretto-17-x64-windows-jdk.zip"
+  },
+  "debug_apk_signing": "APK Signature Scheme v3, development keystore",
+  "v1_certificate_sha256": "9dfd897a34aa6e9247393a5e961d31b26179143edba8967c842a731bf29dbdf9"
+}

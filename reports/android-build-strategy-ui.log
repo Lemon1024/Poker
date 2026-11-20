@@ -1,0 +1,5 @@
+{"fixture":"equal","ms":454,"iterations":"16,384","error":"0.0820%","policy":"过牌\t6.1363%\t-0.0303\n下注 50\t25.3905%\t0.6064\n下注 100\t68.4732%\t0.8883"}
+{"fixture":"weighted","ms":385,"iterations":"12,288","error":"0.0922%","policy":"过牌\t23.0422%\t-0.0164\n下注 50\t1.4512%\t-3.8581\n下注 100\t75.5066%\t-0.2160"}
+checkpoint resumed from 512
+wall clock 1s: 已达标
+{"width":[360,360],"errors":[],"consoleErrors":[],"urls":[],"version":"157.0.8103.79"}

@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:poker-mobile:analysis-request:1",
+  "title": "Poker mobile exact analysis request v1",
+  "description": "Repository contract, not an implemented application. Cross-field card collisions, duplicate unordered range combos, and empty effective ranges require runtime validation.",
+  "$defs": {
+    "card": {
+      "type": "string",
+      "pattern": "^[2-9TJQKA][cdhs]$"
+    },
+    "pair": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/card"
+      },
+      "minItems": 2,
+      "maxItems": 2,
+      "uniqueItems": true
+    },
+    "range": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind"
+          ],
+          "properties": {
+            "kind": {
+              "const": "uniform"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "combos"
+          ],
+          "properties": {
+            "kind": {
+              "const": "weighted"
+            },
+            "combos": {
+              "type": "array",
+              "maxItems": 1326,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "cards",
+                  "weight"
+                ],
+                "properties": {
+                  "cards": {
+                    "$ref": "#/$defs/pair"
+                  },
+                  "weight": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "request_id",
+        "method",
+        "hero",
+        "mode",
+        "villain",
+        "board"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "method": {
+          "const": "exact"
+        },
+        "hero": {
+          "$ref": "#/$defs/pair"
+        },
+        "mode": {
+          "const": "preflop_fixed"
+        },
+        "villain": {
+          "$ref": "#/$defs/pair"
+        },
+        "board": {
+          "type": "array",
+          "maxItems": 0
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "request_id",
+        "method",
+        "hero",
+        "mode",
+        "board",
+        "range"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "method": {
+          "const": "exact"
+        },
+        "hero": {
+          "$ref": "#/$defs/pair"
+        },
+        "mode": {
+          "const": "combo_analysis"
+        },
+        "board": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/card"
+          },
+          "minItems": 3,
+          "maxItems": 5,
+          "uniqueItems": true
+        },
+        "range": {
+          "$ref": "#/$defs/range"
+        }
+      }
+    }
+  ]
+}

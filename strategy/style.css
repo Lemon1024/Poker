@@ -1,0 +1,55 @@
+.topbar a {text-decoration:none}
+.research {padding-bottom:40px}
+.model-layout {display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:20px;align-items:start}
+#gto-form {margin-top:16px}
+#gto-form select,#gto-form input,#gto-form textarea,#gto-history,#gto-hand {display:block;width:100%;margin-top:5px}
+#gto-form>label,#gto-form details>label {margin-top:13px}
+.paired {display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.paired label {min-width:0}
+#gto-board,#gto-opens,#gto-raises {font-family:Consolas,monospace}
+#gto-form details {border-top:1px solid var(--line);margin-top:16px;padding-top:12px}
+#gto-form summary {cursor:pointer;font-size:14px;font-weight:650}
+#gto-form details .hint {margin-top:7px}
+#gto-form .run-actions {margin-top:16px}
+.solve-card {overflow-wrap:anywhere}
+.solve-card .measure {padding:25px 0;border-bottom:1px solid #456656;display:grid;gap:5px}
+.measure span,.solve-metrics dt {font-size:14px;color:#d1dfd4}
+.measure strong {color:var(--win);font:650 clamp(32px,5vw,55px)/1.2 "Segoe UI",sans-serif;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.measure small {font-size:13px}
+.solve-metrics {padding:8px 0 16px}
+.solve-metrics>div {display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:1px solid #385b4e;padding:10px 0}
+.solve-metrics dd {font-size:15px;font-weight:650;text-align:right}
+#gto-status {font-size:14px;color:#d1dfd4}
+.strategy-results {margin-top:20px}
+.strategy-results .section-head {align-items:center}
+.strategy-results h3 {font-size:16px;margin:0 0 4px}
+.policy-layout {display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr);gap:24px;margin-top:20px}
+.matrix-scroll {overflow:auto}
+#gto-matrix {display:grid;grid-template-columns:repeat(13,minmax(0,1fr));gap:2px;margin-top:10px;min-width:255px}
+#gto-matrix button {background:#eef0e9;color:#737c75;border:1px solid #e1e4da;border-radius:3px;padding:5px 0;font:600 clamp(9px,1vw,13px)/1.2 "Segoe UI",sans-serif}
+#gto-matrix button:disabled {opacity:.78}
+#gto-matrix button:not(:disabled) {background:#d5e9d5;color:#21523c;border-color:#9ab398}
+#gto-matrix button[aria-pressed=true] {color:white;background:var(--green);border-color:var(--green)}
+.hand-policy {min-width:0}
+.hand-policy .hint {margin-top:8px}
+#gto-action-table {margin-top:13px}
+#gto-form h3 {font-size:14px;margin:12px 0 6px}
+.range-sides {grid-template-columns:repeat(2,minmax(0,1fr))}
+.hand-list {display:flex;flex-wrap:wrap;gap:5px}
+.hand-chip {display:inline-flex;align-items:center;gap:4px;background:#fbfcf7;border:1px solid var(--line);border-radius:6px;padding:6px;color:#24322b;font:600 15px Georgia,serif}
+.hand-chip small {font:500 11px system-ui;color:#58665e}
+.hand-chip:hover {border-color:var(--green);background:#eff5e9}
+.hand-chip .red {color:#a33434}
+.edit-range {margin-top:6px;padding:5px 8px}
+#gto-picker-range {display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;margin-bottom:12px}
+#gto-picker-range select,#gto-picker-range input {display:block;max-width:100%;width:135px;margin-top:5px}
+#gto-weights {display:flex;gap:4px;flex-wrap:wrap}
+#gto-weights button {font-size:12px;padding:5px 8px}
+#gto-picker-error:empty {display:none}
+@media(max-width:720px) {
+  .model-layout,.policy-layout {grid-template-columns:1fr}
+  .strategy-results .section-head {display:block}
+  .strategy-results .section-head label {margin-top:10px}
+  .model-layout {gap:14px}
+}
+@media(max-width:540px) {.range-sides {grid-template-columns:1fr}}

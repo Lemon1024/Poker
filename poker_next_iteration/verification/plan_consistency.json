@@ -1,0 +1,26 @@
+{
+  "artifact_role": "plan_reference_validation_only",
+  "application_validated": false,
+  "gto_strategy_solved": false,
+  "task_count": 12,
+  "checks_passed": 392,
+  "independent_terminal_comparisons": 2112,
+  "fixtures": [
+    {
+      "fixture_id": "turn_weighted_blocker_v1",
+      "equity_fraction": "3/11",
+      "status": "passed"
+    },
+    {
+      "fixture_id": "flop_weighted_v1",
+      "equity_fraction": "581/1980",
+      "status": "passed"
+    },
+    {
+      "fixture_id": "turn_current_tie_v1",
+      "equity_fraction": "53/88",
+      "status": "passed"
+    }
+  ],
+  "gto_model_compatible_joint_pairs": 60
+}

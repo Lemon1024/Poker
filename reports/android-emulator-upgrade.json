@@ -1,0 +1,485 @@
+{
+  "status": "passed",
+  "startedAt": "2026-11-20T01:42:36.563Z",
+  "host": {
+    "platform": "win32",
+    "release": "10.0.26200",
+    "arch": "x64"
+  },
+  "package": "org.rivernotes.poker",
+  "scenarios": [
+    {
+      "name": "identify named offline emulator",
+      "status": "passed",
+      "elapsedMs": 517
+    },
+    {
+      "name": "install debug APK and verify installed digest + permissions",
+      "status": "passed",
+      "elapsedMs": 1691
+    },
+    {
+      "name": "offline cold start from packaged HTTPS origin",
+      "status": "passed",
+      "elapsedMs": 6617
+    },
+    {
+      "name": "restore previously persisted v1 hand after emulator reboot",
+      "status": "passed",
+      "elapsedMs": 212
+    },
+    {
+      "name": "in-place upgrade without clearing app data",
+      "status": "passed",
+      "elapsedMs": 1720
+    },
+    {
+      "name": "offline cold launch of upgraded APK",
+      "status": "passed",
+      "elapsedMs": 5511
+    },
+    {
+      "name": "restore v1 equity record after upgrade",
+      "status": "passed",
+      "elapsedMs": 115
+    },
+    {
+      "name": "strategy models, information sets, card picker, checkpoint and return",
+      "status": "passed",
+      "elapsedMs": 5344
+    }
+  ],
+  "commands": [
+    {
+      "argv": [
+        "adb",
+        "version"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "get-state"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "shell",
+        "getprop",
+        "ro.kernel.qemu"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "shell",
+        "getprop",
+        "ro.boot.qemu"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "emu",
+        "avd",
+        "name"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "shell",
+        "getprop",
+        "ro.build.version.sdk"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "shell",
+        "getprop",
+        "ro.build.version.release"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "shell",
+        "getprop",
+        "ro.product.cpu.abilist"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "shell",
+        "dumpsys",
+        "connectivity"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "install",
+        "-r",
+        "D:\\Agent project\\Poker\\dist\\poker-equity-android-v1.apk"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "shell",
+        "pm",
+        "path",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "shell",
+        "sha256sum",
+        "/data/app/~~pyNvXfCXg4VStYXqIkoEiw==/org.rivernotes.poker-DQINT6bwjil6TYPFTuwzzw==/base.apk"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "shell",
+        "dumpsys",
+        "package",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "shell",
+        "dumpsys",
+        "connectivity"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "shell",
+        "am",
+        "force-stop",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "shell",
+        "am",
+        "start",
+        "-W",
+        "-n",
+        "org.rivernotes.poker/.MainActivity"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "shell",
+        "pidof",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "forward",
+        "tcp:0",
+        "localabstract:webview_devtools_remote_1871"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "forward",
+        "--remove",
+        "tcp:61722"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "install",
+        "-r",
+        "D:\\Agent project\\Poker\\dist\\poker-strategy-android-v2.apk"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "shell",
+        "pm",
+        "path",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "shell",
+        "sha256sum",
+        "/data/app/~~aaSRXtEFLYWBbT-uaoeIvw==/org.rivernotes.poker-NTFWYvNDK_WQuXpCWjGb_Q==/base.apk"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "shell",
+        "dumpsys",
+        "package",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "shell",
+        "dumpsys",
+        "connectivity"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "shell",
+        "am",
+        "force-stop",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "shell",
+        "am",
+        "start",
+        "-W",
+        "-n",
+        "org.rivernotes.poker/.MainActivity"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "shell",
+        "pidof",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "forward",
+        "tcp:0",
+        "localabstract:webview_devtools_remote_2006"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "shell",
+        "dumpsys",
+        "connectivity"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5562",
+        "forward",
+        "--remove",
+        "tcp:53530"
+      ],
+      "status": 0
+    }
+  ],
+  "externalRequests": [],
+  "exceptions": [],
+  "adb": "Android Debug Bridge version 1.0.41\r\nVersion 37.0.1-15733141\r\nInstalled as D:\\Agent project\\Poker\\.work\\toolchain\\android-sdk\\platform-tools\\adb.exe\r\nRunning on Windows 10.0.26200",
+  "device": {
+    "serial": "emulator-5562",
+    "avd": "RiverNotes_API35_offline",
+    "qemu": [
+      "1",
+      "1"
+    ],
+    "api": "35",
+    "android": "15",
+    "abi": "x86_64",
+    "offlineBeforeInstall": "Active default network: none"
+  },
+  "apks": [
+    {
+      "file": "poker-equity-android-v1.apk",
+      "sha256": "d46700e40614c4bd56ac9a2b9046e44ba9b44069191095c5d1ed9ae96099fe61",
+      "installOutput": "Performing Streamed Install\r\nSuccess",
+      "installedSha256": "d46700e40614c4bd56ac9a2b9046e44ba9b44069191095c5d1ed9ae96099fe61",
+      "versionCode": 1
+    },
+    {
+      "file": "poker-strategy-android-v2.apk",
+      "sha256": "a9083ca55aa41b572731e891ae45bbddec976297424339226dcecc995aa353ef",
+      "installOutput": "Performing Streamed Install\r\nSuccess",
+      "installedSha256": "a9083ca55aa41b572731e891ae45bbddec976297424339226dcecc995aa353ef",
+      "versionCode": 2
+    }
+  ],
+  "starts": [
+    {
+      "pid": "1871",
+      "launch": "Starting: Intent { cmp=org.rivernotes.poker/.MainActivity }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: org.rivernotes.poker/.MainActivity\r\nTotalTime: 2592\r\nWaitTime: 2623\r\nComplete",
+      "offlineBeforeStart": "Active default network: none",
+      "url": "https://appassets.androidplatform.net/index.html",
+      "online": true,
+      "webview": "Mozilla/5.0 (Linux; Android 15; Android SDK built for x86_64 Build/AE3A.240806.019; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/124.0.6367.219 Mobile Safari/537.36",
+      "method": "模拟估计"
+    },
+    {
+      "pid": "2006",
+      "launch": "Starting: Intent { cmp=org.rivernotes.poker/.MainActivity }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: org.rivernotes.poker/.MainActivity\r\nTotalTime: 1922\r\nWaitTime: 1928\r\nComplete",
+      "offlineBeforeStart": "Active default network: none",
+      "url": "https://appassets.androidplatform.net/index.html",
+      "online": true,
+      "webview": "Mozilla/5.0 (Linux; Android 15; Android SDK built for x86_64 Build/AE3A.240806.019; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/124.0.6367.219 Mobile Safari/537.36",
+      "method": "模拟估计"
+    }
+  ],
+  "persistedV1Hand": {
+    "cards": [
+      "Ks",
+      "Kh"
+    ],
+    "probabilities": [
+      "17.11%",
+      "0.58%",
+      "82.31%",
+      "17.40%"
+    ],
+    "record": "2026-11-20T01:34:53.299Z"
+  },
+  "touches": [
+    {
+      "selector": "#gto-deck [data-card=Qh]",
+      "cssPixels": {
+        "x": 112.3046875,
+        "y": 448
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    }
+  ],
+  "strategy": [
+    {
+      "preset": "equal",
+      "budgetSeconds": 600,
+      "status": "已达标",
+      "iterations": "16,384",
+      "errorPercent": "0.0820%",
+      "elapsedMs": 1502
+    },
+    {
+      "preset": "weighted",
+      "budgetSeconds": 600,
+      "checkpointIteration": "35",
+      "status": "已达标",
+      "iterations": "14,528",
+      "errorPercent": "0.0796%",
+      "elapsedMs": 1926
+    }
+  ],
+  "offlineAfterRun": "Active default network: none"
+}

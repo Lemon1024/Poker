@@ -1,0 +1,40 @@
+{
+  "artifacts": [
+    {
+      "edition": "equity",
+      "file": "poker-equity-android-v1.apk",
+      "bytes": 33495,
+      "sha256": "8d2ba9b520076ca9b099fa80d176b6a72f826edb72b1ed2296d250f71db769ff",
+      "assets": 5,
+      "version": 1,
+      "package": "org.rivernotes.poker",
+      "launch_activity": "org.rivernotes.poker.MainActivity",
+      "device_permissions": [],
+      "zip_verified": true,
+      "apksig_v3": true,
+      "cert_sha256": "9dfd897a34aa6e9247393a5e961d31b26179143edba8967c842a731bf29dbdf9",
+      "history_store_source_sha256": "cbd92f04939d6f49e78bac9ec49a76d875405e15e6645607bfd2f37ac01ebc4b",
+      "classes_dex_sha256": "45b727b28e96f5ace9b09f5b19f57217030ab988698f8f20b9a59bb38dd90878",
+      "history_store_dex_verified": true
+    },
+    {
+      "edition": "strategy",
+      "file": "poker-strategy-android-v2.apk",
+      "bytes": 54400,
+      "sha256": "b75a91a9932aa27d073dbd340c40795c17c0f4d941410b32e72ac5845d65b4cc",
+      "assets": 11,
+      "version": 2,
+      "package": "org.rivernotes.poker",
+      "launch_activity": "org.rivernotes.poker.MainActivity",
+      "device_permissions": [],
+      "zip_verified": true,
+      "apksig_v3": true,
+      "cert_sha256": "9dfd897a34aa6e9247393a5e961d31b26179143edba8967c842a731bf29dbdf9",
+      "history_store_source_sha256": "cbd92f04939d6f49e78bac9ec49a76d875405e15e6645607bfd2f37ac01ebc4b",
+      "classes_dex_sha256": "45b727b28e96f5ace9b09f5b19f57217030ab988698f8f20b9a59bb38dd90878",
+      "history_store_dex_verified": true
+    }
+  ],
+  "upgrade_preconditions": "same application ID and original development signer, versionCode 1 to 2",
+  "device_run": "See separate emulator evidence"
+}

@@ -1,0 +1,289 @@
+{
+  "plan_version": "1.1-incremental",
+  "created_date": "2026-11-20",
+  "artifact_role": "incremental_development_plan_not_implementation",
+  "reported_baseline": {
+    "preflop_fixed_all_in": "user_reported_complete",
+    "river_combo_analysis": "user_reported_complete",
+    "repository_audit_performed_for_this_plan": false
+  },
+  "default_scope": "R1",
+  "scopes": {
+    "R1": [
+      "N00",
+      "N01",
+      "N02",
+      "N03",
+      "N04"
+    ],
+    "R2": [
+      "N05",
+      "N06",
+      "N07",
+      "N08"
+    ],
+    "G1": [
+      "G01",
+      "G02",
+      "G03"
+    ]
+  },
+  "execution_policy": "沿用现有工程；已有功能满足则复用并记录证据；所选范围内按依赖自主完成；平台阻碍不阻塞独立核心；不自动扩大到未选范围。",
+  "dependency_policy": "执行后续scope前核对依赖已有证据；缺失时补齐必要依赖。N01只包含可主机验证的范围核心；手机编辑与保存由N04负责。G01/G02不依赖N03/N05或任何手机SDK，平台阻碍不得阻塞它们。",
+  "tasks": [
+    {
+      "id": "N00",
+      "title": "现有工程盘点与相关回归",
+      "depends_on": [],
+      "scope": "R1",
+      "status": "planned",
+      "reuse_if_already_satisfied": true,
+      "deliverables": [
+        "reports/INCREMENTAL_BASELINE.md",
+        "复用点与本轮缺口清单"
+      ],
+      "acceptance": [
+        "用户报告完成与本次验证分开记录",
+        "保留现有栈、项目与用户修改",
+        "确认当前接口和影响范围；复用已存在证据"
+      ]
+    },
+    {
+      "id": "N01",
+      "title": "范围数据契约与权重核心",
+      "depends_on": [
+        "N00"
+      ],
+      "scope": "R1",
+      "status": "planned",
+      "reuse_if_already_satisfied": true,
+      "deliverables": [
+        "可主机验证的范围数据契约",
+        "合法性处理与带权汇总",
+        "缓存覆盖与范围序列化规则"
+      ],
+      "acceptance": [
+        "单组合与全均匀范围一致",
+        "重复组合、阻挡、零权重、空范围处理明确",
+        "过滤列表不隐式改变范围",
+        "更改权重复用已存在行；补算缺失行"
+      ]
+    },
+    {
+      "id": "N02",
+      "title": "可取消后台任务",
+      "depends_on": [
+        "N00"
+      ],
+      "scope": "R1",
+      "status": "planned",
+      "reuse_if_already_satisfied": true,
+      "deliverables": [
+        "有限批次后台计算",
+        "任务标识与晚到结果隔离",
+        "取消、后台切换与资源释放"
+      ],
+      "acceptance": [
+        "取消停止实际计算",
+        "输入变化不被旧结果覆盖",
+        "精确枚举未完成不输出总体概率",
+        "取消和部分结果不进完成缓存"
+      ]
+    },
+    {
+      "id": "N03",
+      "title": "转牌精确分析",
+      "depends_on": [
+        "N01"
+      ],
+      "scope": "R1",
+      "status": "planned",
+      "reuse_if_already_satisfied": true,
+      "deliverables": [
+        "4张公牌逐组合枚举",
+        "当前关系与最终胜平负/权益",
+        "接口和绑定兼容"
+      ],
+      "acceptance": [
+        "uniform输出1035行；每行44个终局",
+        "fixtures/turn_weighted_blocker_v1.json通过",
+        "fixtures/turn_current_tie_v1.json通过",
+        "相关已有功能回归通过"
+      ]
+    },
+    {
+      "id": "N04",
+      "title": "R1 手机集成与交付",
+      "depends_on": [
+        "N01",
+        "N02",
+        "N03"
+      ],
+      "scope": "R1",
+      "status": "planned",
+      "reuse_if_already_satisfied": true,
+      "deliverables": [
+        "手机范围编辑与保存",
+        "真实范围与转牌流程",
+        "当前关系与权益独立展示",
+        "可用平台构建及交付报告"
+      ],
+      "acceptance": [
+        "生产结果来自计算引擎",
+        "换牌、取消、重算和后台恢复验证",
+        "平台编译/模拟器/真机状态分别记录",
+        "构建对应最终源码"
+      ]
+    },
+    {
+      "id": "N05",
+      "title": "翻牌精确分析",
+      "depends_on": [
+        "N02",
+        "N03"
+      ],
+      "scope": "R2",
+      "status": "planned",
+      "reuse_if_already_satisfied": true,
+      "deliverables": [
+        "3张公牌逐组合精确结果",
+        "批量计算与评估复用"
+      ],
+      "acceptance": [
+        "uniform输出1081行；每行990个补全",
+        "fixtures/flop_weighted_v1.json通过",
+        "有独立参考对照与受影响回归"
+      ]
+    },
+    {
+      "id": "N06",
+      "title": "下一张牌影响",
+      "depends_on": [
+        "N05"
+      ],
+      "scope": "R2",
+      "status": "planned",
+      "reuse_if_already_satisfied": true,
+      "deliverables": [
+        "next-card条件范围、出现概率、条件权益和变化",
+        "独立详情接口或版本化契约"
+      ],
+      "acceptance": [
+        "sum P(card)=1；sum P(card)*E(card)=E(current)",
+        "阻挡导致的非均匀概率正确",
+        "零概率候选牌的条件权益为null",
+        "翻牌无序补全按顺序正确分配概率质量"
+      ]
+    },
+    {
+      "id": "N07",
+      "title": "组合探索与历史缓存",
+      "depends_on": [
+        "N04"
+      ],
+      "scope": "R2",
+      "status": "planned",
+      "reuse_if_already_satisfied": true,
+      "deliverables": [
+        "169格到具体组合的展开",
+        "独立筛选、懒加载、解释",
+        "历史和两层缓存"
+      ],
+      "acceptance": [
+        "显示当前范围与组合权重",
+        "排序筛选不启动新计算",
+        "缓存命中绑定当前请求",
+        "当前牌型解释不冒充未来牌面结果"
+      ]
+    },
+    {
+      "id": "N08",
+      "title": "R2 集成与性能交付",
+      "depends_on": [
+        "N05",
+        "N06",
+        "N07"
+      ],
+      "scope": "R2",
+      "status": "planned",
+      "reuse_if_already_satisfied": true,
+      "deliverables": [
+        "完整翻后分析构建",
+        "目标设备性能与内存记录",
+        "更新交付报告"
+      ],
+      "acceptance": [
+        "样例和条件概率恒等式通过",
+        "真实性能与设备信息齐全或明确未测",
+        "相关功能无回归",
+        "构建对应最终源码"
+      ]
+    },
+    {
+      "id": "G01",
+      "title": "小型博弈 CFR 与独立最佳响应",
+      "depends_on": [
+        "N00"
+      ],
+      "scope": "G1",
+      "status": "planned",
+      "reuse_if_already_satisfied": true,
+      "deliverables": [
+        "小型博弈标准CFR",
+        "按到达概率累计的平均策略",
+        "独立最佳响应与NashConv"
+      ],
+      "acceptance": [
+        "对照独立参考实现",
+        "策略和BR均不使用隐藏信息",
+        "检测平均策略而非最后一轮"
+      ]
+    },
+    {
+      "id": "G02",
+      "title": "受限河牌 GTO 内核",
+      "depends_on": [
+        "G01",
+        "N01"
+      ],
+      "scope": "G1",
+      "status": "planned",
+      "reuse_if_already_satisfied": true,
+      "deliverables": [
+        "双方联合范围",
+        "有限下注树与统一收益",
+        "平均策略、动作EV、误差输出"
+      ],
+      "acceptance": [
+        "fixtures/gto_river_small_v1.json模型内exploitability/root_pot<=0.001",
+        "exploitability=NashConv/2",
+        "空联合范围明确报错",
+        "筹码守恒，未跟注投入返还",
+        "超时或仅输出误差不视为通过"
+      ]
+    },
+    {
+      "id": "G03",
+      "title": "GTO 手机接入与发布",
+      "depends_on": [
+        "G02",
+        "N02",
+        "N04"
+      ],
+      "scope": "G1",
+      "status": "planned",
+      "reuse_if_already_satisfied": true,
+      "deliverables": [
+        "双方范围、底池、筹码和树设置",
+        "组合策略、EV与精度状态",
+        "包含GTO的真实平台构建"
+      ],
+      "acceptance": [
+        "实际手牌仅用于查看组合策略，不向对手公开",
+        "误差与EV口径明确",
+        "可取消求解",
+        "构建对应最终源码和实测平台状态"
+      ]
+    }
+  ]
+}

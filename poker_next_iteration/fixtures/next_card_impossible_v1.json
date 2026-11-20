@@ -1,0 +1,46 @@
+{
+  "fixture_schema_version": 1,
+  "fixture_id": "next_card_impossible_v1",
+  "artifact_role": "reference_fixture_not_production_result",
+  "hero": [
+    "As",
+    "Ah"
+  ],
+  "board": [
+    "Kc",
+    "7d",
+    "2h",
+    "3s"
+  ],
+  "opponent_range": [
+    {
+      "cards": [
+        "Kd",
+        "Kh"
+      ],
+      "weight": 1
+    }
+  ],
+  "expected_next_cards": [
+    {
+      "card": "Kd",
+      "probability": {
+        "numerator": 0,
+        "denominator": 1
+      },
+      "conditional_equity": null,
+      "delta_equity": null,
+      "status": "impossible"
+    },
+    {
+      "card": "Kh",
+      "probability": {
+        "numerator": 0,
+        "denominator": 1
+      },
+      "conditional_equity": null,
+      "delta_equity": null,
+      "status": "impossible"
+    }
+  ]
+}

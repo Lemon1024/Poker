@@ -1,0 +1,32 @@
+{
+  "fixture_schema_version": 1,
+  "artifact_role": "development_contract_fixture_not_application",
+  "examples": [
+    {
+      "schema_version": 1,
+      "request_id": "example-running",
+      "engine_version": "oracle-fixture-v1",
+      "mode": "preflop_fixed",
+      "method": "exact",
+      "status": "running",
+      "phase": "enumerating",
+      "completed_evaluations": 100000,
+      "total_evaluations": 1712304
+    },
+    {
+      "schema_version": 1,
+      "request_id": "example-failed",
+      "engine_version": "oracle-fixture-v1",
+      "mode": "combo_analysis",
+      "method": "exact",
+      "status": "failed",
+      "phase": "validating",
+      "completed_evaluations": 0,
+      "total_evaluations": null,
+      "error": {
+        "code": "EMPTY_EFFECTIVE_RANGE",
+        "message": "过滤阻挡与零权重组合后，对手范围为空。"
+      }
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "fixture_schema_version": 1,
+  "fixture_kind": "gto_benchmark_spec",
+  "artifact_role": "development_contract_fixture_not_application",
+  "description": "Fixed nontrivial river benchmark with hidden weighted ranges. No equilibrium frequencies are prefilled; implementation must solve and independently evaluate.",
+  "benchmark_id": "river_small_v1",
+  "board": [
+    "Qd",
+    "8s",
+    "2s",
+    "7h",
+    "3c"
+  ],
+  "root_pot": 100,
+  "remaining_stacks": {
+    "oop": 100,
+    "ip": 100
+  },
+  "oop_range": [
+    {
+      "cards": [
+        "As",
+        "Qs"
+      ],
+      "weight": 1.0
+    },
+    {
+      "cards": [
+        "Ah",
+        "Qh"
+      ],
+      "weight": 1.0
+    },
+    {
+      "cards": [
+        "Qc",
+        "Jc"
+      ],
+      "weight": 1.0
+    },
+    {
+      "cards": [
+        "8c",
+        "8d"
+      ],
+      "weight": 1.0
+    },
+    {
+      "cards": [
+        "7c",
+        "7d"
+      ],
+      "weight": 1.0
+    },
+    {
+      "cards": [
+        "Kc",
+        "Jd"
+      ],
+      "weight": 1.0
+    },
+    {
+      "cards": [
+        "Ac",
+        "Kd"
+      ],
+      "weight": 1.0
+    },
+    {
+      "cards": [
+        "6c",
+        "5c"
+      ],
+      "weight": 1.0
+    }
+  ],
+  "ip_range": [
+    {
+      "cards": [
+        "Kh",
+        "Qh"
+      ],
+      "weight": 1.0
+    },
+    {
+      "cards": [
+        "Ad",
+        "Qc"
+      ],
+      "weight": 1.0
+    },
+    {
+      "cards": [
+        "8h",
+        "7s"
+      ],
+      "weight": 1.0
+    },
+    {
+      "cards": [
+        "2c",
+        "2d"
+      ],
+      "weight": 1.0
+    },
+    {
+      "cards": [
+        "Ah",
+        "Kh"
+      ],
+      "weight": 1.0
+    },
+    {
+      "cards": [
+        "Jc",
+        "Tc"
+      ],
+      "weight": 1.0
+    },
+    {
+      "cards": [
+        "9d",
+        "6d"
+      ],
+      "weight": 1.0
+    },
+    {
+      "cards": [
+        "Ks",
+        "Js"
+      ],
+      "weight": 1.0
+    }
+  ],
+  "betting_model": {
+    "first_player": "oop",
+    "open_bets": [
+      50,
+      100
+    ],
+    "raise_to_after_bet_50": [
+      100
+    ],
+    "max_raises_per_path": 1,
+    "check_check": "showdown",
+    "facing_all_in": [
+      "fold",
+      "call"
+    ],
+    "uncalled_amounts": "returned",
+    "rake": 0
+  },
+  "acceptance": {
+    "exported_policy": "reach_weighted_average",
+    "independent_best_response_required": true,
+    "exploitability_convention": "NashConv / 2",
+    "maximum_exploitability_pot_fraction": 0.001,
+    "maximum_exploitability_chips": 0.1,
+    "at_least_one_fixed_nondegenerate_benchmark_must_converge": true,
+    "timeout_is_not_a_pass": true
+  },
+  "invalid_joint_range_case": {
+    "board": [
+      "Qd",
+      "8s",
+      "2s",
+      "7h",
+      "3c"
+    ],
+    "oop_range": [
+      {
+        "cards": [
+          "As",
+          "Ah"
+        ],
+        "weight": 1.0
+      }
+    ],
+    "ip_range": [
+      {
+        "cards": [
+          "As",
+          "Ah"
+        ],
+        "weight": 1.0
+      }
+    ],
+    "expected_error_code": "EMPTY_JOINT_RANGE",
+    "reason": "Both ranges are individually nonempty but no compatible joint hand pair exists."
+  }
+}

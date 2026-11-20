@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>河牌策略研究 · 河牌手记</title>
+  <link rel="stylesheet" href="../web/style.css">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="../web/equity.js"></script>
+  <script defer src="solver.js"></script>
+  <script defer src="evaluate.js"></script>
+  <script defer src="runner.js"></script>
+  <script defer src="ui.js"></script>
+</head>
+<body>
+  <header class="topbar"><div class="frame topbar-inner">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">♠</span>河牌手记</div>
+    <a class="quiet-button" href="../index.html">返回权益复盘</a>
+  </div></header>
+  <main class="frame research">
+    <div class="intro"><h1>河牌策略研究</h1><p>给定双方范围和下注树，求解单挑河牌的平均策略，再用独立最佳响应检验误差。先行动方记作 OOP，后行动方记作 IP。</p></div>
+    <div class="model-layout">
+      <section class="panel">
+        <h2>局面与行动树</h2>
+        <form id="gto-form">
+          <label>载入基准<select id="gto-preset"><option value="equal">小范围 · 等权</option><option value="weighted">小范围 · 非等权</option><option value="custom" disabled>自定义局面</option></select></label>
+          <h3 id="gto-board-label">河牌公共牌</h3>
+          <div id="gto-board" class="cards-preview board-field" role="group" aria-labelledby="gto-board-label"></div>
+          <div class="paired">
+            <label>根底池<input id="gto-pot" type="number" min="1" step="1" required></label>
+            <label>双方剩余筹码<input id="gto-stack" type="number" min="1" step="1" required></label>
+          </div>
+          <details id="range-editor"><summary>编辑双方范围与下注尺度</summary>
+            <p class="hint">点击组合可更换手牌、调整权重或移除。</p>
+            <div class="paired range-sides">
+              <div><h3 id="oop-label">OOP 范围</h3><div id="gto-oop" class="hand-list" role="group" aria-labelledby="oop-label"></div><button id="gto-oop-pick" type="button" class="secondary edit-range">＋ 添加 OOP 组合</button></div>
+              <div><h3 id="ip-label">IP 范围</h3><div id="gto-ip" class="hand-list" role="group" aria-labelledby="ip-label"></div><button id="gto-ip-pick" type="button" class="secondary edit-range">＋ 添加 IP 组合</button></div>
+            </div>
+            <label>首注金额<input id="gto-opens" placeholder="50 100" required></label>
+            <label>面对首注可加到<input id="gto-raises" placeholder="50:100"></label>
+            <p class="hint">首注金额用空格分隔。加注写作「首注:加到」，例如 50:100。留空表示仅可跟注或弃牌。</p>
+          </details>
+          <details id="budget-editor"><summary>求解预算</summary>
+            <div class="paired">
+              <label>最多迭代数<input id="gto-limit" type="number" min="1" step="1" value="100000" required></label>
+              <label>时限（秒）<input id="gto-seconds" type="number" min="1" step="1" value="120" required></label>
+            </div>
+            <p class="hint">目标可利用度为根底池的 0.1%。达到时限可从检查点继续求解。</p>
+          </details>
+          <div class="run-actions">
+            <button type="submit" id="gto-run" class="primary">开始牌局求解</button>
+            <button type="button" id="gto-pause" class="secondary" hidden>暂停并保存</button>
+            <button type="button" id="gto-cancel" class="secondary" hidden>取消</button>
+            <button type="button" id="gto-resume" class="secondary" hidden>从检查点继续</button>
+            <button type="button" id="gto-load" class="secondary" hidden>载入暂停局面</button>
+          </div>
+        </form>
+        <p class="feedback" id="gto-feedback" role="alert" hidden></p>
+      </section>
+      <section class="result-panel solve-card">
+        <div class="result-head"><h2>求解状态</h2><span class="method" id="gto-badge">待求解</span></div>
+        <div class="measure"><span>实测可利用度 / 根底池</span><strong id="gto-error">—</strong><small>目标 ≤ 0.1%</small></div>
+        <dl class="solve-metrics">
+          <div><dt>绝对可利用度</dt><dd id="gto-chips">—</dd></div>
+          <div><dt>已完成迭代</dt><dd id="gto-iterations">—</dd></div>
+          <div><dt>算法版本</dt><dd id="gto-algorithm">—</dd></div>
+          <div><dt>OOP / IP 根 EV</dt><dd id="gto-root-ev">—</dd></div>
+        </dl>
+        <p id="gto-status" role="status">选择基准或编辑局面后开始求解。</p>
+      </section>
+    </div>
+    <section id="gto-results" class="panel strategy-results" hidden>
+      <div class="section-head"><div><h2>节点与手牌策略</h2><p id="gto-actor" class="hint"></p></div>
+        <label>公共行动历史<select id="gto-history"></select></label>
+      </div>
+      <div class="policy-layout">
+        <div>
+          <h3>行动方范围矩阵</h3>
+          <p id="gto-matrix-help" class="hint">选择有底色的牌类，再查看具体花色。上三角为同花，下三角为非同花。</p>
+          <div class="matrix-scroll"><div id="gto-matrix" aria-label="行动方范围矩阵" aria-describedby="gto-matrix-help"></div></div>
+        </div>
+        <div class="hand-policy">
+          <label>具体组合<select id="gto-hand"></select></label>
+          <p class="hint" id="gto-reach"></p>
+          <table id="gto-action-table"><thead><tr><th scope="col">动作</th><th scope="col">行动频率</th><th scope="col">行动 EV</th></tr></thead><tbody id="gto-actions"></tbody></table>
+          <p class="hint">EV 以筹码表示，使用从河牌根节点开始的增量收益口径。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <dialog id="gto-picker" aria-labelledby="gto-picker-title">
+    <div class="dialog-head"><h2 id="gto-picker-title">选择公共牌</h2><button id="gto-picker-close" type="button" class="icon-button" aria-label="关闭选牌">×</button></div>
+    <div id="gto-picker-range"><label>编辑的组合<select id="gto-edit-row"></select></label><label>相对权重<input id="gto-edit-weight" type="number" min="0" max="1" step="any" value="1"></label><div id="gto-weights" aria-label="常用权重"></div></div>
+    <div id="gto-picker-slots" class="picker-slots"></div><div id="gto-deck" class="deck"></div>
+    <p id="gto-picker-error" class="feedback" role="alert"></p>
+    <div class="dialog-actions"><button id="gto-delete-row" type="button" class="secondary">移除组合</button><button id="gto-picker-apply" type="button" class="primary">应用选牌</button></div>
+  </dialog>
+</body>
+</html>

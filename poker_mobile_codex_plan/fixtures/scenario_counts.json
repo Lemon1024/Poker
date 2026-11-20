@@ -1,0 +1,45 @@
+{
+  "fixture_schema_version": 1,
+  "artifact_role": "development_contract_fixture_not_application",
+  "assumptions": [
+    "standard_52_card_holdem",
+    "heads_up",
+    "no_additional_dead_cards",
+    "exact_showdown_equity_not_action_tree",
+    "all_legal_opponent_combos_for_combo_analysis"
+  ],
+  "cases": [
+    {
+      "mode": "preflop_fixed",
+      "board_count": 0,
+      "opponent_combo_count": 1,
+      "runouts_per_combo": 1712304,
+      "total_evaluations": 1712304,
+      "formula": "C(48,5)"
+    },
+    {
+      "mode": "combo_analysis",
+      "board_count": 3,
+      "opponent_combo_count": 1081,
+      "runouts_per_combo": 990,
+      "total_evaluations": 1070190,
+      "formula": "C(47,2)*C(45,2)"
+    },
+    {
+      "mode": "combo_analysis",
+      "board_count": 4,
+      "opponent_combo_count": 1035,
+      "runouts_per_combo": 44,
+      "total_evaluations": 45540,
+      "formula": "C(46,2)*44"
+    },
+    {
+      "mode": "combo_analysis",
+      "board_count": 5,
+      "opponent_combo_count": 990,
+      "runouts_per_combo": 1,
+      "total_evaluations": 990,
+      "formula": "C(45,2)"
+    }
+  ]
+}

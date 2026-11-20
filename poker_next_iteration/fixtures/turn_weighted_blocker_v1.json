@@ -1,0 +1,266 @@
+{
+  "fixture_schema_version": 1,
+  "fixture_id": "turn_weighted_blocker_v1",
+  "artifact_role": "reference_fixture_not_production_result",
+  "model": {
+    "players": 2,
+    "deck_size": 52,
+    "extra_dead_cards": [],
+    "all_remaining_public_cards_dealt": true
+  },
+  "request": {
+    "schema_version": 1,
+    "request_id": "turn_weighted_blocker_v1",
+    "mode": "combo_analysis",
+    "method": "exact",
+    "hero": [
+      "As",
+      "Ah"
+    ],
+    "board": [
+      "Kc",
+      "7d",
+      "2h",
+      "3s"
+    ],
+    "range": {
+      "kind": "weighted",
+      "combos": [
+        {
+          "cards": [
+            "Kd",
+            "Kh"
+          ],
+          "weight": 0.75
+        },
+        {
+          "cards": [
+            "Qc",
+            "Qd"
+          ],
+          "weight": 0.25
+        }
+      ]
+    }
+  },
+  "expected": {
+    "rows": [
+      {
+        "cards": [
+          "Kd",
+          "Kh"
+        ],
+        "weight": 0.75,
+        "current_relation": "losing",
+        "wins": 2,
+        "ties": 0,
+        "losses": 42,
+        "total": 44,
+        "win_probability": {
+          "numerator": 1,
+          "denominator": 22
+        },
+        "tie_probability": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "loss_probability": {
+          "numerator": 21,
+          "denominator": 22
+        },
+        "equity": {
+          "numerator": 1,
+          "denominator": 22
+        }
+      },
+      {
+        "cards": [
+          "Qc",
+          "Qd"
+        ],
+        "weight": 0.25,
+        "current_relation": "winning",
+        "wins": 42,
+        "ties": 0,
+        "losses": 2,
+        "total": 44,
+        "win_probability": {
+          "numerator": 21,
+          "denominator": 22
+        },
+        "tie_probability": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "loss_probability": {
+          "numerator": 1,
+          "denominator": 22
+        },
+        "equity": {
+          "numerator": 21,
+          "denominator": 22
+        }
+      }
+    ],
+    "aggregate": {
+      "win_probability": {
+        "numerator": 3,
+        "denominator": 11
+      },
+      "tie_probability": {
+        "numerator": 0,
+        "denominator": 1
+      },
+      "loss_probability": {
+        "numerator": 8,
+        "denominator": 11
+      },
+      "equity": {
+        "numerator": 3,
+        "denominator": 11
+      }
+    },
+    "next_card_groups": [
+      {
+        "cards": [
+          "Ac",
+          "Ad"
+        ],
+        "per_card_probability": {
+          "numerator": 1,
+          "denominator": 44
+        },
+        "conditional_equity": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "delta_equity": {
+          "numerator": 8,
+          "denominator": 11
+        }
+      },
+      {
+        "cards": [
+          "Kd",
+          "Kh"
+        ],
+        "per_card_probability": {
+          "numerator": 1,
+          "denominator": 176
+        },
+        "conditional_equity": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "delta_equity": {
+          "numerator": 8,
+          "denominator": 11
+        }
+      },
+      {
+        "cards": [
+          "Qc",
+          "Qd"
+        ],
+        "per_card_probability": {
+          "numerator": 3,
+          "denominator": 176
+        },
+        "conditional_equity": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "delta_equity": {
+          "numerator": -3,
+          "denominator": 11
+        }
+      },
+      {
+        "cards": [
+          "Qh",
+          "Qs"
+        ],
+        "per_card_probability": {
+          "numerator": 1,
+          "denominator": 44
+        },
+        "conditional_equity": {
+          "numerator": 0,
+          "denominator": 1
+        },
+        "delta_equity": {
+          "numerator": -3,
+          "denominator": 11
+        }
+      },
+      {
+        "cards": [
+          "2c",
+          "2d",
+          "2s",
+          "3c",
+          "3d",
+          "3h",
+          "4c",
+          "4d",
+          "4h",
+          "4s",
+          "5c",
+          "5d",
+          "5h",
+          "5s",
+          "6c",
+          "6d",
+          "6h",
+          "6s",
+          "7c",
+          "7h",
+          "7s",
+          "8c",
+          "8d",
+          "8h",
+          "8s",
+          "9c",
+          "9d",
+          "9h",
+          "9s",
+          "Tc",
+          "Td",
+          "Th",
+          "Ts",
+          "Jc",
+          "Jd",
+          "Jh",
+          "Js",
+          "Ks"
+        ],
+        "per_card_probability": {
+          "numerator": 1,
+          "denominator": 44
+        },
+        "conditional_equity": {
+          "numerator": 1,
+          "denominator": 4
+        },
+        "delta_equity": {
+          "numerator": -1,
+          "denominator": 44
+        }
+      }
+    ],
+    "weighted_current_relation": {
+      "winning": {
+        "numerator": 1,
+        "denominator": 4
+      },
+      "tied": {
+        "numerator": 0,
+        "denominator": 1
+      },
+      "losing": {
+        "numerator": 3,
+        "denominator": 4
+      }
+    }
+  }
+}

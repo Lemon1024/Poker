@@ -1,0 +1,26 @@
+platform,build,input,effective_combos,cached_rows,elapsed_ms,max_engine_chunk_ms,max_ui_frame_gap_ms,cancel_handler_ms,peak_rss_kib,memory_scope
+Windows x64 Node v24.16.0,source,uniform cold,1035,0,53.085,5.701,,,47612,whole Node process
+Windows x64 Node v24.16.0,source,uniform cold,1035,0,25.563,2.112,,,45456,whole Node process
+Windows x64 Node v24.16.0,source,uniform cold,1035,0,25.394,2.346,,,45340,whole Node process
+Windows x64 Node v24.16.0,source,uniform cold,1035,0,32.816,3.395,,,45544,whole Node process
+Windows x64 Node v24.16.0,source,uniform cold,1035,0,28.127,2.583,,,45448,whole Node process
+Chrome/157.0.8103.79,source,weighted cold,2,0,10.3,,7,,,not sampled per request
+Chrome/157.0.8103.79,source,weights only,2,2,11.8,,7,,,not sampled per request
+Chrome/157.0.8103.79,source,expand to uniform,1035,2,45.2,,8.3,,,not sampled per request
+Chrome/157.0.8103.79,source,cancel after exact progress,1035,0,16.2,,7,0.2,,not sampled per request
+Chrome/157.0.8103.79,source,uniform cold,1035,0,44.7,,7.1,,,not sampled per request
+Chrome/157.0.8103.79,source,current tie,1,1,12,,7.2,,,not sampled per request
+Edg/157.0.4341.60,v3 APK assets,weighted cold,2,0,11.8,,6.9,,,not sampled per request
+Edg/157.0.4341.60,v3 APK assets,weights only,2,2,11.8,,6.4,,,not sampled per request
+Edg/157.0.4341.60,v3 APK assets,expand to uniform,1035,2,45,,7,,,not sampled per request
+Edg/157.0.4341.60,v3 APK assets,cancel after exact progress,1035,0,16.8,,7,0.2,,not sampled per request
+Edg/157.0.4341.60,v3 APK assets,uniform cold,1035,0,45.6,,7,,,not sampled per request
+Edg/157.0.4341.60,v3 APK assets,current tie,1,1,10,,6.6,,,not sampled per request
+Android 15 API 35 x86_64 AVD,v3 debug signed APK,weighted cold,2,0,125.8,,50.5,,,not sampled per request
+Android 15 API 35 x86_64 AVD,v3 debug signed APK,weights only,2,2,150,,50,,,not sampled per request
+Android 15 API 35 x86_64 AVD,v3 debug signed APK,expand to uniform,1035,2,518.9,,83.23,,,not sampled per request
+Android 15 API 35 x86_64 AVD,v3 debug signed APK,cancel after exact progress,1035,0,182.3,,33.4,0.9,,not sampled per request
+Android 15 API 35 x86_64 AVD,v3 debug signed APK,uniform cold,1035,0,359.8,,122,,,not sampled per request
+Android 15 API 35 x86_64 AVD,v3 debug signed APK,current tie,1,1,133.1,,33.3,,,not sampled per request
+Android 15 API 35 x86_64 AVD,v3 debug signed APK,recompute after foreground,1,1,136.3,,33.3,,,not sampled per request
+Android 15 API 35 x86_64 AVD,v3 debug signed APK,all scenarios before cold restart,,,,,,,242760,app PID high-water RSS; excludes isolated renderer

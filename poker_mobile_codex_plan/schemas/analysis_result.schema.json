@@ -1,0 +1,410 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:poker-mobile:analysis-result:1",
+  "title": "Poker mobile completed exact analysis result v1",
+  "description": "Only completed exact results are represented. Deterministic enumeration prefixes must never be presented as unbiased probabilities. Full combo results must contain every evaluated row; selected-row test fixtures are not complete results.",
+  "$defs": {
+    "card": {
+      "type": "string",
+      "pattern": "^[2-9TJQKA][cdhs]$"
+    },
+    "pair": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/card"
+      },
+      "minItems": 2,
+      "maxItems": 2,
+      "uniqueItems": true
+    },
+    "statistics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "wins",
+        "ties",
+        "losses",
+        "total",
+        "win_probability",
+        "tie_probability",
+        "loss_probability",
+        "equity"
+      ],
+      "properties": {
+        "wins": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "ties": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "losses": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "total": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "win_probability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "tie_probability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "loss_probability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "equity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "aggregate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "win_probability",
+        "tie_probability",
+        "loss_probability",
+        "equity"
+      ],
+      "properties": {
+        "win_probability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "tie_probability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "loss_probability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "equity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "combo_row": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cards",
+        "weight",
+        "current_relation",
+        "wins",
+        "ties",
+        "losses",
+        "total",
+        "win_probability",
+        "tie_probability",
+        "loss_probability",
+        "equity"
+      ],
+      "properties": {
+        "cards": {
+          "$ref": "#/$defs/pair"
+        },
+        "weight": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        },
+        "current_relation": {
+          "enum": [
+            "winning",
+            "tied",
+            "losing"
+          ]
+        },
+        "wins": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "ties": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "losses": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "total": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "win_probability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "tie_probability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "loss_probability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "equity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "combo_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "opponent_model",
+        "available_legal_combo_count",
+        "evaluated_combo_count",
+        "excluded_blocked_combo_count",
+        "excluded_zero_weight_combo_count",
+        "range_weight_sum",
+        "current_relation_counts",
+        "aggregate"
+      ],
+      "properties": {
+        "opponent_model": {
+          "enum": [
+            "uniform",
+            "weighted"
+          ]
+        },
+        "available_legal_combo_count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1081
+        },
+        "evaluated_combo_count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1081
+        },
+        "excluded_blocked_combo_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1326
+        },
+        "excluded_zero_weight_combo_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1326
+        },
+        "range_weight_sum": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "current_relation_counts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "winning",
+            "tied",
+            "losing"
+          ],
+          "properties": {
+            "winning": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "tied": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "losing": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "aggregate": {
+          "$ref": "#/$defs/aggregate"
+        }
+      }
+    }
+  },
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "request_id",
+        "engine_version",
+        "status",
+        "method",
+        "total_evaluations",
+        "mode",
+        "hero",
+        "villain"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "engine_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "const": "completed"
+        },
+        "method": {
+          "const": "exact"
+        },
+        "total_evaluations": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "mode": {
+          "const": "preflop_fixed"
+        },
+        "hero": {
+          "$ref": "#/$defs/statistics"
+        },
+        "villain": {
+          "$ref": "#/$defs/statistics"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "request_id",
+        "engine_version",
+        "status",
+        "method",
+        "total_evaluations",
+        "mode",
+        "opponent_model",
+        "available_legal_combo_count",
+        "evaluated_combo_count",
+        "excluded_blocked_combo_count",
+        "excluded_zero_weight_combo_count",
+        "range_weight_sum",
+        "current_relation_counts",
+        "aggregate",
+        "rows"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "engine_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "const": "completed"
+        },
+        "method": {
+          "const": "exact"
+        },
+        "total_evaluations": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "mode": {
+          "const": "combo_analysis"
+        },
+        "opponent_model": {
+          "enum": [
+            "uniform",
+            "weighted"
+          ]
+        },
+        "available_legal_combo_count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1081
+        },
+        "evaluated_combo_count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1081
+        },
+        "excluded_blocked_combo_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1326
+        },
+        "excluded_zero_weight_combo_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1326
+        },
+        "range_weight_sum": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "current_relation_counts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "winning",
+            "tied",
+            "losing"
+          ],
+          "properties": {
+            "winning": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "tied": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "losing": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "aggregate": {
+          "$ref": "#/$defs/aggregate"
+        },
+        "rows": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1081,
+          "items": {
+            "$ref": "#/$defs/combo_row"
+          }
+        }
+      }
+    }
+  ]
+}

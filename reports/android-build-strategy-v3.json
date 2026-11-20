@@ -1,0 +1,32 @@
+{
+  "apk": "poker-strategy-android-v3.apk",
+  "sha256": "a68123e6fbf5a76664cb56f89e9d38d77bd05101bd00ccfcf72b935315887c78",
+  "build_tools": "35.0.0",
+  "android_api": 35,
+  "min_api": 28,
+  "signature_verified": true,
+  "zip_alignment_verified": true,
+  "edition": "strategy",
+  "package": "org.rivernotes.poker",
+  "version_code": 3,
+  "sources": {
+    "tools/build_android.py": "2ba5da119726b81246c1dc53c640d79f1f92b40560bac7822ffcc27b9c4d3fb1",
+    "android/AndroidManifest.xml": "2234293bbe6aa9e9e53930e21a0622b223e140c48099b4f687d22531a6bf76a0",
+    "android/src/org/rivernotes/poker/HistoryStore.java": "2d34eef0ea4977f8c153b4e04eeabec8eda71d3317d2c9e3a2d63767c7c0be7b",
+    "android/src/org/rivernotes/poker/MainActivity.java": "b99211dfc0dbf871483aad9b480cd91c02583fd6cad93fd70291b109e65b0d2e"
+  },
+  "assets": {
+    "index.html": "cb703d4fa972d637b7503f68ba633c75040754532dc163260e98400ddfe2f219",
+    "web/style.css": "21873652ba634f760f4fc72b8541181f6a7627f8d182776db8b999eb0418e239",
+    "web/equity.js": "90b3028fbf3fbb2b663b2ec1068572142ee226d7b6a32d08f2aaf7f7b6d8bb76",
+    "web/runner.js": "09d1560a32d7dda45244d392bfebad81469e2a7d053eab7d27c6a066ccb319a1",
+    "web/app.js": "4c80211f7a58edc75cb527fd6c070d62db6057b8aba17a87940a55b352c655f8",
+    "strategy/index.html": "c3d154db27c82272e3d8d2dec69574f40b13124f70628c356f508df0052a85a6",
+    "strategy/style.css": "8acf0fd59c0c62949bba4e51fb81df76db001be6588c861fe4146bf432727ffd",
+    "strategy/ui.js": "9d105764b2b8744e40f7c2d54ff3c1ff687395c3621423d9d4bb418ab1bf23e5",
+    "strategy/runner.js": "2ffc350cf16001fe364560b3088b0bb277ffd42b80e97d40ed3ac2b7926fc7ed",
+    "strategy/solver.js": "2a205ce07714d286be986b66d1565cd5fcebbdad71325cb85876d90240c505c7",
+    "strategy/evaluate.js": "692b162032788e7d61e26379b146681edd9d9241f66401a26e58f740161849ff"
+  },
+  "device_status": "See independent emulator report"
+}

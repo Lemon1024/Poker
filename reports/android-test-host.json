@@ -1,0 +1,47 @@
+{
+  "date_local": "2026-11-20",
+  "time_zone": "Asia/Shanghai",
+  "status": "fixed_apks_passed_on_offline_guest",
+  "scope": "Only project-owned Android Virtual Devices. No physical device was connected.",
+  "host": {
+    "os": "Windows x64 10.0.26200",
+    "processor_features": {"SLAT": true, "virtualization_firmware_enabled": true},
+    "WHvGetCapability": {"capability": "HypervisorPresent", "hresult": 0, "bytes": 4, "value": 1},
+    "emulator_check_accel": {"code": 0, "output": "WHPX(10.0.26200) is installed and usable."},
+    "before_reboot": {"date_local": "2026-11-19", "HypervisorPresent": 0, "emulator_check_accel_code": 6},
+    "WSL": "not installed"
+  },
+  "official_archives_checked": [
+    {"name":"platform-tools 37.0.1", "source":"https://dl.google.com/android/repository/platform-tools_r37.0.1-win.zip", "bytes":8044989, "sha1":"e03e78b1d80b396f1c3358e31251cb31740e1110"},
+    {"name":"Emulator 37.2.13", "source":"https://dl.google.com/android/repository/emulator-windows_x64-16740729.zip", "bytes":455344678, "sha1":"4d7268aa7787c640ad892844e6c9a5f159e91ad3"},
+    {"name":"AOSP API 35 default x86_64 rev 2", "source":"https://dl.google.com/android/repository/sys-img/android/x86_64-35_r02.zip", "bytes":782404023, "sha1":"2d857d170c0d1b827149565da34b3383e5306f7f"},
+    {"name":"Emulator 35.6.11", "source":"https://dl.google.com/android/repository/emulator-windows_x64-13610412.zip", "bytes":440033908, "sha256":"0865071aecf3d90a5b967cb6cb0cd48bea0a58a26ef4953b32037671c129b7e9"}
+  ],
+  "virtual_device": {"serial":"emulator-5562", "name":"RiverNotes_API35_offline", "api":35, "android":"15", "abi":"x86_64", "display":"480x800", "CPU_acceleration":"WHPX", "sys.boot_completed":"1", "default_network":"none"},
+  "launches": [
+    {"version":"37.2.13","renderer":"software","result":"Initial host DLL and Vulkan loader failures. Staged links to the corresponding official DLLs inside the project SDK and selected SwiftShader.","log_prefix":".work/avd/emulator-20261119-164201"},
+    {"version":"37.2.13","renderer":"swiftshader","result":"QEMU main loop started, adb temporarily offline, process exited 0xc0000005 before guest shell.","log_prefix":".work/avd/emulator-20261119-164424"},
+    {"version":"37.2.13","renderer":"off","cpu":"max, one core, single-thread TCG","result":"Exited 0xc0000005 before guest boot.","log_prefix":".work/avd/emulator-20261119-164717"},
+    {"version":"37.2.13","renderer":"off","cpu":"max, one core, single-thread TCG","file_backed_quickboot":false,"result":"Exited 0xc0000005 before guest boot.","log_prefix":".work/avd/emulator-20261119-165014"},
+    {"version":"35.6.11","renderer":"swiftshader_indirect","backend":"headless","result":"Framebuffer initialized. Host exception 0xc0000005 reading 0x2, qemu-system-x86_64-headless.exe +0x1c8d60.","log_prefix":".work/avd/emulator-20261119-165135"},
+    {"version":"35.6.11","renderer":"swiftshader_indirect","backend":"full binary, -qt-hide-window","result":"Framebuffer initialized. Host exception 0xc0000005 reading 0x2, qemu-system-x86_64.exe +0x1c8d30.","log_prefix":".work/avd/emulator-20261119-165507"},
+    {"version":"37.2.13","cpu":"WHPX","renderer":"swiftshader","result":"Booted; Wi-Fi reconnected after the original offline check.","log_prefix":".work/avd/emulator-20261120-093002"},
+    {"version":"37.2.13","cpu":"WHPX","renderer":"swiftshader","result":"Booted offline with the revised launcher. v1 and v2 installed and cold-started.","log_prefix":".work/avd/emulator-20261120-093812"}
+  ],
+  "final_adb_devices": [{"serial":"emulator-5562","state":"device"}],
+  "acceptance_runner_result": "reports/android-test.json",
+  "verified_before_attachment": ["SHA checks for all four SDK archives","ADB version","PowerShell parse","Node syntax and --help","Runner exits blocked at adb get-state before issuing any installation command"],
+  "legacy_v1_immediate_stop_failure": "reports/android-test-legacy-v1-immediate.json",
+  "legacy_v2_immediate_stop_reproduction_and_settled_fixture": "reports/android-test-legacy-v2.json",
+  "legacy_apks_persisted_history_upgrade_result": "reports/android-emulator-upgrade.json",
+  "fixed_apks_result": "17 scenarios passed on Android 15 API 35 x86_64. Restored a v1 preflop save and a v2 990-row river save after immediate force-stop. Verified both upgrade paths and independently retained original localStorage records.",
+  "artifacts_sha256": {
+    "dist/poker-equity-android-v1.apk":"8d2ba9b520076ca9b099fa80d176b6a72f826edb72b1ed2296d250f71db769ff",
+    "dist/poker-strategy-android-v2.apk":"b75a91a9932aa27d073dbd340c40795c17c0f4d941410b32e72ac5845d65b4cc"
+  },
+  "rerun_from_project_on_a_host_with_an_available_hypervisor": [
+    "powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -File .\\tests\\android-start-emulator.ps1 -Port 5562",
+    "node tests/android-emulator.cjs --serial emulator-5562 --avd RiverNotes_API35_offline --apk .work/avd/legacy-apks/poker-strategy-android-v2.apk --legacy-repro --adb .work/toolchain/android-sdk/platform-tools/adb.exe",
+    "node tests/android-emulator.cjs --serial emulator-5562 --avd RiverNotes_API35_offline --apk dist/poker-equity-android-v1.apk --upgrade dist/poker-strategy-android-v2.apk --legacy-report reports/android-test-legacy-v2.json --adb .work/toolchain/android-sdk/platform-tools/adb.exe"
+  ]
+}

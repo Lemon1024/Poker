@@ -1,0 +1,124 @@
+{
+  "fixture_schema_version": 1,
+  "fixture_kind": "summary_and_selected_rows",
+  "artifact_role": "development_contract_fixture_not_application",
+  "provenance": "Exact enumeration independently executed during the planning conversation; these constants remain subject to cross-validation in the implementation. Engine version below identifies an oracle fixture, not a built mobile engine.",
+  "request": {
+    "schema_version": 1,
+    "request_id": "fixture-river-asqs-qd8s2s7h3c",
+    "mode": "combo_analysis",
+    "method": "exact",
+    "hero": [
+      "As",
+      "Qs"
+    ],
+    "board": [
+      "Qd",
+      "8s",
+      "2s",
+      "7h",
+      "3c"
+    ],
+    "range": {
+      "kind": "uniform"
+    }
+  },
+  "expected_summary": {
+    "opponent_model": "uniform",
+    "available_legal_combo_count": 990,
+    "evaluated_combo_count": 990,
+    "excluded_blocked_combo_count": 0,
+    "excluded_zero_weight_combo_count": 0,
+    "range_weight_sum": 990.0,
+    "current_relation_counts": {
+      "winning": 884,
+      "tied": 6,
+      "losing": 100
+    },
+    "aggregate": {
+      "win_probability": 0.8929292929292929,
+      "tie_probability": 0.006060606060606061,
+      "loss_probability": 0.10101010101010101,
+      "equity": 0.895959595959596
+    }
+  },
+  "selected_rows": [
+    {
+      "cards": [
+        "Qc",
+        "Kd"
+      ],
+      "weight": 1.0,
+      "current_relation": "winning",
+      "wins": 1,
+      "ties": 0,
+      "losses": 0,
+      "total": 1,
+      "win_probability": 1.0,
+      "tie_probability": 0.0,
+      "loss_probability": 0.0,
+      "equity": 1.0
+    },
+    {
+      "cards": [
+        "Kh",
+        "Ac"
+      ],
+      "weight": 1.0,
+      "current_relation": "winning",
+      "wins": 1,
+      "ties": 0,
+      "losses": 0,
+      "total": 1,
+      "win_probability": 1.0,
+      "tie_probability": 0.0,
+      "loss_probability": 0.0,
+      "equity": 1.0
+    },
+    {
+      "cards": [
+        "Qh",
+        "Ac"
+      ],
+      "weight": 1.0,
+      "current_relation": "tied",
+      "wins": 0,
+      "ties": 1,
+      "losses": 0,
+      "total": 1,
+      "win_probability": 0.0,
+      "tie_probability": 1.0,
+      "loss_probability": 0.0,
+      "equity": 0.5
+    },
+    {
+      "cards": [
+        "7c",
+        "7d"
+      ],
+      "weight": 1.0,
+      "current_relation": "losing",
+      "wins": 0,
+      "ties": 0,
+      "losses": 1,
+      "total": 1,
+      "win_probability": 0.0,
+      "tie_probability": 0.0,
+      "loss_probability": 1.0,
+      "equity": 0.0
+    }
+  ],
+  "assertions": {
+    "total_evaluations": 990,
+    "selected_rows_are_not_full_result": true,
+    "full_implementation_must_return_rows": 990,
+    "equity_numerator": 887,
+    "equity_denominator": 990,
+    "loss_hand_category_counts": {
+      "three_of_a_kind": 13,
+      "two_pair": 78,
+      "higher_one_pair": 9
+    },
+    "floating_tolerance_absolute": 1e-12
+  }
+}

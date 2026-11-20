@@ -1,0 +1,111 @@
+{
+  "environment": "Windows host, Node, independent best response",
+  "target_exploitability_pot_fraction": 0.001,
+  "source_sha256": {
+    "strategy/solver.js": "2a205ce07714d286be986b66d1565cd5fcebbdad71325cb85876d90240c505c7",
+    "strategy/evaluate.js": "692b162032788e7d61e26379b146681edd9d9241f66401a26e58f740161849ff",
+    "strategy/runner.js": "2ffc350cf16001fe364560b3088b0bb277ffd42b80e97d40ed3ac2b7926fc7ed",
+    "tools/river.cjs": "431d8c83df58ccea05b21bc65c2acc15a37ee4a0d822cc79183c54e2a3f50920",
+    "tests/strategy.test.cjs": "848d94ecc170b6cdc7bf20d9b5ccb8fa2d59c7f16bfaf476547cf090833e5726"
+  },
+  "checks": [
+    {
+      "model": "kuhn",
+      "run": "node tools/river.cjs kuhn",
+      "status": "converged",
+      "algorithm": "simultaneous-cfr-v1",
+      "iterations": 16384,
+      "performance": {
+        "elapsed_ms": 34,
+        "max_rss_kib": 45280,
+        "platform": "win32",
+        "architecture": "x64",
+        "cpu": "AMD Ryzen 7 4800H with Radeon Graphics         ",
+        "node": "v24.16.0"
+      },
+      "compatible_pairs": 6,
+      "weight_sum": 6,
+      "root_ev": [
+        0.9444532437799886,
+        1.0555467562200114
+      ],
+      "best_response_ev": [
+        0.9470188211162833,
+        1.056575634238109
+      ],
+      "gains": [
+        0.0025655773362947,
+        0.0010288780180975898
+      ],
+      "nash_conv": 0.0035944553543922897,
+      "exploitability": 0.0017972276771961448,
+      "pot_fraction": 0.0008986138385980724
+    },
+    {
+      "model": "river_small_v1",
+      "run": "node tools/river.cjs poker_mobile_codex_plan/fixtures/gto_river_small_v1.json",
+      "fixture_sha256": "cdfbab50a8a85c528b3007a525bfaed6fe82531d1b7ebd0004a966fda4db5c1e",
+      "status": "converged",
+      "algorithm": "simultaneous-cfr-v1",
+      "iterations": 16384,
+      "performance": {
+        "elapsed_ms": 397,
+        "max_rss_kib": 47540,
+        "platform": "win32",
+        "architecture": "x64",
+        "cpu": "AMD Ryzen 7 4800H with Radeon Graphics         ",
+        "node": "v24.16.0"
+      },
+      "compatible_pairs": 60,
+      "weight_sum": 60,
+      "root_ev": [
+        61.34908891909373,
+        38.65091108090627
+      ],
+      "best_response_ev": [
+        61.42393924742896,
+        38.73999843022369
+      ],
+      "gains": [
+        0.07485032833523064,
+        0.08908734931742401
+      ],
+      "nash_conv": 0.16393767765265466,
+      "exploitability": 0.08196883882632733,
+      "pot_fraction": 0.0008196883882632733
+    },
+    {
+      "model": "river_weighted_v1",
+      "run": "node tools/river.cjs poker_mobile_codex_plan/fixtures/gto_river_weighted_v1.json",
+      "fixture_sha256": "deb6f18e51a8fd20f17e19599987434828e042310e1e130cb8df2ba79cf4f6f2",
+      "status": "converged",
+      "algorithm": "simultaneous-cfr-v1",
+      "iterations": 12288,
+      "performance": {
+        "elapsed_ms": 322,
+        "max_rss_kib": 47348,
+        "platform": "win32",
+        "architecture": "x64",
+        "cpu": "AMD Ryzen 7 4800H with Radeon Graphics         ",
+        "node": "v24.16.0"
+      },
+      "compatible_pairs": 60,
+      "weight_sum": 50.875,
+      "root_ev": [
+        62.235403631376485,
+        37.764596368623515
+      ],
+      "best_response_ev": [
+        62.33890384429867,
+        37.84539657876349
+      ],
+      "gains": [
+        0.10350021292218514,
+        0.08080021013997651
+      ],
+      "nash_conv": 0.18430042306216166,
+      "exploitability": 0.09215021153108083,
+      "pot_fraction": 0.0009215021153108083
+    }
+  ]
+}

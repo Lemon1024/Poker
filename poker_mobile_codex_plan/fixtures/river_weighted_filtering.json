@@ -1,0 +1,148 @@
+{
+  "fixture_schema_version": 1,
+  "fixture_kind": "complete_expected_result",
+  "artifact_role": "development_contract_fixture_not_application",
+  "provenance": "Exact enumeration independently executed during the planning conversation; these constants remain subject to cross-validation in the implementation. Engine version below identifies an oracle fixture, not a built mobile engine.",
+  "request": {
+    "schema_version": 1,
+    "request_id": "fixture-river-weighted-filtering",
+    "mode": "combo_analysis",
+    "method": "exact",
+    "hero": [
+      "As",
+      "Qs"
+    ],
+    "board": [
+      "Qd",
+      "8s",
+      "2s",
+      "7h",
+      "3c"
+    ],
+    "range": {
+      "kind": "weighted",
+      "combos": [
+        {
+          "cards": [
+            "Kc",
+            "Kd"
+          ],
+          "weight": 1.0
+        },
+        {
+          "cards": [
+            "Qc",
+            "Kd"
+          ],
+          "weight": 1.0
+        },
+        {
+          "cards": [
+            "Ac",
+            "Qh"
+          ],
+          "weight": 0.5
+        },
+        {
+          "cards": [
+            "As",
+            "Kh"
+          ],
+          "weight": 0.5
+        },
+        {
+          "cards": [
+            "2c",
+            "2d"
+          ],
+          "weight": 0.0
+        }
+      ]
+    }
+  },
+  "expected_result": {
+    "schema_version": 1,
+    "request_id": "fixture-river-weighted-filtering",
+    "engine_version": "oracle-fixture-v1",
+    "mode": "combo_analysis",
+    "status": "completed",
+    "method": "exact",
+    "total_evaluations": 3,
+    "opponent_model": "weighted",
+    "available_legal_combo_count": 990,
+    "evaluated_combo_count": 3,
+    "excluded_blocked_combo_count": 1,
+    "excluded_zero_weight_combo_count": 1,
+    "range_weight_sum": 2.5,
+    "current_relation_counts": {
+      "winning": 1,
+      "tied": 1,
+      "losing": 1
+    },
+    "aggregate": {
+      "win_probability": 0.4,
+      "tie_probability": 0.2,
+      "loss_probability": 0.4,
+      "equity": 0.5
+    },
+    "rows": [
+      {
+        "cards": [
+          "Qc",
+          "Kd"
+        ],
+        "weight": 1.0,
+        "current_relation": "winning",
+        "wins": 1,
+        "ties": 0,
+        "losses": 0,
+        "total": 1,
+        "win_probability": 1.0,
+        "tie_probability": 0.0,
+        "loss_probability": 0.0,
+        "equity": 1.0
+      },
+      {
+        "cards": [
+          "Qh",
+          "Ac"
+        ],
+        "weight": 0.5,
+        "current_relation": "tied",
+        "wins": 0,
+        "ties": 1,
+        "losses": 0,
+        "total": 1,
+        "win_probability": 0.0,
+        "tie_probability": 1.0,
+        "loss_probability": 0.0,
+        "equity": 0.5
+      },
+      {
+        "cards": [
+          "Kc",
+          "Kd"
+        ],
+        "weight": 1.0,
+        "current_relation": "losing",
+        "wins": 0,
+        "ties": 0,
+        "losses": 1,
+        "total": 1,
+        "win_probability": 0.0,
+        "tie_probability": 0.0,
+        "loss_probability": 1.0,
+        "equity": 0.0
+      }
+    ]
+  },
+  "assertions": {
+    "filter_order": [
+      "reject_duplicate_unordered_combos",
+      "exclude_blocked",
+      "exclude_zero_weight",
+      "reject_empty_effective_range"
+    ],
+    "floating_tolerance_absolute": 1e-12
+  }
+}
