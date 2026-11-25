@@ -30,6 +30,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 h1,h2,p,dl,dd {margin:0}
 h1 {font-size:clamp(32px,4.5vw,52px);font-weight:740;letter-spacing:-.055em;line-height:1.17}
 .intro p {margin-top:12px;font-size:15px;line-height:1.65;color:var(--muted)}
+#open-preflop {display:inline-flex;margin-top:12px;text-decoration:none}
 .workspace {display:grid;grid-template-columns:1fr 1.03fr;gap:20px;align-items:start;margin-bottom:24px}
 .panel,.result-panel {border-radius:17px}
 .panel {background:#fffefa;border:1px solid var(--line);padding:27px}
@@ -115,12 +116,12 @@ dialog {background:#fffef9;color:var(--ink);border:1px solid var(--line);border-
 dialog::backdrop {background:#10271e77}
 .dialog-head {margin-bottom:17px}
 .icon-button {width:34px;height:34px;border-radius:50%;font:23px/1 Arial}
-.deck .card[aria-pressed=true] {border:2px solid var(--green);background:#eff5e9}
 .deck {display:grid;grid-template-columns:repeat(13,minmax(0,1fr));gap:4px}
-.deck .card {min-height:42px;padding:2px}
+.deck .card {min-width:0;min-height:44px;padding:1px}
 .deck .card b {font-size:16px}
 .deck .card span {font-size:13px}
 .deck .card:disabled {opacity:.32;background:#e7e8df}
+.deck .card[aria-pressed=true] {border:2px solid #306644;outline:1px solid #a6ecc2;background:#e0f4e3;opacity:1}
 .history-entry {width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;background:#f8f9f3;border:1px solid var(--line);padding:13px;border-radius:8px;margin-bottom:9px;color:var(--ink)}
 .history-entry strong,.history-entry small {display:block}
 .history-entry small {color:var(--muted);margin-top:5px}
@@ -152,6 +153,7 @@ dialog::backdrop {background:#10271e77}
 }
 @media(max-width:375px) {
   .offline {display:none}
-  .deck {grid-template-columns:repeat(7,minmax(0,1fr))}
+  #picker,#gto-picker {width:calc(100% - 12px);max-width:calc(100% - 12px);padding:12px 6px}
+  .deck {column-gap:2px}
   .hands {gap:12px}
 }

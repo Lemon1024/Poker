@@ -1,0 +1,520 @@
+{
+  "status": "passed",
+  "startedAt": "2026-11-24T09:23:13.310Z",
+  "host": {
+    "platform": "win32",
+    "release": "10.0.26200",
+    "arch": "x64"
+  },
+  "package": "org.rivernotes.poker",
+  "scenarios": [
+    {
+      "name": "identify named offline emulator",
+      "status": "passed",
+      "elapsedMs": 719
+    },
+    {
+      "name": "save a v3 hand and immediately force-stop",
+      "status": "passed",
+      "elapsedMs": 5431
+    },
+    {
+      "name": "install v4 without clearing data and verify digest",
+      "status": "passed",
+      "elapsedMs": 717
+    },
+    {
+      "name": "offline cold start from v4 WebView",
+      "status": "passed",
+      "elapsedMs": 4344
+    },
+    {
+      "name": "restore v3 history after upgrading to v4",
+      "status": "passed",
+      "elapsedMs": 342
+    },
+    {
+      "name": "preflop chart, positions, mixed actions and portrait touch navigation",
+      "status": "passed",
+      "elapsedMs": 5545
+    }
+  ],
+  "commands": [
+    {
+      "argv": [
+        "adb",
+        "version"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "get-state"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "getprop",
+        "ro.kernel.qemu"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "getprop",
+        "ro.boot.qemu"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "emu",
+        "avd",
+        "name"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "getprop",
+        "ro.build.version.sdk"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "getprop",
+        "ro.build.version.release"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "getprop",
+        "ro.product.cpu.abilist"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "dumpsys",
+        "connectivity"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "install",
+        "-r",
+        "D:\\Agent project\\Poker\\dist\\poker-strategy-android-v3.apk"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "pm",
+        "path",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "sha256sum",
+        "/data/app/~~C7K4Mtnlm6ZuDRb_kEG9Iw==/org.rivernotes.poker-A9tg9OuWOdH399r9fzm_EQ==/base.apk"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "dumpsys",
+        "package",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "dumpsys",
+        "connectivity"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "am",
+        "force-stop",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "am",
+        "start",
+        "-W",
+        "-n",
+        "org.rivernotes.poker/.MainActivity"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "pidof",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "forward",
+        "tcp:0",
+        "localabstract:webview_devtools_remote_2497"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "am",
+        "force-stop",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "forward",
+        "--remove",
+        "tcp:56139"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "install",
+        "-r",
+        "D:\\Agent project\\Poker\\dist\\poker-strategy-android-v4.apk"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "pm",
+        "path",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "sha256sum",
+        "/data/app/~~m6RAQjW3uWywkLAFKOdlaw==/org.rivernotes.poker-80n6vM1akxfah4oXpB3LfA==/base.apk"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "dumpsys",
+        "package",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "dumpsys",
+        "connectivity"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "am",
+        "force-stop",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "am",
+        "start",
+        "-W",
+        "-n",
+        "org.rivernotes.poker/.MainActivity"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "pidof",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "forward",
+        "tcp:0",
+        "localabstract:webview_devtools_remote_2617"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "dumpsys",
+        "connectivity"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "forward",
+        "--remove",
+        "tcp:50527"
+      ],
+      "status": 0
+    }
+  ],
+  "externalRequests": [],
+  "exceptions": [],
+  "adb": "Android Debug Bridge version 1.0.41\r\nVersion 37.0.1-15733141\r\nInstalled as D:\\Agent project\\Poker\\.work\\toolchain\\android-sdk\\platform-tools\\adb.exe\r\nRunning on Windows 10.0.26200",
+  "device": {
+    "serial": "emulator-5574",
+    "avd": "RiverNotes_R1_API35",
+    "qemu": [
+      "1",
+      "1"
+    ],
+    "api": "35",
+    "android": "15",
+    "abi": "x86_64",
+    "offlineBeforeInstall": "Active default network: none"
+  },
+  "apks": [
+    {
+      "file": "poker-strategy-android-v3.apk",
+      "sha256": "a68123e6fbf5a76664cb56f89e9d38d77bd05101bd00ccfcf72b935315887c78",
+      "installOutput": "Performing Streamed Install\r\nSuccess",
+      "installedSha256": "a68123e6fbf5a76664cb56f89e9d38d77bd05101bd00ccfcf72b935315887c78",
+      "versionCode": 3
+    },
+    {
+      "file": "poker-strategy-android-v4.apk",
+      "sha256": "1620c66a63800f1f5c20f5d81423ab83d78a9c7c4effc265d489a0c3a6a5a321",
+      "installOutput": "Performing Streamed Install\r\nSuccess",
+      "installedSha256": "1620c66a63800f1f5c20f5d81423ab83d78a9c7c4effc265d489a0c3a6a5a321",
+      "versionCode": 4
+    }
+  ],
+  "starts": [
+    {
+      "pid": "2497",
+      "launch": "Starting: Intent { cmp=org.rivernotes.poker/.MainActivity }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: org.rivernotes.poker/.MainActivity\r\nTotalTime: 1215\r\nWaitTime: 1224\r\nComplete",
+      "offlineBeforeStart": "Active default network: none",
+      "url": "https://appassets.androidplatform.net/index.html",
+      "online": true,
+      "webview": "Mozilla/5.0 (Linux; Android 15; Android SDK built for x86_64 Build/AE3A.240806.019; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/124.0.6367.219 Mobile Safari/537.36",
+      "method": "模拟估计"
+    },
+    {
+      "pid": "2617",
+      "launch": "Starting: Intent { cmp=org.rivernotes.poker/.MainActivity }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: org.rivernotes.poker/.MainActivity\r\nTotalTime: 1222\r\nWaitTime: 1248\r\nComplete",
+      "offlineBeforeStart": "Active default network: none",
+      "url": "https://appassets.androidplatform.net/index.html",
+      "online": true,
+      "webview": "Mozilla/5.0 (Linux; Android 15; Android SDK built for x86_64 Build/AE3A.240806.019; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/124.0.6367.219 Mobile Safari/537.36",
+      "method": "模拟估计"
+    }
+  ],
+  "saves": [
+    {
+      "label": "before v4 upgrade",
+      "expected": {
+        "hero": [
+          "As",
+          "Ah"
+        ],
+        "probabilities": [
+          "82.29%",
+          "0.58%",
+          "17.13%",
+          "82.58%"
+        ],
+        "villain": [
+          "Ks",
+          "Kh"
+        ]
+      },
+      "feedback": "局面已保存，可在历史记录中重新打开。",
+      "dates": [
+        "2026/11/24 09:23:17",
+        "2026/11/24 09:23:17"
+      ],
+      "settleMs": 0,
+      "ackToDispatchMs": 0.001,
+      "ackToStopCompletedMs": 163
+    }
+  ],
+  "touches": [
+    {
+      "selector": "#preflop-matrix [data-hand=\"A7s\"]",
+      "cssPixels": {
+        "x": 273.0703125,
+        "y": 364.6796875
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#preflop-matrix [data-hand=\"99\"]",
+      "cssPixels": {
+        "x": 206.9140625,
+        "y": 405.0703125
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#preflop-matrix [data-hand=\"A5s\"]",
+      "cssPixels": {
+        "x": 339.2265625,
+        "y": 364.6796875
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#preflop-matrix [data-hand=\"72o\"]",
+      "cssPixels": {
+        "x": 273.0703125,
+        "y": 636.6171875
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#preflop-matrix [data-hand=\"AA\"]",
+      "cssPixels": {
+        "x": 41.53125,
+        "y": 364.671875
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    }
+  ],
+  "offlineAfterRun": "Active default network: none"
+}

@@ -1,0 +1,157 @@
+{
+  "startedAt": "2026-11-24T09:20:15.235Z",
+  "entryProtocol": "file:",
+  "scenarios": [
+    {
+      "name": "fresh offline browser opens file and compares fixed hole cards",
+      "status": "passed",
+      "elapsedMs": 9070
+    },
+    {
+      "name": "mouse replaces selected hero and opponent slots immediately; close leaves the deal intact",
+      "status": "passed",
+      "elapsedMs": 463
+    },
+    {
+      "name": "flop and turn report probabilities and current hand relation",
+      "status": "passed",
+      "elapsedMs": 1141
+    },
+    {
+      "name": "river uniform aggregate, pagination, filters and unchanged aggregate",
+      "status": "passed",
+      "elapsedMs": 649
+    },
+    {
+      "name": "weighted input omits blockers and zero weights, rejects duplicates",
+      "status": "passed",
+      "elapsedMs": 834
+    },
+    {
+      "name": "full board 2s 7s Td",
+      "status": "passed",
+      "elapsedMs": 2077
+    },
+    {
+      "name": "full board 2s 7s Td 3h",
+      "status": "passed",
+      "elapsedMs": 70
+    },
+    {
+      "name": "full flop and turn complete offline and publish every legal opponent",
+      "status": "passed",
+      "elapsedMs": 2644
+    },
+    {
+      "name": "cancel a running full-range flop worker and supersede another by editing input",
+      "status": "passed",
+      "elapsedMs": 668
+    },
+    {
+      "name": "saved completed result survives full browser restart",
+      "status": "passed",
+      "elapsedMs": 3972
+    },
+    {
+      "name": "narrow display and enlarged text keep controls reachable",
+      "status": "passed",
+      "elapsedMs": 118
+    },
+    {
+      "name": "R1 exact turn, row reuse, cancellation, filtering and named range persistence",
+      "status": "passed",
+      "elapsedMs": 4134
+    },
+    {
+      "name": "offline preflop chart, mixed actions and portrait navigation",
+      "status": "passed",
+      "elapsedMs": 769
+    },
+    {
+      "name": "storage denial is visible without disabling computation",
+      "status": "passed",
+      "elapsedMs": 177
+    }
+  ],
+  "externalRequests": [],
+  "consoleProblems": [],
+  "pageErrors": [],
+  "localRequestFailures": [],
+  "browser": "Chrome/158.0.8127.37",
+  "r1Runs": [
+    {
+      "name": "weighted cold",
+      "rows": 2,
+      "hits": 0,
+      "progress": 0,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 13.700000047683716,
+      "frames": 2,
+      "maxFrameGapMs": 8.700000047683716
+    },
+    {
+      "name": "weights only",
+      "rows": 2,
+      "hits": 2,
+      "progress": 0,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 13.300000011920929,
+      "frames": 0,
+      "maxFrameGapMs": 13.300000011920929
+    },
+    {
+      "name": "expand to uniform",
+      "rows": 1035,
+      "hits": 2,
+      "progress": 8,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 46.39999997615814,
+      "frames": 5,
+      "maxFrameGapMs": 12.699999976158097
+    },
+    {
+      "name": "cancel after exact progress",
+      "rows": 1035,
+      "hits": 0,
+      "progress": 1,
+      "partial": false,
+      "terminated": true,
+      "cancelMs": 0.19999998807907104,
+      "status": "已取消计算",
+      "elapsedMs": 17.099999964237213,
+      "frames": 3,
+      "maxFrameGapMs": 7
+    },
+    {
+      "name": "uniform cold",
+      "rows": 1035,
+      "hits": 0,
+      "progress": 8,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 44.5,
+      "frames": 6,
+      "maxFrameGapMs": 8.400000000000091
+    },
+    {
+      "name": "current tie",
+      "rows": 1,
+      "hits": 1,
+      "progress": 0,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 9.800000011920929,
+      "frames": 1,
+      "maxFrameGapMs": 6.90000002384204
+    }
+  ],
+  "status": "passed"
+}

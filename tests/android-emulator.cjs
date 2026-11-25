@@ -17,6 +17,10 @@ const help = [
   'Run against an already-offline, dedicated Android Virtual Device and debug APK:',
   '  node tests/android-emulator.cjs --serial emulator-5554 --avd <exact_AVD_name> --apk <equity-v1.apk> [--upgrade <strategy-v2.apk>] [--legacy-report <baseline.json>] [--adb <path>]',
   '  For the R1 v3 release, pass --r1 with its --apk, --serial, --avd and --adb. On a fresh AVD, --baseline <v2.apk> also checks an in-place upgrade.',
+  '  For v4 preflop with a v3 upgrade check, pass --preflop --baseline <v3.apk> and the v4 --apk.',
+  '  For v5, use --prepare-camp --apk <v4.apk>, then --camp --apk <v5.apk> on the same dedicated AVD.',
+  '  --camp-timing --apk <v5.apk> measures a trusted dashboard tap through the first visible training hand.',
+  '  For v6, use --prepare-river --apk <v5.apk>, then --river --apk <v6.apk> on the same dedicated AVD.',
   '  To reproduce and prepare a migration record on the original v2, use --apk <old-v2.apk> --legacy-repro on the same dedicated AVD.',
   '  --legacy-report checks the original v2 first, upgrades directly to patched v2, then uses adb install -r -d for the v1 test on that AVD.',
   'The script verifies the emulator name, QEMU flag and disconnected default network first.',
@@ -29,12 +33,23 @@ for (let i=2;i<process.argv.length;i++) {
   if (key==='--probe') { options.probe=true; continue; }
   if (key==='--legacy-repro') { options.legacyRepro=true; continue; }
   if (key==='--r1') { options.r1=true; continue; }
+  if (key==='--preflop') { options.preflop=true; continue; }
+  if (key==='--prepare-camp') { options.prepareCamp=true; continue; }
+  if (key==='--camp') { options.camp=true; continue; }
+  if (key==='--camp-timing') { options.campTiming=true; continue; }
+  if (key==='--prepare-river') { options.prepareRiver=true; continue; }
+  if (key==='--river') { options.river=true; continue; }
   if (!['--apk','--upgrade','--baseline','--adb','--serial','--avd','--legacy-report'].includes(key) || !process.argv[i+1] || process.argv[i+1].startsWith('--')) {
     console.error(help); process.exit(2);
   }
   options[key.slice(2)] = process.argv[++i];
 }
-const reportPath = path.join(root,'reports',options.r1?'android-r1.json':options.legacyRepro?'android-test-legacy-v2.json':'android-test.json');
+const riverSuite=options.prepareRiver || options.river;
+const baselinePath=path.join(root,'.work',(riverSuite?'river-v5-':'camp-v4-')+options.serial+'.json');
+const reportPath = options.prepareCamp || options.prepareRiver ? baselinePath : path.join(root,'reports',options.campTiming?'android-training-timing-v5.json':
+  options.river?'android-river-v6.json':options.camp?'android-camp-v5.json':options.preflop?'android-preflop-v4.json':
+  options.r1?'android-r1.json':options.legacyRepro?'android-test-legacy-v2.json':'android-test.json');
+const extendedStartup = options.r1 || options.preflop || options.camp || options.prepareCamp || options.campTiming || riverSuite;
 if (!options.probe && (!/^emulator-[0-9]+$/.test(options.serial || '') || !options.avd || !options.apk)) {
   console.error(help); process.exit(2);
 }
@@ -82,7 +97,8 @@ async function identify() {
   catch (error) { throw blocked('Android runtime unavailable. '+error.message); }
   if (state!=='device') throw blocked('Dedicated emulator state: '+state);
   const qemu = [await shell('getprop','ro.kernel.qemu'),await shell('getprop','ro.boot.qemu')];
-  const avd = (await command(['emu','avd','name'])).split(/\r?\n/)[0].trim();
+  const avd = await shell('getprop','ro.boot.qemu.avd_name')
+    || (await command(['emu','avd','name'])).split(/\r?\n/)[0].trim();
   if (!qemu.includes('1') || avd!==options.avd) throw blocked('Serial is not the specified QEMU AVD.');
   report.device={serial:options.serial,avd,qemu,api:await shell('getprop','ro.build.version.sdk'),
     android:await shell('getprop','ro.build.version.release'),abi:await shell('getprop','ro.product.cpu.abilist'),
@@ -123,16 +139,16 @@ async function scenario(name,fn) {
 
 // Connect specifically to the WebView page of this process; WebView also supports
 // page-level CDP on versions that do not expose a browser-level websocket endpoint.
-async function attach(pid) {
+async function attach(pid,camp=false) {
   forwardPort=await command(['forward','tcp:0','localabstract:webview_devtools_remote_'+pid]);
   assert.match(forwardPort,/^\d+$/);
   const base='http://127.0.0.1:'+forwardPort;
   let page;
-  const attachDeadline=Date.now()+(options.r1?90000:15000);
+  const attachDeadline=Date.now()+(extendedStartup?90000:15000);
   while (Date.now()<attachDeadline && !page) {
     try {
       const tabs=await (await fetch(base+'/json/list',{signal:AbortSignal.timeout(1000)})).json();
-      page=tabs.find(t=>t.type==='page' && t.url===ENTRY && t.title.includes('权益复盘'));
+      page=tabs.find(t=>t.type==='page' && t.url===ENTRY && t.title.includes(camp?'GTO训练营':'权益复盘'));
     } catch { /* WebView may not have opened its socket yet. */ }
     if (!page) await delay(200);
   }
@@ -163,7 +179,7 @@ async function attach(pid) {
     const key=++id;
     return new Promise((resolve,reject)=>{
       const timeout=setTimeout(()=>{pending.delete(key);reject(Error('CDP timeout '+method+' '+(params.expression || '').slice(0,100)));},
-        options.r1 && method==='Network.enable' ? 120000 : 30000);
+        extendedStartup && method==='Network.enable' ? 120000 : 30000);
       pending.set(key,msg=>{ clearTimeout(timeout); msg.error ? reject(Error(msg.error.message)) : resolve(msg.result); });
       socket.send(JSON.stringify({id:key,method,params}));
     });
@@ -174,14 +190,14 @@ async function attach(pid) {
     if (result.exceptionDetails) throw Error(result.exceptionDetails.exception?.description || result.exceptionDetails.text);
     return result.result.value;
   };
-  evaluate.tap=async selector=>{
+  evaluate.tap=async (selector,arrival)=>{
     const point=await evaluate('(async()=>{const el=document.querySelector('+JSON.stringify(selector)+');'+
       'el.scrollIntoView({block:"center",inline:"center"});await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));'+
       'const box=el.getBoundingClientRect();window.__pokerTrustedTap=false;el.addEventListener("click",e=>{window.__pokerTrustedTap=e.isTrusted;},{once:true});'+
       'return {x:box.x+box.width/2,y:box.y+box.height/2};})()');
     await send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point]});
     await send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
-    await until(()=>evaluate('window.__pokerTrustedTap===true'),'trusted card touch');
+    await until(()=>evaluate(arrival || 'window.__pokerTrustedTap===true'),'trusted touch');
     (report.touches ||= []).push({selector,cssPixels:point,trusted:true,method:'CDP Input.dispatchTouchEvent'});
   };
   return evaluate;
@@ -197,24 +213,26 @@ async function until(check,label,timeout=30000) {
   } while(Date.now()<stop);
   throw Error('Timed out: '+label);
 }
-async function coldStart(alreadyStopped=false) {
+async function coldStart(alreadyStopped=false,camp=false) {
   const offlineBeforeStart=await offline();
   if (!alreadyStopped) await shell('am','force-stop',PACKAGE);
   const launch=await shell('am','start','-W','-n',PACKAGE+'/.MainActivity');
   // First WebView initialization can outlive Activity Manager's fixed -W timeout.
   // In that case verify the resumed Activity and still require its page and completed Worker below.
-  if (options.r1 && /Status:\s*timeout/i.test(launch)) {
+  if (extendedStartup && /Status:\s*timeout/i.test(launch)) {
     await until(async()=>/topResumedActivity=.*org\.rivernotes\.poker\/\.MainActivity/.test(
-      await shell('dumpsys','activity','activities')),'resumed R1 acceptance Activity',60000);
+      await shell('dumpsys','activity','activities')),'resumed acceptance Activity',60000);
   } else assert.match(launch,/Status:\s*ok/i);
   let pid;
   await until(async()=>{try{pid=await shell('pidof',PACKAGE);return /^\d+$/.test(pid);}catch{return false;}},'app PID');
-  const js=await attach(pid);
-  await until(()=>js("document.querySelector('#job-status')?.textContent==='计算完成'"),'cold start first Worker');
-  const state=await js("({url:location.href,online:navigator.onLine,webview:navigator.userAgent,method:document.querySelector('#method').textContent})");
+  const js=await attach(pid,camp);
+  if (camp) await until(()=>js("!!document.querySelector('#open-strategy') && !document.querySelector('#open-strategy').hidden"),'camp dashboard navigation');
+  else await until(()=>js("document.querySelector('#job-status')?.textContent==='计算完成'"),'cold start first Worker');
+  const state=await js("({url:location.href,online:navigator.onLine,webview:navigator.userAgent,method:document.querySelector('#method')?.textContent})");
   // navigator.onLine is a WebView hint. The OS default-network check above
   // proves disconnection even when WebView lacks permission to observe changes.
-  assert.equal(state.url,ENTRY); assert.match(state.method,/模拟/);
+  assert.equal(state.url,ENTRY);
+  if (!camp) assert.match(state.method,/模拟/);
   (report.starts ||= []).push({pid,launch,offlineBeforeStart,...state});
   return js;
 }
@@ -332,6 +350,36 @@ async function legacyRun() {
 async function main() {
   if (!(await probe())) return;
   await scenario('identify named offline emulator',identify);
+  if (options.prepareCamp || options.camp || options.campTiming || riverSuite) {
+    const camp=require('./android-camp.cjs')({coldStart,install,installedDigest,until,report,scenario,
+      restoreSaved,saveAndStop,release,shell,baselinePath});
+    if (options.prepareCamp || options.prepareRiver) await camp.prepare(options.apk,riverSuite?5:4);
+    else if (options.campTiming) await camp.timeFirstHand(options.apk);
+    else await camp.verify(options.apk,riverSuite?6:5);
+    assert.deepEqual(report.externalRequests,[]); assert.deepEqual(report.exceptions,[]);
+    report.offlineAfterRun=await offline();
+    report.status='passed'; return;
+  }
+  if (options.preflop) {
+    let previousHand;
+    if (options.baseline) {
+      previousHand=await scenario('save a v3 hand and immediately force-stop',async()=>{
+        await install(options.baseline,3);
+        return saveAndStop(await coldStart(),'before v4 upgrade');
+      });
+    }
+    await scenario('install v4 without clearing data and verify digest',()=>install(options.apk,4));
+    const js=await scenario('offline cold start from v4 WebView',coldStart);
+    if (previousHand) await scenario('restore v3 history after upgrading to v4',async()=>{
+      assert.equal(await restoreSaved(js,previousHand),true);
+    });
+    js.navigate=selector=>js('document.querySelector('+JSON.stringify(selector)+').click()');
+    await scenario('preflop chart, positions, mixed actions and portrait touch navigation',()=>
+      require('./preflop-ui.cjs')(js,(expression,label)=>until(()=>js(expression),label)));
+    assert.deepEqual(report.externalRequests,[]); assert.deepEqual(report.exceptions,[]);
+    report.offlineAfterRun=await offline();
+    report.status='passed'; return;
+  }
   if (options.r1) {
     let previousHand;
     if (options.baseline) {

@@ -23,6 +23,32 @@
 .strategy-results {margin-top:20px}
 .strategy-results .section-head {align-items:center}
 .strategy-results h3 {font-size:16px;margin:0 0 4px}
+.river-selectors {display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:12px;margin:12px 0}
+.river-selectors label,.river-selectors select {min-width:0}
+.river-readout {border:1px solid #4b6e59;border-radius:12px;background:#1d382b;padding:clamp(14px,2vw,22px);line-height:1.55}
+.river-readout h3 {margin:4px 0 10px;font-size:clamp(17px,2.4vw,24px);color:#b8f0c9}
+.river-readout h4 {margin:13px 0 6px;font-size:14px}
+#gto-actor {color:#c4d5ca;font-size:13px}
+#gto-interpretation-note {color:#edd49a;margin-block:6px}
+#gto-decision-context,#gto-pot-odds {font-size:14px}
+.river-equities {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;font-variant-numeric:tabular-nums}
+.river-equities div {padding:6px 4px;border-top:1px solid #537661}
+.river-equities dt {font-size:12px;color:#d1e0d3}
+.river-equities dd {font-size:clamp(14px,2.1vw,22px);font-weight:680}
+.river-section {padding-top:16px;margin-top:16px;border-top:1px solid var(--line)}
+.river-options {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,96px),1fr));gap:7px;margin-top:10px}
+.river-options article {padding:10px;background:#13231a;border:1px solid #3c5645;border-radius:9px;min-width:0}
+.river-options h4 {margin:0 0 6px;font-size:15px;color:#b7ecc5}
+.river-options p {margin-top:4px;font-size:13px;line-height:1.45}
+.size-gap {color:#c7d7c9}
+#gto-response-size {display:block;margin-top:4px}
+#gto-responses {margin-top:9px}
+#gto-responses>details,#gto-responses>.response-row {padding:9px 0;border-bottom:1px solid var(--line)}
+.response-frequency {margin-left:10px;color:#b6edc6;font-weight:700;font-variant-numeric:tabular-nums}
+#gto-responses summary,#gto-advanced summary {cursor:pointer;min-height:32px;font-weight:650}
+.response-group {margin:7px 0 0 13px;font-size:14px;line-height:1.55}
+.response-group small {display:block;color:var(--muted)}
+#gto-range-mix {display:flex;gap:6px 14px;flex-wrap:wrap;color:#c3e9ce;font-size:14px;margin-top:8px}
 .policy-layout {display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr);gap:24px;margin-top:20px}
 .matrix-scroll {overflow:auto}
 #gto-matrix {display:grid;grid-template-columns:repeat(13,minmax(0,1fr));gap:2px;margin-top:10px;min-width:255px}
@@ -46,6 +72,9 @@
 #gto-weights {display:flex;gap:4px;flex-wrap:wrap}
 #gto-weights button {font-size:12px;padding:5px 8px}
 #gto-picker-error:empty {display:none}
+#gto-picker-slots {display:flex;gap:4px;margin:8px 0}
+#gto-picker-slots .card {width:38px;min-height:44px}
+#gto-picker-slots [aria-pressed=true] {outline:2px solid #558a65}
 @media(max-width:720px) {
   .model-layout,.policy-layout {grid-template-columns:1fr}
   .strategy-results .section-head {display:block}
@@ -53,3 +82,8 @@
   .model-layout {gap:14px}
 }
 @media(max-width:540px) {.range-sides {grid-template-columns:1fr}}
+@media(max-width:440px) {
+  .river-selectors {grid-template-columns:1fr}
+  .river-options article {padding:8px}
+  .river-options {grid-template-columns:repeat(auto-fit,minmax(min(100%,78px),1fr))}
+}

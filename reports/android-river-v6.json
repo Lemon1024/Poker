@@ -1,0 +1,1141 @@
+{
+  "status": "passed",
+  "startedAt": "2026-11-25T04:04:44.286Z",
+  "host": {
+    "platform": "win32",
+    "release": "10.0.26200",
+    "arch": "x64"
+  },
+  "package": "org.rivernotes.poker",
+  "scenarios": [
+    {
+      "name": "identify named offline emulator",
+      "status": "passed",
+      "elapsedMs": 566
+    },
+    {
+      "name": "in-place install and verify installed v6 bytes",
+      "status": "passed",
+      "elapsedMs": 779
+    },
+    {
+      "name": "open offline v6 dashboard",
+      "status": "passed",
+      "elapsedMs": 2183
+    },
+    {
+      "name": "restore exact v5 answered question, round and mistakes in v6",
+      "status": "passed",
+      "elapsedMs": 3441
+    },
+    {
+      "name": "reopen exact v5 hand and named range from v6 equity",
+      "status": "passed",
+      "elapsedMs": 2336
+    },
+    {
+      "name": "load the identical v5 river checkpoint in the v6 solver",
+      "status": "passed",
+      "elapsedMs": 555
+    },
+    {
+      "name": "equity picker shows four suit rows and thirteen ranks at 320, 360 and 375px",
+      "status": "passed",
+      "elapsedMs": 7723
+    },
+    {
+      "name": "strategy picker shows four suit rows and thirteen ranks at 320, 360 and 375px",
+      "status": "passed",
+      "elapsedMs": 6664
+    },
+    {
+      "name": "river final readout links hand, sizes, opponent reactions and pot odds",
+      "status": "passed",
+      "elapsedMs": 8343
+    },
+    {
+      "name": "a blocked hand has no recommendation even in a converged game",
+      "status": "passed",
+      "elapsedMs": 3113
+    },
+    {
+      "name": "edits and incomplete iterations hide settled river recommendations",
+      "status": "passed",
+      "elapsedMs": 520
+    }
+  ],
+  "commands": [
+    {
+      "argv": [
+        "adb",
+        "version"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "get-state"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "getprop",
+        "ro.kernel.qemu"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "getprop",
+        "ro.boot.qemu"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "getprop",
+        "ro.boot.qemu.avd_name"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "getprop",
+        "ro.build.version.sdk"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "getprop",
+        "ro.build.version.release"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "getprop",
+        "ro.product.cpu.abilist"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "dumpsys",
+        "connectivity"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "pm",
+        "path",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "sha256sum",
+        "/data/app/~~QK_keqfAQkIqtp33Of4VWg==/org.rivernotes.poker-HcEnQ5o99Lv8Y866Vn57Vg==/base.apk"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "install",
+        "-r",
+        "D:\\Agent project\\Poker\\dist\\poker-strategy-android-v6.apk"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "pm",
+        "path",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "sha256sum",
+        "/data/app/~~iHBtR8dFHrFHJNHUKb2AgQ==/org.rivernotes.poker-DolPpkRZc1KlIdT1_QqSrQ==/base.apk"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "dumpsys",
+        "package",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "dumpsys",
+        "connectivity"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "am",
+        "force-stop",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "am",
+        "start",
+        "-W",
+        "-n",
+        "org.rivernotes.poker/.MainActivity"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "pidof",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "forward",
+        "tcp:0",
+        "localabstract:webview_devtools_remote_2068"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "forward",
+        "--remove",
+        "tcp:50468"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "wm",
+        "size"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "wm",
+        "density"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "wm",
+        "size",
+        "360x800"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "dumpsys",
+        "connectivity"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "am",
+        "force-stop",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "am",
+        "start",
+        "-W",
+        "-n",
+        "org.rivernotes.poker/.MainActivity"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "pidof",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "forward",
+        "tcp:0",
+        "localabstract:webview_devtools_remote_2194"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "wm",
+        "size",
+        "320x800"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "wm",
+        "size",
+        "360x800"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "wm",
+        "size",
+        "375x800"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "wm",
+        "size",
+        "320x800"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "wm",
+        "size",
+        "360x800"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "wm",
+        "size",
+        "375x800"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "wm",
+        "size",
+        "360x800"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "wm",
+        "size",
+        "reset"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "dumpsys",
+        "connectivity"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "forward",
+        "--remove",
+        "tcp:53611"
+      ],
+      "status": 0
+    }
+  ],
+  "externalRequests": [],
+  "exceptions": [],
+  "adb": "Android Debug Bridge version 1.0.41\r\nVersion 37.0.1-15733141\r\nInstalled as D:\\Agent project\\Poker\\.work\\toolchain\\android-sdk\\platform-tools\\adb.exe\r\nRunning on Windows 10.0.26200",
+  "device": {
+    "serial": "emulator-5574",
+    "avd": "RiverNotes_R1_API35",
+    "qemu": [
+      "1",
+      "1"
+    ],
+    "api": "35",
+    "android": "15",
+    "abi": "x86_64",
+    "offlineBeforeInstall": "Active default network: none"
+  },
+  "apks": [
+    {
+      "file": "poker-strategy-android-v6.apk",
+      "sha256": "66991d1adfb202d38d33c0443e1e2399760098e7ee4eeea077ae2abe0f2a85bf",
+      "installOutput": "Performing Streamed Install\r\nSuccess",
+      "installedSha256": "66991d1adfb202d38d33c0443e1e2399760098e7ee4eeea077ae2abe0f2a85bf",
+      "versionCode": 6
+    }
+  ],
+  "upgrade": {
+    "baseline": "60e3ca90ef1c5a480e4bf3b5f12c8a8b84420e6bfde2b0808c80e1835e3070cb",
+    "previouslyInstalled": "60e3ca90ef1c5a480e4bf3b5f12c8a8b84420e6bfde2b0808c80e1835e3070cb",
+    "fromV5": true,
+    "range": "v5-upgrade-1795578858014",
+    "checkpoint": {
+      "iterations": 57,
+      "sha256": "92fadaf7f753c72d2412512feff2f9ca3d7e1eee4bd999000e56eb3b0a699245"
+    },
+    "restoredHand": {
+      "hero": [
+        "As",
+        "Ah"
+      ],
+      "probabilities": [
+        "82.45%",
+        "0.55%",
+        "17.00%",
+        "82.73%"
+      ],
+      "villain": [
+        "Ks",
+        "Kh"
+      ]
+    },
+    "restoredRange": {
+      "name": "v5-upgrade-1795578858014",
+      "cards": [
+        "Kd",
+        "Kh",
+        "9c",
+        "9d"
+      ],
+      "weights": [
+        0.75,
+        0.25
+      ]
+    }
+  },
+  "starts": [
+    {
+      "pid": "2068",
+      "launch": "Starting: Intent { cmp=org.rivernotes.poker/.MainActivity }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: org.rivernotes.poker/.MainActivity\r\nTotalTime: 1388\r\nWaitTime: 1392\r\nComplete",
+      "offlineBeforeStart": "Active default network: none",
+      "url": "https://appassets.androidplatform.net/index.html",
+      "online": true,
+      "webview": "Mozilla/5.0 (Linux; Android 15; Android SDK built for x86_64 Build/AE3A.240806.019; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/124.0.6367.219 Mobile Safari/537.36"
+    },
+    {
+      "pid": "2194",
+      "launch": "Starting: Intent { cmp=org.rivernotes.poker/.MainActivity }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: org.rivernotes.poker/.MainActivity\r\nTotalTime: 1186\r\nWaitTime: 1194\r\nComplete",
+      "offlineBeforeStart": "Active default network: none",
+      "url": "https://appassets.androidplatform.net/index.html",
+      "online": true,
+      "webview": "Mozilla/5.0 (Linux; Android 15; Android SDK built for x86_64 Build/AE3A.240806.019; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/124.0.6367.219 Mobile Safari/537.36"
+    }
+  ],
+  "training": {
+    "sha256": "c2286f7c5af8598472221626ceea0d3359b5cfdfed4085a7f0bb1e6a5d040c16",
+    "hand": {
+      "mode": "vsThreeBet",
+      "hero": "HJ",
+      "opponent": "BB",
+      "hand": "AKo"
+    },
+    "index": 0,
+    "answered": 1,
+    "mistakes": 0,
+    "visible": {
+      "progress": "第 1 / 10 手",
+      "hand": "AKo",
+      "feedback": "high"
+    }
+  },
+  "river": {
+    "decks": [
+      {
+        "area": "equity",
+        "width": 320,
+        "rows": [
+          290,
+          337,
+          384,
+          431
+        ],
+        "columns": [
+          23.4,
+          46.1,
+          68.9,
+          91.7,
+          114.5,
+          137.2,
+          160,
+          182.8,
+          205.5,
+          228.3,
+          251.1,
+          273.8,
+          296.6
+        ]
+      },
+      {
+        "area": "equity",
+        "width": 360,
+        "rows": [
+          290,
+          337,
+          384,
+          431
+        ],
+        "columns": [
+          24.9,
+          50.8,
+          76.6,
+          102.5,
+          128.3,
+          154.1,
+          180,
+          205.8,
+          231.7,
+          257.5,
+          283.4,
+          309.2,
+          335.1
+        ]
+      },
+      {
+        "area": "equity",
+        "width": 375,
+        "rows": [
+          290,
+          337,
+          384,
+          431
+        ],
+        "columns": [
+          25.5,
+          52.5,
+          79.5,
+          106.5,
+          133.5,
+          160.5,
+          187.5,
+          214.5,
+          241.5,
+          268.5,
+          295.5,
+          322.5,
+          349.5
+        ]
+      },
+      {
+        "area": "strategy",
+        "width": 320,
+        "rows": [
+          316,
+          363,
+          410,
+          457
+        ],
+        "columns": [
+          23.4,
+          46.1,
+          68.9,
+          91.7,
+          114.5,
+          137.2,
+          160,
+          182.8,
+          205.5,
+          228.3,
+          251.1,
+          273.8,
+          296.6
+        ]
+      },
+      {
+        "area": "strategy",
+        "width": 360,
+        "rows": [
+          316,
+          363,
+          410,
+          457
+        ],
+        "columns": [
+          24.9,
+          50.8,
+          76.6,
+          102.5,
+          128.3,
+          154.1,
+          180,
+          205.8,
+          231.7,
+          257.5,
+          283.4,
+          309.2,
+          335.1
+        ]
+      },
+      {
+        "area": "strategy",
+        "width": 375,
+        "rows": [
+          316,
+          363,
+          410,
+          457
+        ],
+        "columns": [
+          25.5,
+          52.5,
+          79.5,
+          106.5,
+          133.5,
+          160.5,
+          187.5,
+          214.5,
+          241.5,
+          268.5,
+          295.5,
+          322.5,
+          349.5
+        ]
+      }
+    ],
+    "solves": [
+      {
+        "preset": "equal",
+        "elapsedMs": 2550,
+        "iterations": "16,384",
+        "exploitability": "0.0820%"
+      },
+      {
+        "preset": "weighted",
+        "elapsedMs": 2249,
+        "iterations": "12,288",
+        "exploitability": "0.0922%"
+      }
+    ],
+    "odds": [
+      {
+        "history": "bet:50",
+        "call": 50,
+        "odds": "跟注还需补 50，跟注后底池共 200。打平需要 25% 权益（50 ÷ 200）。"
+      },
+      {
+        "history": "bet:100",
+        "call": 100,
+        "odds": "跟注还需补 100，跟注后底池共 300。打平需要 33.33% 权益（100 ÷ 300）。"
+      },
+      {
+        "history": "bet:50/raise:100",
+        "call": 50,
+        "odds": "跟注还需补 50，跟注后底池共 300。打平需要 16.67% 权益（50 ÷ 300）。"
+      }
+    ],
+    "responses": [
+      {
+        "hand": "Qs As",
+        "move": "bet:50",
+        "frequencies": {
+          "fold": "33.74%",
+          "call": "33.79%",
+          "raise:100": "32.47%"
+        }
+      },
+      {
+        "hand": "Qs As",
+        "move": "bet:100",
+        "frequencies": {
+          "fold": "50.44%",
+          "call": "49.56%"
+        }
+      },
+      {
+        "hand": "Qs As",
+        "move": "bet:50",
+        "frequencies": {
+          "fold": "30.77%",
+          "call": "39.78%",
+          "raise:100": "29.45%"
+        }
+      }
+    ]
+  },
+  "touches": [
+    {
+      "selector": "#deck [data-card=\"As\"]",
+      "cssPixels": {
+        "x": 23.3828125,
+        "y": 290
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#deck [data-card=\"2s\"]",
+      "cssPixels": {
+        "x": 296.6015625,
+        "y": 290
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#deck [data-card=\"Ad\"]",
+      "cssPixels": {
+        "x": 23.3828125,
+        "y": 431
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#deck [data-card=\"2d\"]",
+      "cssPixels": {
+        "x": 296.6015625,
+        "y": 431
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#deck [data-card=\"Th\"]",
+      "cssPixels": {
+        "x": 114.453125,
+        "y": 337
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#deck [data-card=\"As\"]",
+      "cssPixels": {
+        "x": 24.921875,
+        "y": 290
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#deck [data-card=\"2s\"]",
+      "cssPixels": {
+        "x": 335.0625,
+        "y": 290
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#deck [data-card=\"Ad\"]",
+      "cssPixels": {
+        "x": 24.921875,
+        "y": 431
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#deck [data-card=\"2d\"]",
+      "cssPixels": {
+        "x": 335.0625,
+        "y": 431
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#deck [data-card=\"Th\"]",
+      "cssPixels": {
+        "x": 128.296875,
+        "y": 337
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#deck [data-card=\"As\"]",
+      "cssPixels": {
+        "x": 25.5,
+        "y": 290
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#deck [data-card=\"2s\"]",
+      "cssPixels": {
+        "x": 349.5,
+        "y": 290
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#deck [data-card=\"Ad\"]",
+      "cssPixels": {
+        "x": 25.5,
+        "y": 431
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#deck [data-card=\"2d\"]",
+      "cssPixels": {
+        "x": 349.5,
+        "y": 431
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#deck [data-card=\"Th\"]",
+      "cssPixels": {
+        "x": 133.5,
+        "y": 337
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#gto-deck [data-card=\"5d\"]",
+      "cssPixels": {
+        "x": 268.5,
+        "y": 457
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#gto-deck [data-card=\"As\"]",
+      "cssPixels": {
+        "x": 23.3828125,
+        "y": 316
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#gto-deck [data-card=\"2s\"]",
+      "cssPixels": {
+        "x": 296.6015625,
+        "y": 316
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#gto-deck [data-card=\"Ad\"]",
+      "cssPixels": {
+        "x": 23.3828125,
+        "y": 457
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#gto-deck [data-card=\"2d\"]",
+      "cssPixels": {
+        "x": 296.6015625,
+        "y": 457
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#gto-deck [data-card=\"Th\"]",
+      "cssPixels": {
+        "x": 114.453125,
+        "y": 363
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#gto-deck [data-card=\"As\"]",
+      "cssPixels": {
+        "x": 24.921875,
+        "y": 316
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#gto-deck [data-card=\"2s\"]",
+      "cssPixels": {
+        "x": 335.0625,
+        "y": 316
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#gto-deck [data-card=\"Ad\"]",
+      "cssPixels": {
+        "x": 24.921875,
+        "y": 457
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#gto-deck [data-card=\"2d\"]",
+      "cssPixels": {
+        "x": 335.0625,
+        "y": 457
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#gto-deck [data-card=\"Th\"]",
+      "cssPixels": {
+        "x": 128.296875,
+        "y": 363
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#gto-deck [data-card=\"As\"]",
+      "cssPixels": {
+        "x": 25.5,
+        "y": 316
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#gto-deck [data-card=\"2s\"]",
+      "cssPixels": {
+        "x": 349.5,
+        "y": 316
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#gto-deck [data-card=\"Ad\"]",
+      "cssPixels": {
+        "x": 25.5,
+        "y": 457
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#gto-deck [data-card=\"2d\"]",
+      "cssPixels": {
+        "x": 349.5,
+        "y": 457
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#gto-deck [data-card=\"Th\"]",
+      "cssPixels": {
+        "x": 133.5,
+        "y": 363
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#gto-matrix [data-class=\"AQs\"]",
+      "cssPixels": {
+        "x": 90.1484375,
+        "y": 364.5703125
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#gto-responses details summary",
+      "cssPixels": {
+        "x": 180,
+        "y": 364.421875
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#gto-advanced summary",
+      "cssPixels": {
+        "x": 180,
+        "y": 651.1875
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    },
+    {
+      "selector": "#range-editor summary",
+      "cssPixels": {
+        "x": 180,
+        "y": 364.515625
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    }
+  ],
+  "offlineAfterRun": "Active default network: none"
+}

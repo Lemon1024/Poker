@@ -31,13 +31,14 @@
     $("feedback").classList.toggle("info",info);
   }
   const percent = number => (number*100).toFixed(2) + "%";
-  const glyph = card => card[0]+symbols[card[1]];
+  const rankFace = card => card[0] === "T" ? "10" : card[0];
+  const glyph = card => rankFace(card)+symbols[card[1]];
   function cardButton(card, name, handler) {
     const button = element("button",undefined,"card");
     button.type = "button";
     button.setAttribute("aria-label",name);
     if (card) {
-      button.append(element("b",card[0]),element("span",symbols[card[1]]));
+      button.append(element("b",rankFace(card)),element("span",symbols[card[1]]));
       button.classList.toggle("red",card[1] === "h" || card[1] === "d");
     } else {
       button.textContent = "+";
@@ -315,7 +316,7 @@
     for (const suit of ["s","h","c","d"]) {
       for (const rank of ranks) {
         const card = rank+suit;
-        const button = cardButton(card,card,() => chooseCard(card));
+        const button = cardButton(card,glyph(card),() => chooseCard(card));
         button.dataset.card = card;
         button.disabled = blocked.has(card);
         button.setAttribute("aria-pressed",String(card === cards[index]));

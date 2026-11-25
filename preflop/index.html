@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>翻前范围 · GTO训练营</title>
+  <link rel="stylesheet" href="../web/style.css">
+  <link rel="stylesheet" href="../web/camp.css">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="ranges.js"></script>
+  <script defer src="advice.js"></script>
+  <script defer src="ui.js"></script>
+</head>
+<body>
+  <header class="topbar"><div class="frame topbar-inner">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">♠</span>GTO训练营</div>
+    <a id="preflop-home" class="quiet-button" href="../index.html">返回工作台</a>
+  </div></header>
+  <main class="frame">
+    <div class="intro preflop-intro">
+      <h1>翻前范围</h1><p>6 人现金桌 · 100BB 有效筹码 · 无前注、无 straddle</p>
+    </div>
+    <section class="panel preflop-controls" aria-label="设置翻前局面">
+      <div class="preflop-fields">
+        <label>此前行动<select id="preflop-mode">
+          <option value="open">前面全弃，我可以开池</option>
+          <option value="vsOpen">一人开池，尚无人跟注</option>
+          <option value="vsThreeBet">我开池后遇到 3-bet</option>
+        </select></label>
+        <label>我的位置<select id="preflop-hero"></select></label>
+        <label id="preflop-opponent-field" hidden><span id="preflop-opponent-label">对手位置</span>
+          <select id="preflop-opponent"></select></label>
+      </div>
+      <div class="line-actions"><p id="preflop-line" aria-live="polite"></p>
+        <a class="secondary" id="preflop-practice" href="../training/index.html">练这个局面 →</a>
+      </div>
+    </section>
+    <div class="preflop-workspace">
+      <section class="panel preflop-range" aria-labelledby="preflop-range-title">
+        <h2 id="preflop-range-title">起手牌范围</h2>
+        <div class="preflop-fields">
+          <label>高亮行动<select id="preflop-action"></select></label>
+          <label>频率<select id="preflop-frequency">
+            <option value="both">高频和低频</option><option value="high">仅高频</option><option value="low">仅低频</option>
+          </select></label>
+          <label>快速查牌<input id="preflop-search" type="search" placeholder="99 / A5s / AKo" autocomplete="off" autocapitalize="off" spellcheck="false"></label>
+        </div>
+        <p id="preflop-key" class="hint"></p>
+        <div id="preflop-summary" aria-live="polite"><strong></strong><span></span></div>
+        <div id="preflop-matrix" aria-label="169 种起手牌"></div>
+      </section>
+      <div class="range-sidebar">
+        <section class="result-panel preflop-detail" aria-labelledby="preflop-detail-title">
+          <div class="result-head"><h2 id="preflop-detail-title">手牌详情</h2><span class="method">实战教学分档</span></div>
+          <label class="hand-select">所选手牌<select id="preflop-hand"></select></label>
+          <div aria-live="polite"><ul id="preflop-tiers"></ul><p id="preflop-reason"></p></div>
+        </section>
+        <section class="panel compare-panel" id="preflop-compare" hidden aria-labelledby="compare-title">
+          <h2 id="compare-title">位置对照</h2>
+          <label>对照位置<select id="preflop-compare-opponent"></select></label>
+          <div id="preflop-compare-cards" class="compare-cards"></div>
+        </section>
+      </div>
+    </div>
+    <p class="hint preflop-foot">固定教学尺度，小盲无人入池时采用加注或弃牌。范围表 <span id="preflop-version"></span></p>
+  </main>
+</body>
+</html>

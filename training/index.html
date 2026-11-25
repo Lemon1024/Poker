@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>翻前训练 · GTO训练营</title>
+  <link rel="stylesheet" href="../web/style.css">
+  <link rel="stylesheet" href="../web/camp.css">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="../preflop/ranges.js"></script>
+  <script defer src="../preflop/advice.js"></script>
+  <script defer src="session.js"></script>
+  <script defer src="ui.js"></script>
+</head>
+<body class="training-page">
+  <header class="training-header">
+    <div class="training-bar">
+      <a href="../index.html" id="training-home" aria-label="返回 GTO训练营 首页"><b aria-hidden="true">♠</b> GTO训练营</a>
+      <a id="training-book" href="#review">错题本 <span id="training-count">0</span></a>
+    </div>
+  </header>
+  <main class="training-shell">
+    <p id="training-storage-note" role="status" hidden></p>
+    <section id="training-switch" hidden aria-labelledby="training-switch-title">
+      <h2 id="training-switch-title">切换训练？</h2>
+      <p id="training-switch-info"></p>
+      <div class="training-buttons"><button id="training-keep" class="t-primary">继续当前轮</button>
+        <button id="training-confirm-switch" class="t-secondary">切换到新一轮</button></div>
+    </section>
+    <section id="training-question" hidden aria-labelledby="training-title">
+      <div class="training-heading">
+        <div><p class="training-kicker">6 人现金桌 · 100 BB</p><h1 id="training-title">翻前训练</h1></div>
+        <div class="training-counter"><span id="training-progress"></span><progress id="training-meter" max="10" value="1" aria-label="本轮进度"></progress></div>
+      </div>
+      <div class="training-felt" aria-label="六人桌座位与我的手牌">
+        <ul id="training-seats" aria-label="座位"></ul>
+        <div class="training-pocket" id="training-pocket">
+          <div class="training-cards" aria-hidden="true"><span id="training-card-one"></span><span id="training-card-two"></span></div>
+          <span id="training-hand-name"></span>
+        </div>
+      </div>
+      <div class="training-decision">
+        <p id="training-context"></p>
+        <h2 id="training-situation"></h2>
+        <div class="training-buttons" id="training-actions" aria-label="选择行动"></div>
+      </div>
+      <section id="training-feedback" aria-live="polite" hidden>
+        <h2 id="training-verdict"></h2>
+        <p id="training-recommended"></p><p id="training-reason"></p>
+        <div class="training-buttons"><button id="training-next" class="t-primary">下一手</button><a id="training-chart" class="t-secondary" href="../preflop/index.html">查看范围</a></div>
+      </section>
+    </section>
+    <section id="training-summary" hidden aria-labelledby="training-summary-title">
+      <p class="training-kicker">翻前训练</p><h1 id="training-summary-title">本轮完成</h1>
+      <p id="training-summary-count"></p>
+      <dl id="training-scores"><div><dt>高频首选</dt><dd id="training-score-high">0</dd></div>
+        <div><dt>低频可选</dt><dd id="training-score-low">0</dd></div><div><dt>不建议</dt><dd id="training-score-avoid">0</dd></div></dl>
+      <div class="training-buttons"><button id="training-again" class="t-primary">再练一轮</button>
+        <a href="#review" class="t-secondary">查看错题本</a></div>
+    </section>
+    <section id="training-review" hidden aria-labelledby="training-review-title">
+      <p class="training-kicker">翻前训练</p><h1 id="training-review-title">错题本</h1>
+      <p id="training-review-note"></p>
+      <label id="training-filter-field">复练局面<select id="training-filter"><option value="">全部局面</option></select></label>
+      <div class="training-buttons"><button id="training-start-review" class="t-primary">复练错题</button>
+        <a href="#" id="training-return" class="t-secondary">返回训练</a></div>
+      <ul id="training-review-list"></ul>
+    </section>
+    <p class="training-source">实战教学分档 · 范围表 <span id="training-version"></span></p>
+  </main>
+</body>
+</html>

@@ -6,7 +6,7 @@
   const ip = ["Kh Qh","Ad Qc","8h 7s","2c 2d","Ah Kh","Jc Tc","9d 6d","Ks Js"];
   const key = "river-notes.strategy.checkpoint.v1", target = .001;
   let job = null, timer = null, pausing = "", saved = null, result = null, editing = null;
-  let selectedClass = "";
+  let queryInsights = null, currentInsight = null;
   let selection = {board:[],oop:[],ip:[]};
   function node(tag,text) {const n=document.createElement(tag);n.textContent=text;return n;}
   function tokens(value) {return value.trim().split(/[\s,，、]+/u).filter(Boolean);}
@@ -80,7 +80,10 @@
     if (previous) previous.cancel();
   }
   function clearResult(text="选择基准或编辑局面后开始求解。") {
-    stop();result=null;selectedClass="";$("results").hidden=true;
+    stop();result=null;queryInsights=null;currentInsight=null;$("results").hidden=true;
+    $("hand").replaceChildren();$("recommendation").hidden=true;
+    $("responses").replaceChildren();$("response-size").replaceChildren();
+    $("readout").removeAttribute("data-state");
     for (const name of ["error","chips","algorithm","iterations","root-ev"]) $(name).textContent="—";
     message(text,"待求解");note();controls();
   }
@@ -90,15 +93,129 @@
     const labels={check:"过牌",fold:"弃牌",call:"跟注",bet:"下注",raise:"加到"};
     return (labels[kind] || kind)+(amount===undefined?"":" "+amount);
   }
-  function historyText(history) {return history==="root"?"起点 · OOP 首先行动":history.split("/").map(actionText).join(" → ");}
+  function historyText(history) {
+    if (history==="root") return "河牌开始 · 先行动方先表态";
+    return history.split("/").map((move,i)=>(i%2?"后行动方":"先行动方")+actionText(move)).join(" → ");
+  }
   function classFor(hand) {
     const [a,b]=hand.split(" "), x=a[0],y=b[0];
     if (x===y) return x+y;
     return (ranks.indexOf(x)<ranks.indexOf(y)?x+y:y+x)+(a[1]===b[1]?"s":"o");
   }
-  function prettyHand(hand) {return hand.split(" ").map(c=>c[0]+suits[c[1]]).join(" ");}
+  const rankFace = c => c[0] === "T" ? "10" : c[0];
+  function prettyHand(hand) {return hand.split(" ").map(c=>rankFace(c)+suits[c[1]]).join(" ");}
+  const compactNumber=new Intl.NumberFormat("zh-CN",{maximumFractionDigits:2});
+  function quantity(n) {
+    if (!Number.isFinite(n)) return "—";
+    return n>0 && n<.005?"<0.01":compactNumber.format(n);
+  }
+  function percent(n) {return Number.isFinite(n)?quantity(n*100)+"%":"—";}
+  function paragraph(text,style) {
+    const p=node("p",text);
+    p.className=style;
+    return p;
+  }
+  function paintEquities(stats) {
+    const labels={win:"独赢",tie:"平局",loss:"输牌",equity:"底池权益"};
+    $("equity-breakdown").replaceChildren(...Object.entries(labels).map(([key,label])=>{
+      const item=document.createElement("div");
+      item.dataset.stat=key;item.append(node("dt",label),node("dd",percent(stats?.[key])));
+      return item;
+    }));
+  }
+  function actionCard(move) {
+    const card=document.createElement("article");
+    card.dataset.action=move.action;
+    card.append(node("h4",actionText(move.action)),
+      paragraph("本次投入 "+quantity(move.amount)+" 筹码，占当前底池 "+percent(move.potFraction),"size-amount"),
+      paragraph("采用 "+percent(move.frequency),"size-frequency"),
+      paragraph(move.gap===null?"平均收益差 —":move.gap===0?"平均收益最高":"平均少拿 "+quantity(move.gap)+" 筹码","size-gap"));
+    return card;
+  }
+  function recommendation(moves) {
+    const ranked=moves.slice().sort((a,b)=>b.frequency-a.frequency);
+    const [first,second]=ranked;
+    if (second && second.frequency>=.1)
+      return "模型常用"+actionText(first.action)+"（"+percent(first.frequency)+"）和"+actionText(second.action)+
+        "（"+percent(second.frequency)+"），两者的平均收益相差 "+quantity(Math.abs(first.ev-second.ev))+" 筹码。";
+    return "模型最常选"+actionText(first.action)+"，采用频率为 "+percent(first.frequency)+"。";
+  }
+  function responseGroup(label,fraction,contributors) {
+    const group=document.createElement("div");
+    group.className="response-group";
+    group.append(node("strong",label+"  "+percent(fraction)));
+    if (contributors?.length) {
+      const hands=contributors.map(item=>prettyHand(item.hand)+" "+percent(item.share)).join("、");
+      group.append(node("small","占这次回应的比重："+hands));
+    }
+    return group;
+  }
+  function paintReplies() {
+    const size=$("response-size").value;
+    const branch=currentInsight.responses[size];
+    const panel=$("responses");
+    panel.replaceChildren();
+    if (!branch) return;
+    if (!branch.reachable) {
+      panel.append(paragraph("这手牌按当前策略不会走到这条下注分支，无法统计对手的回应。","hint"));
+      return;
+    }
+    for (const reply of branch.replies) {
+      const continues=reply.action!=="fold";
+      const row=document.createElement(continues?"details":"div");
+      row.dataset.response=reply.action;
+      row.className="response-row";
+      const label=node(continues?"summary":"span",actionText(reply.action));
+      const frequency=node("span",percent(reply.frequency));
+      frequency.className="response-frequency";label.append(frequency);row.append(label);
+      if (continues) {
+        if (!reply.frequency) row.append(paragraph("这个回应的概率为零，没有可统计的对手组合。","hint"));
+        else for (const [key,title] of Object.entries({stronger:"比你强",tie:"与你打平",weaker:"比你弱"})) {
+          const group=reply.groups[key];
+          row.append(responseGroup(title,group.fraction,group.top));
+        }
+      }
+      panel.append(row);
+    }
+  }
+  function paintReadout(view) {
+    const final=result.status==="converged" && result.evaluation.pot_fraction<=result.target;
+    const ready=final && view.reachable;
+    $("readout").dataset.state=view.reachable?(final?"ready":"approximate"):"unreachable";
+    $("actor").textContent=(view.actor==="oop"?"先行动方（OOP）":"后行动方（IP）")+"行动 · "+prettyHand($("hand").value);
+    $("recommendation").hidden=!ready;
+    $("recommendation").textContent=ready?recommendation(view.actions):"";
+    const notices=[];
+    if (!final) notices.push("当前是阶段估计，实测模型误差为起始底池的 "+pct(result.evaluation.pot_fraction)+"，目标为 "+percent(result.target)+"。");
+    if (!view.reachable) notices.push(view.blocked?
+      "这手牌没有可达的对手组合。排除与公共牌、这手牌冲突的牌后，对手范围里没有剩余组合。":
+      "这手牌无法到达当前节点。此前行动中至少有一步，使这手牌与所有相容对手组合走到这里的概率为零。");
+    $("interpretation-note").textContent=notices.join(" ");
+    $("interpretation-note").hidden=!notices.length;
+    $("decision-context").textContent="当前底池有 "+quantity(view.pot)+" 筹码。"+
+      (view.toCall?"":"你可以免费过牌。");
+    $("pot-odds").textContent=view.toCall?
+      "跟注还需补 "+quantity(view.toCall)+"，跟注后底池共 "+quantity(view.finalPot)+"。打平需要 "+
+      percent(view.threshold)+" 权益（"+quantity(view.toCall)+" ÷ "+quantity(view.finalPot)+"）。":"";
+    paintEquities(view.showdown);
+    $("size-comparison").replaceChildren(...view.actions.map(actionCard));
+    const mix=$("range-mix");mix.replaceChildren();
+    if (!view.rangeReach) mix.textContent="双方范围都走不到这个节点，无法统计行动频率。";
+    else for (const [action,frequency] of Object.entries(view.rangeMix)) {
+      const item=node("span",actionText(action)+" "+percent(frequency));
+      item.dataset.action=action;mix.append(item);
+    }
+    const choose=$("response-size"), previous=choose.value, sizes=Object.keys(view.responses);
+    choose.replaceChildren(...sizes.map(a=>new Option(actionText(a),a)));
+    if (sizes.includes(previous)) choose.value=previous;
+    $("response-panel").hidden=sizes.length===0;
+    paintReplies();
+  }
   function paintActions() {
     const history=$("history").value, hand=$("hand").value;
+    for (const button of $("matrix").children) button.setAttribute("aria-pressed",String(button.dataset.class===classFor(hand)));
+    currentInsight=queryInsights(history,hand);
+    paintReadout(currentInsight);
     const info=result.evaluation.infos[history]?.[hand];
     const actions=result.policy[history]?.[hand] || {};
     const weights=info && info.reach>0;
@@ -111,33 +228,34 @@
       return row;
     }));
   }
-  function paintClass() {
-    const hands=Object.keys(result.policy[$("history").value]).filter(hand=>classFor(hand)===selectedClass);
-    $("hand").replaceChildren(...hands.map(hand=>new Option(prettyHand(hand),hand)));
-    for (const button of $("matrix").children) button.setAttribute("aria-pressed",String(button.dataset.class===selectedClass));
-    paintActions();
-  }
   function paintHistory() {
     const history=$("history").value;
-    const actor=history==="root" || history.split("/").length%2===0?"OOP":"IP";
-    $("actor").textContent="当前行动方 "+actor+" · "+(actor==="OOP"?"先行动方":"后行动方");
+    const previous=$("hand").value;
     const hands=Object.keys(result.policy[history]);
+    const reached=hand=>result.evaluation.infos[history][hand].reach>0;
+    $("hand").replaceChildren(...hands.map(hand=>new Option(prettyHand(hand),hand)));
+    $("hand").value=hands.includes(previous)?previous:(hands.find(reached)||hands[0]);
     const classes=new Map();
     for (const hand of hands) {const c=classFor(hand);classes.set(c,(classes.get(c)||0)+1);}
-    if (!classes.has(selectedClass)) selectedClass=classFor(hands[0]);
     const cells=document.createDocumentFragment();
     for (const [i,x] of Array.from(ranks).entries()) {
       for (const [j,y] of Array.from(ranks).entries()) {
         const c=i===j?x+y:i<j?x+y+"s":y+x+"o";
         const b=node("button",c);b.type="button";b.dataset.class=c;b.disabled=!classes.has(c);
         b.setAttribute("aria-label",c+" · "+(classes.get(c)||0)+" 个组合");
-        b.onclick=()=>{selectedClass=c;paintClass();};cells.append(b);
+        b.onclick=()=>{
+          if (classFor($("hand").value)!==c) {
+            const matches=hands.filter(h=>classFor(h)===c);
+            $("hand").value=matches.find(reached)||matches[0];
+          }
+          paintActions();
+        };cells.append(b);
       }
     }
-    $("matrix").replaceChildren(cells);paintClass();
+    $("matrix").replaceChildren(cells);paintActions();
   }
   function display(value, status, badge) {
-    result=value;
+    result=value;queryInsights=createRiverInsights(value);
     const evaluation=value.evaluation;
     $("error").textContent=pct(evaluation.pot_fraction);$("chips").textContent=chips(evaluation.exploitability)+" 筹码";
     $("algorithm").textContent=value.algorithm;$("iterations").textContent=value.iterations.toLocaleString("zh-CN");
@@ -206,7 +324,7 @@
   }
   function cardButton(c, label, handler) {
     const b=node("button","");b.type="button";b.className="card";
-    if(c) {b.append(node("b",c[0]),node("span",suits[c[1]]));if ("hd".includes(c[1])) b.classList.add("red");}
+    if(c) {b.append(node("b",rankFace(c)),node("span",suits[c[1]]));if ("hd".includes(c[1])) b.classList.add("red");}
     else {b.textContent="+";b.classList.add("blank");}
     b.setAttribute("aria-label",label);b.onclick=handler;return b;
   }
@@ -223,7 +341,7 @@
         const button=node("button","");button.type="button";button.className="hand-chip";
         button.dataset.hand=hand;button.dataset.weight=row.weight;
         row.cards.forEach(c=>{
-          const face=node("span",c[0]+suits[c[1]]);
+          const face=node("span",rankFace(c)+suits[c[1]]);
           if ("hd".includes(c[1])) face.className="red";
           button.append(face);
         });
@@ -246,8 +364,9 @@
     $("picker-slots").replaceChildren(slots);
     const deck=document.createDocumentFragment();
     for(const s of Object.keys(suits)) for(const r of ranks) {
-      const c=r+s,b=cardButton(c,c,()=>{e.cards[e.slot]=c;e.slot=Math.min(e.slot+1,e.limit-1);paintEditor();});
-      b.dataset.card=c;b.disabled=e.cards.includes(c)||e.blocked.has(c);deck.append(b);
+      const c=r+s,b=cardButton(c,prettyHand(c),()=>{e.cards[e.slot]=c;e.slot=Math.min(e.slot+1,e.limit-1);paintEditor();});
+      b.dataset.card=c;b.disabled=e.cards.includes(c)||e.blocked.has(c);
+      b.setAttribute("aria-pressed",String(c===e.cards[e.slot]));deck.append(b);
     }
     $("deck").replaceChildren(deck);$("delete-row").hidden=e.group==="board"||e.row<0;
   }
@@ -300,6 +419,7 @@
   $("cancel").onclick=()=>{clearResult();message("已取消本次求解。","已取消");};
   $("resume").onclick=()=>start(true);$("load").onclick=loadCheckpoint;
   $("history").onchange=paintHistory;$("hand").onchange=paintActions;
+  $("response-size").onchange=paintReplies;
   for (const group of ["oop","ip"]) $(group+"-pick").onclick=()=>edit(group);
   for (const w of [0,.25,.5,.75,1]) {
     const button=node("button",w*100+"%");button.type="button";button.className="secondary";

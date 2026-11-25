@@ -1,0 +1,236 @@
+{
+  "startedAt": "2026-11-25T02:54:55.331Z",
+  "entryProtocol": "file:",
+  "entryPath": ".work\\v5-edge-apk-60e3ca90ef1c5a480e4bf3b5f12c8a8b84420e6bfde2b0808c80e1835e3070cb\\assets\\index.html",
+  "scenarios": [
+    {
+      "name": "fresh offline browser opens file and compares fixed hole cards",
+      "status": "passed",
+      "elapsedMs": 15156
+    },
+    {
+      "name": "mouse replaces selected hero and opponent slots immediately; close leaves the deal intact",
+      "status": "passed",
+      "elapsedMs": 476
+    },
+    {
+      "name": "flop and turn report probabilities and current hand relation",
+      "status": "passed",
+      "elapsedMs": 1115
+    },
+    {
+      "name": "river uniform aggregate, pagination, filters and unchanged aggregate",
+      "status": "passed",
+      "elapsedMs": 680
+    },
+    {
+      "name": "weighted input omits blockers and zero weights, rejects duplicates",
+      "status": "passed",
+      "elapsedMs": 868
+    },
+    {
+      "name": "full board 2s 7s Td",
+      "status": "passed",
+      "elapsedMs": 2038
+    },
+    {
+      "name": "full board 2s 7s Td 3h",
+      "status": "passed",
+      "elapsedMs": 76
+    },
+    {
+      "name": "full flop and turn complete offline and publish every legal opponent",
+      "status": "passed",
+      "elapsedMs": 2627
+    },
+    {
+      "name": "cancel a running full-range flop worker and supersede another by editing input",
+      "status": "passed",
+      "elapsedMs": 666
+    },
+    {
+      "name": "saved completed result survives full browser restart",
+      "status": "passed",
+      "elapsedMs": 4696
+    },
+    {
+      "name": "narrow display and enlarged text keep controls reachable",
+      "status": "passed",
+      "elapsedMs": 117
+    },
+    {
+      "name": "R1 exact turn, row reuse, cancellation, filtering and named range persistence",
+      "status": "passed",
+      "elapsedMs": 4108
+    },
+    {
+      "name": "offline preflop chart, mixed actions and portrait navigation",
+      "status": "passed",
+      "elapsedMs": 844
+    },
+    {
+      "name": "ten offline hands: legal moves, instant grading, chart round-trip and resume",
+      "status": "passed",
+      "elapsedMs": 2628
+    },
+    {
+      "name": "review filters two spots and removes only the corrected answer",
+      "status": "passed",
+      "elapsedMs": 800
+    },
+    {
+      "name": "touch the last matrix row, compare BTN 99 and practice either opener",
+      "status": "passed",
+      "elapsedMs": 788
+    },
+    {
+      "name": "river strategy opens from home and publishes engine frequencies and EV",
+      "status": "passed",
+      "elapsedMs": 720
+    },
+    {
+      "name": "storage denial is visible without disabling computation",
+      "status": "passed",
+      "elapsedMs": 287
+    }
+  ],
+  "externalRequests": [],
+  "consoleProblems": [],
+  "pageErrors": [],
+  "localRequestFailures": [],
+  "browser": "Edg/158.0.4370.33",
+  "r1Runs": [
+    {
+      "name": "weighted cold",
+      "rows": 2,
+      "hits": 0,
+      "progress": 0,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 10.800000011920929,
+      "frames": 2,
+      "maxFrameGapMs": 6.900000000000091
+    },
+    {
+      "name": "weights only",
+      "rows": 2,
+      "hits": 2,
+      "progress": 0,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 10.199999988079071,
+      "frames": 1,
+      "maxFrameGapMs": 8.49999996423719
+    },
+    {
+      "name": "expand to uniform",
+      "rows": 1035,
+      "hits": 2,
+      "progress": 8,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 48.90000003576279,
+      "frames": 5,
+      "maxFrameGapMs": 15.00000004768367
+    },
+    {
+      "name": "cancel after exact progress",
+      "rows": 1035,
+      "hits": 0,
+      "progress": 1,
+      "partial": false,
+      "terminated": true,
+      "cancelMs": 0.20000004768371582,
+      "status": "已取消计算",
+      "elapsedMs": 14.300000011920929,
+      "frames": 2,
+      "maxFrameGapMs": 7
+    },
+    {
+      "name": "uniform cold",
+      "rows": 1035,
+      "hits": 0,
+      "progress": 8,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 42.5,
+      "frames": 6,
+      "maxFrameGapMs": 7.100000000000023
+    },
+    {
+      "name": "current tie",
+      "rows": 1,
+      "hits": 1,
+      "progress": 0,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 9.699999988079071,
+      "frames": 1,
+      "maxFrameGapMs": 6.299999988079094
+    }
+  ],
+  "training": {
+    "firstQuestionMs": 928,
+    "feedbackMs": [
+      66,
+      60,
+      62,
+      72,
+      61,
+      48,
+      49,
+      61,
+      62,
+      60
+    ],
+    "measurement": "Playwright tap to visible content and two animation frames, 360x800, offline",
+    "counts": {
+      "high": 5,
+      "low": 3,
+      "avoid": 2
+    },
+    "coveredModes": [
+      "vsThreeBet",
+      "open",
+      "vsOpen"
+    ]
+  },
+  "status": "passed",
+  "verifiedApk": {
+    "path": "dist/poker-strategy-android-v5.apk",
+    "sha256": "60e3ca90ef1c5a480e4bf3b5f12c8a8b84420e6bfde2b0808c80e1835e3070cb",
+    "assetCount": 23,
+    "assetsSha256": "06e60e2b14e231aff946edda41e7a29c4059e65e95120f2693656b12ad34dc58",
+    "fingerprintMethod": "SHA-256 of UTF-8 sorted relative path + TAB + lowercase content SHA-256 + LF",
+    "files": {
+      "equity.html": "2da1bdac8f79747e72c541b3fd6bfc206adb34bd74071f145bc7bd712be4f5cc",
+      "index.html": "840f2e5e69fae51e848e949573629d6dd2339e9065f3c43b4814f982f1189d87",
+      "preflop/advice.js": "100a01cde843480d8e63e7446ddf411e22f9fa5fbdbe307f44cbc0538420b72d",
+      "preflop/index.html": "5ef8ca41f8f1c46e3b738caa46541d992b1940f4ec13e5dd2f53d1b2094cb5ec",
+      "preflop/ranges.js": "25d910d01acf11aabd5dde44ab11d9202a664e19a4920997459d6516382d932a",
+      "preflop/style.css": "5a309fb974afef5e28c158e3ab7b47f81803192dc73a69115aa446d6f9daf3a1",
+      "preflop/ui.js": "f0432753611ee4d0fb2e7f33d222fd512eac098a76d2978bf7bbe88aaa3a1c8e",
+      "strategy/evaluate.js": "692b162032788e7d61e26379b146681edd9d9241f66401a26e58f740161849ff",
+      "strategy/index.html": "12f44b3f6d4469d811925c423da6035ac4c6285ac11b2b79374d7be1c469ffda",
+      "strategy/runner.js": "2ffc350cf16001fe364560b3088b0bb277ffd42b80e97d40ed3ac2b7926fc7ed",
+      "strategy/solver.js": "2a205ce07714d286be986b66d1565cd5fcebbdad71325cb85876d90240c505c7",
+      "strategy/style.css": "8acf0fd59c0c62949bba4e51fb81df76db001be6588c861fe4146bf432727ffd",
+      "strategy/ui.js": "9d105764b2b8744e40f7c2d54ff3c1ff687395c3621423d9d4bb418ab1bf23e5",
+      "training/index.html": "20ec49c402c708a370360e3c52f167f77e0bbb09de2608b8abd63f47ca0e1e11",
+      "training/session.js": "5e9a03fcb923b95e51819aacb8f3097bb99c46721a658b7b8425cc79e0c87882",
+      "training/style.css": "8ae9cae9695bd45bfde426c09824b79e42a35f715a68397b5f6e93e8b9abca6a",
+      "training/ui.js": "d5de8c71523d6a40b3b4cdc2cce0f2f3cd7513579deada96b6d2c2abfb0446c6",
+      "web/app.js": "4c80211f7a58edc75cb527fd6c070d62db6057b8aba17a87940a55b352c655f8",
+      "web/camp.css": "ad2b3490342005ea93bec42c202d016935e01993ec8e172efacf147894952902",
+      "web/equity.js": "90b3028fbf3fbb2b663b2ec1068572142ee226d7b6a32d08f2aaf7f7b6d8bb76",
+      "web/home.js": "1c241bf2a9fe572c723cf44101d4fae41a843d370c1e9e0f47bde874a5aeec14",
+      "web/runner.js": "09d1560a32d7dda45244d392bfebad81469e2a7d053eab7d27c6a066ccb319a1",
+      "web/style.css": "b1f6e6428cf8e47597e48de8b7d9782a42101761cafcd1b75660bab7dfaec701"
+    }
+  }
+}

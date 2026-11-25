@@ -1,0 +1,279 @@
+{
+  "status": "passed",
+  "startedAt": "2026-11-25T03:01:53.233Z",
+  "host": {
+    "platform": "win32",
+    "release": "10.0.26200",
+    "arch": "x64"
+  },
+  "package": "org.rivernotes.poker",
+  "scenarios": [
+    {
+      "name": "identify named offline emulator",
+      "status": "passed",
+      "elapsedMs": 605
+    },
+    {
+      "name": "finish the existing practice round to expose the new round entry",
+      "status": "passed",
+      "elapsedMs": 2793
+    },
+    {
+      "name": "measure trusted start tap to two frames after all first-hand controls are visible",
+      "status": "passed",
+      "elapsedMs": 758
+    }
+  ],
+  "commands": [
+    {
+      "argv": [
+        "adb",
+        "version"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "get-state"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "getprop",
+        "ro.kernel.qemu"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "getprop",
+        "ro.boot.qemu"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "getprop",
+        "ro.boot.qemu.avd_name"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "getprop",
+        "ro.build.version.sdk"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "getprop",
+        "ro.build.version.release"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "getprop",
+        "ro.product.cpu.abilist"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "dumpsys",
+        "connectivity"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "pm",
+        "path",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "sha256sum",
+        "/data/app/~~97bu6mkxEK_iRW7zFrMbrw==/org.rivernotes.poker-s7bouDpYUqIcNFZKkUPo6A==/base.apk"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "dumpsys",
+        "connectivity"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "am",
+        "force-stop",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "am",
+        "start",
+        "-W",
+        "-n",
+        "org.rivernotes.poker/.MainActivity"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "pidof",
+        "org.rivernotes.poker"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "forward",
+        "tcp:0",
+        "localabstract:webview_devtools_remote_2022"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "shell",
+        "dumpsys",
+        "connectivity"
+      ],
+      "status": 0
+    },
+    {
+      "argv": [
+        "adb",
+        "-s",
+        "emulator-5574",
+        "forward",
+        "--remove",
+        "tcp:55199"
+      ],
+      "status": 0
+    }
+  ],
+  "externalRequests": [],
+  "exceptions": [],
+  "adb": "Android Debug Bridge version 1.0.41\r\nVersion 37.0.1-15733141\r\nInstalled as D:\\Agent project\\Poker\\.work\\toolchain\\android-sdk\\platform-tools\\adb.exe\r\nRunning on Windows 10.0.26200",
+  "device": {
+    "serial": "emulator-5574",
+    "avd": "RiverNotes_R1_API35",
+    "qemu": [
+      "1",
+      "1"
+    ],
+    "api": "35",
+    "android": "15",
+    "abi": "x86_64",
+    "offlineBeforeInstall": "Active default network: none"
+  },
+  "installedSha256": "60e3ca90ef1c5a480e4bf3b5f12c8a8b84420e6bfde2b0808c80e1835e3070cb",
+  "starts": [
+    {
+      "pid": "2022",
+      "launch": "Starting: Intent { cmp=org.rivernotes.poker/.MainActivity }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: org.rivernotes.poker/.MainActivity\r\nTotalTime: 1995\r\nWaitTime: 2014\r\nComplete",
+      "offlineBeforeStart": "Active default network: none",
+      "url": "https://appassets.androidplatform.net/index.html",
+      "online": true,
+      "webview": "Mozilla/5.0 (Linux; Android 15; Android SDK built for x86_64 Build/AE3A.240806.019; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/124.0.6367.219 Mobile Safari/537.36"
+    }
+  ],
+  "touches": [
+    {
+      "selector": "#start-training",
+      "cssPixels": {
+        "x": 88,
+        "y": 291
+      },
+      "trusted": true,
+      "method": "CDP Input.dispatchTouchEvent"
+    }
+  ],
+  "startToVisible": {
+    "elapsedMs": 327,
+    "hand": "AKo",
+    "actions": [
+      "fourBet",
+      "call",
+      "fold"
+    ],
+    "viewport": [
+      480,
+      728
+    ],
+    "progress": "第 1 / 10 手",
+    "method": "WebView trusted click on 开始训练 to two animation frames after CDP observed the dealt hand and all enabled action buttons inside the viewport; includes observation latency, one new mixed round"
+  },
+  "offlineAfterRun": "Active default network: none"
+}

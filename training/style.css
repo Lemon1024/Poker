@@ -1,0 +1,75 @@
+.training-page {background:#111713;color:#f2f6f2;color-scheme:dark;min-height:100vh;--training-mint:#91e7b6;--training-line:#34453c}
+.training-page :is(a,button):focus-visible {outline:3px solid #e6bc76;outline-offset:3px}
+.training-page a {color:inherit;text-decoration:none}
+.training-header {border-bottom:1px solid var(--training-line);background:#141c17}
+.training-bar {max-width:850px;height:64px;padding:0 24px;margin:auto;display:flex;align-items:center;justify-content:space-between}
+#training-home {font-size:19px;font-weight:760;display:inline-flex;align-items:center;gap:8px}
+#training-home b {display:grid;place-items:center;width:32px;height:34px;border-radius:9px;color:#193c2b;background:var(--training-mint);font:24px/1 Georgia,serif}
+#training-book {font-size:14px;display:flex;align-items:center;gap:6px;min-height:44px}
+#training-count {color:var(--training-mint);font-variant-numeric:tabular-nums}
+.training-shell {width:min(100% - 32px,720px);margin:30px auto 0;padding-bottom:22px}
+.training-page h1 {color:#f2f6f2;font-size:clamp(27px,5vw,42px);letter-spacing:-.035em}
+.training-page h2 {color:#f2f6f2;font-size:clamp(17px,3vw,22px);letter-spacing:0}
+.training-kicker,#training-context,.training-source {color:#afbeb4;font-size:13px}
+.training-kicker {margin-bottom:6px}
+.training-heading {display:flex;justify-content:space-between;align-items:center;gap:8px}
+.training-counter {display:grid;min-width:84px;text-align:right;gap:7px;color:var(--training-mint);font-weight:650;font-size:14px}
+#training-meter {width:100%;height:4px;border:0;overflow:hidden;border-radius:3px;background:#344139;appearance:none}
+#training-meter::-webkit-progress-bar {background:#344139}
+#training-meter::-webkit-progress-value {background:var(--training-mint)}
+.training-felt {height:clamp(175px,26vw,225px);border:5px solid #3a5144;border-radius:160px;margin:27px 20px 24px;position:relative;background:radial-gradient(ellipse at 50% 45%,#305945,#214533 72%);box-shadow:inset 0 0 0 2px #15271c}
+#training-seats {padding:0;margin:0;list-style:none}
+#training-seats li {position:absolute;display:flex;align-items:center;gap:4px;justify-content:center;transform:translate(-50%,-50%);min-width:60px;padding:4px 7px;white-space:nowrap;border:1px solid #496053;border-radius:8px;background:#1d2b22;color:#d5ded7;font-size:12px;font-weight:720}
+#training-seats small {font-weight:450;font-size:10px;color:#a9bcad}
+#training-seats [data-seat="0"] {left:50%;top:100%}
+#training-seats [data-seat="1"] {left:6%;top:77%}
+#training-seats [data-seat="2"] {left:6%;top:23%}
+#training-seats [data-seat="3"] {left:50%;top:0}
+#training-seats [data-seat="4"] {left:94%;top:23%}
+#training-seats [data-seat="5"] {left:94%;top:77%}
+#training-seats [data-role="hero"] {background:#92e7b8;color:#102d20;border-color:#a5efc7}
+#training-seats [data-role="hero"] small {color:#214633}
+#training-seats [data-role="opponent"] {border-color:#d6ac6a;color:#f5d79e}
+#training-seats [data-role="opponent"] small {color:#e4c69b}
+.training-pocket {position:absolute;inset:0;display:grid;place-content:center;justify-items:center;pointer-events:none}
+.training-cards {display:flex;gap:6px}
+.training-cards > span {display:grid;place-content:center;width:48px;height:64px;border-radius:7px;background:#f5f1df;box-shadow:0 3px 6px #0c211b55;color:#18291f;line-height:1;text-align:center}
+.training-cards b {font:700 28px/.98 Georgia,serif}
+.training-cards i {font:20px/1 Georgia,serif}
+.training-cards .red {color:#ad3938}
+#training-hand-name {color:#e6efe9;font:600 13px/1.35 ui-monospace,monospace;margin-top:6px}
+.training-decision,#training-feedback,#training-summary,#training-review,#training-switch {padding:clamp(16px,3vw,25px);border:1px solid var(--training-line);border-radius:14px;background:#1b251e}
+#training-situation {margin:7px 0 15px}
+.training-buttons {display:flex;gap:8px;flex-wrap:wrap}
+.training-buttons > * {min-height:44px;padding:9px 15px;display:inline-flex;align-items:center;justify-content:center;text-align:center;line-height:1.35;font-weight:650;font-size:14px;border-radius:8px}
+.training-buttons .t-primary {background:var(--training-mint);border:1px solid var(--training-mint);color:#163426}
+.training-buttons .t-secondary,#training-actions button {border:1px solid #465a4c;background:#26372b;color:#ebf3eb}
+#training-actions button {flex:1 1 95px}
+#training-actions button:enabled:hover,.training-buttons .t-secondary:hover {background:#334b3b}
+#training-actions button.chosen {border-color:var(--training-mint);color:var(--training-mint);opacity:1}
+#training-feedback {margin-top:10px}
+#training-feedback[data-tier="high"] h2 {color:var(--training-mint)}
+#training-feedback[data-tier="low"] h2 {color:#f0cf86}
+#training-feedback[data-tier="avoid"] h2 {color:#f1a89b}
+#training-feedback p,#training-switch-info,#training-summary-count,#training-review-note,#training-storage-note {margin:8px 0;line-height:1.6;font-size:14px;color:#d4ded6}
+#training-feedback .training-buttons,#training-switch .training-buttons,#training-review .training-buttons {margin-top:14px}
+.training-source {margin:15px 0 0}
+#training-scores {display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0}
+#training-scores div {padding:10px;background:#26342a;border-radius:8px}
+#training-scores dt {font-size:13px;color:#bdcbbf}
+#training-scores dd {font-size:26px;font-weight:750;color:#edf7f0}
+#training-review-list {list-style:none;padding:0;margin:18px 0 0}
+#training-review-list li+li {border-top:1px solid var(--training-line)}
+#training-review-list button {width:100%;min-height:46px;display:flex;gap:12px;align-items:center;text-align:left;color:#e3ede6;background:none;border:0}
+#training-review-list b {min-width:40px;color:var(--training-mint)}
+#training-review-list span {font-size:13px}
+#training-filter-field {margin-top:14px;color:#dce7de}
+#training-filter {display:block;width:100%;min-height:44px;margin-top:5px;background:#24342a;border:1px solid #53675a;color:#edf5ee}
+@media(max-width:480px) {
+  .training-bar {height:54px;padding:0 16px}
+  .training-shell {margin-top:19px}
+  .training-buttons > * {padding-inline:9px}
+  .training-felt {height:157px;margin:21px 15px}
+  #training-seats li {min-width:49px;padding:3px 5px}
+  #training-actions button {flex:1 1 70px}
+}

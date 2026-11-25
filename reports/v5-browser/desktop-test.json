@@ -1,0 +1,204 @@
+{
+  "startedAt": "2026-11-25T02:49:32.063Z",
+  "entryProtocol": "file:",
+  "entryPath": "index.html",
+  "scenarios": [
+    {
+      "name": "fresh offline browser opens file and compares fixed hole cards",
+      "status": "passed",
+      "elapsedMs": 5653
+    },
+    {
+      "name": "mouse replaces selected hero and opponent slots immediately; close leaves the deal intact",
+      "status": "passed",
+      "elapsedMs": 486
+    },
+    {
+      "name": "flop and turn report probabilities and current hand relation",
+      "status": "passed",
+      "elapsedMs": 1059
+    },
+    {
+      "name": "river uniform aggregate, pagination, filters and unchanged aggregate",
+      "status": "passed",
+      "elapsedMs": 624
+    },
+    {
+      "name": "weighted input omits blockers and zero weights, rejects duplicates",
+      "status": "passed",
+      "elapsedMs": 824
+    },
+    {
+      "name": "full board 2s 7s Td",
+      "status": "passed",
+      "elapsedMs": 2120
+    },
+    {
+      "name": "full board 2s 7s Td 3h",
+      "status": "passed",
+      "elapsedMs": 76
+    },
+    {
+      "name": "full flop and turn complete offline and publish every legal opponent",
+      "status": "passed",
+      "elapsedMs": 2758
+    },
+    {
+      "name": "cancel a running full-range flop worker and supersede another by editing input",
+      "status": "passed",
+      "elapsedMs": 677
+    },
+    {
+      "name": "saved completed result survives full browser restart",
+      "status": "passed",
+      "elapsedMs": 4802
+    },
+    {
+      "name": "narrow display and enlarged text keep controls reachable",
+      "status": "passed",
+      "elapsedMs": 118
+    },
+    {
+      "name": "R1 exact turn, row reuse, cancellation, filtering and named range persistence",
+      "status": "passed",
+      "elapsedMs": 4095
+    },
+    {
+      "name": "offline preflop chart, mixed actions and portrait navigation",
+      "status": "passed",
+      "elapsedMs": 799
+    },
+    {
+      "name": "ten offline hands: legal moves, instant grading, chart round-trip and resume",
+      "status": "passed",
+      "elapsedMs": 2639
+    },
+    {
+      "name": "review filters two spots and removes only the corrected answer",
+      "status": "passed",
+      "elapsedMs": 815
+    },
+    {
+      "name": "touch the last matrix row, compare BTN 99 and practice either opener",
+      "status": "passed",
+      "elapsedMs": 782
+    },
+    {
+      "name": "river strategy opens from home and publishes engine frequencies and EV",
+      "status": "passed",
+      "elapsedMs": 753
+    },
+    {
+      "name": "storage denial is visible without disabling computation",
+      "status": "passed",
+      "elapsedMs": 250
+    }
+  ],
+  "externalRequests": [],
+  "consoleProblems": [],
+  "pageErrors": [],
+  "localRequestFailures": [],
+  "browser": "Chrome/158.0.8127.37",
+  "r1Runs": [
+    {
+      "name": "weighted cold",
+      "rows": 2,
+      "hits": 0,
+      "progress": 0,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 11.800000011920929,
+      "frames": 2,
+      "maxFrameGapMs": 6.899999999999977
+    },
+    {
+      "name": "weights only",
+      "rows": 2,
+      "hits": 2,
+      "progress": 0,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 11.900000035762787,
+      "frames": 1,
+      "maxFrameGapMs": 11.100000035762832
+    },
+    {
+      "name": "expand to uniform",
+      "rows": 1035,
+      "hits": 2,
+      "progress": 8,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 48.60000002384186,
+      "frames": 4,
+      "maxFrameGapMs": 18.19999998807907
+    },
+    {
+      "name": "cancel after exact progress",
+      "rows": 1035,
+      "hits": 0,
+      "progress": 1,
+      "partial": false,
+      "terminated": true,
+      "cancelMs": 0.19999998807907104,
+      "status": "已取消计算",
+      "elapsedMs": 17.69999998807907,
+      "frames": 3,
+      "maxFrameGapMs": 7
+    },
+    {
+      "name": "uniform cold",
+      "rows": 1035,
+      "hits": 0,
+      "progress": 8,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 45.10000002384186,
+      "frames": 6,
+      "maxFrameGapMs": 9.300000011920929
+    },
+    {
+      "name": "current tie",
+      "rows": 1,
+      "hits": 1,
+      "progress": 0,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 11.300000011920929,
+      "frames": 2,
+      "maxFrameGapMs": 7.100000000000023
+    }
+  ],
+  "training": {
+    "firstQuestionMs": 935,
+    "feedbackMs": [
+      69,
+      75,
+      61,
+      65,
+      64,
+      50,
+      49,
+      61,
+      63,
+      74
+    ],
+    "measurement": "Playwright tap to visible content and two animation frames, 360x800, offline",
+    "counts": {
+      "high": 5,
+      "low": 3,
+      "avoid": 2
+    },
+    "coveredModes": [
+      "open",
+      "vsThreeBet",
+      "vsOpen"
+    ]
+  },
+  "status": "passed"
+}

@@ -1,0 +1,13 @@
+{
+  "status": "超时未达标",
+  "state": "approximate",
+  "formalRecommendation": false,
+  "error": "0.3463%",
+  "iterations": "1,132",
+  "resumeAvailable": true,
+  "ranges": [
+    48,
+    49
+  ],
+  "note": "当前是阶段估计，实测模型误差为起始底池的 0.3463%，目标为 0.1%。"
+}

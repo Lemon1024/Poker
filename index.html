@@ -3,96 +3,49 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light">
-  <title>河牌手记 · 单挑权益复盘</title>
+  <meta name="color-scheme" content="dark">
+  <title>GTO训练营 · 训练工作台</title>
   <link rel="stylesheet" href="web/style.css">
-  <script defer src="web/equity.js"></script>
-  <script defer src="web/runner.js"></script>
-  <script defer src="web/app.js"></script>
+  <link rel="stylesheet" href="web/camp.css">
+  <script defer src="preflop/ranges.js"></script>
+  <script defer src="training/session.js"></script>
+  <script defer src="web/home.js"></script>
 </head>
-<body>
-  <header class="topbar">
-    <div class="frame topbar-inner">
-      <div class="brand"><span class="brand-mark" aria-hidden="true">♠</span>河牌手记</div>
-      <div class="top-actions"><span class="offline"><i></i>本地离线</span><button id="history-open" class="quiet-button" type="button" aria-haspopup="dialog"><span class="clock-icon" aria-hidden="true"></span>历史记录</button></div>
-    </div>
-  </header>
-  <main class="frame">
-    <div class="intro"><h1>单挑权益复盘</h1><p>选择手牌与公共牌，查看自己的胜、平、负概率及底池权益。</p></div>
-    <div class="workspace">
-      <section class="panel config" aria-labelledby="config-title">
-        <h2 id="config-title">设置牌局</h2>
-        <div class="segments" aria-label="分析模式"><button type="button" id="mode-fixed" aria-pressed="true">翻前全下</button><button type="button" id="mode-range" aria-pressed="false">翻后范围</button></div>
-        <div class="hands">
-          <div class="hand-field">
-            <span class="hand-label" id="hero-label">我的手牌</span>
-            <div class="cards-preview" id="hero-preview" role="group" aria-labelledby="hero-label"></div>
-          </div>
-          <div class="hand-field" id="villain-field">
-            <span class="hand-label" id="villain-label">对手手牌</span>
-            <div class="cards-preview" id="villain-preview" role="group" aria-labelledby="villain-label"></div>
-          </div>
-          <div class="hand-field board-field" id="board-field" hidden>
-            <span class="hand-label" id="board-label">公共牌</span>
-            <div class="cards-preview" id="board-preview" role="group" aria-labelledby="board-label"></div>
-          </div>
-        </div>
-        <p class="hint card-hint">点击已有的牌可替换，点击空牌位可添加。</p>
-        <div id="range-field" hidden>
-          <label for="range-kind">对手范围</label>
-          <select id="range-kind"><option value="uniform">全部合法组合 · 等权</option><option value="weighted">自定义加权组合</option></select>
-          <div id="weighted-field" hidden>
-            <label for="saved-range">载入已保存的范围</label>
-            <select id="saved-range"><option value="">选择范围</option></select>
-            <div id="range-list"></div>
-            <button id="add-combo" class="secondary" type="button">＋ 添加组合</button>
-            <div class="range-save"><label for="range-name">范围名称</label><input id="range-name" type="text" placeholder="自定义范围"><button id="save-range" type="button" class="secondary">保存范围</button></div>
-          </div>
-        </div>
-        <div class="run-actions">
-          <button id="run" class="primary" type="button"><span aria-hidden="true">▶</span> 开始计算</button>
-          <button id="cancel" class="secondary" type="button" hidden>取消计算</button>
-          <button id="swap" class="secondary" type="button">交换手牌</button>
-        </div>
-        <p id="feedback" class="feedback" role="alert" hidden></p>
-      </section>
-      <section class="result-panel" aria-labelledby="result-title">
-        <div class="result-head"><h2 id="result-title">胜负分布</h2><span id="method" class="method">等待计算</span></div>
-        <div class="result-main">
-          <div id="donut" class="donut"><div><span>我的独赢率</span><strong id="win-hero">—</strong></div></div>
-          <dl class="outcomes">
-            <div><dt><i class="win-dot"></i>赢</dt><dd data-prob="win">—</dd></div>
-            <div><dt><i class="tie-dot"></i>平</dt><dd data-prob="tie">—</dd></div>
-            <div><dt><i class="loss-dot"></i>输</dt><dd data-prob="loss">—</dd></div>
-          </dl>
-        </div>
-        <div class="equity"><div><span>我的底池权益</span><small>胜率 + ½ × 平局率</small></div><strong data-prob="equity">—</strong></div>
-        <p id="range-summary" class="hint" hidden></p>
-        <div class="result-foot"><span id="job-status" role="status">准备就绪</span><button type="button" id="save" class="save-button" disabled>保存局面</button></div>
-      </section>
-    </div>
-    <section id="combos" class="panel combos" aria-labelledby="combos-title" hidden>
-      <div class="section-head"><div><h2 id="combos-title">对手组合</h2><p id="count" class="hint" aria-live="polite"></p></div>
-        <div class="filters">
-          <label for="relation-filter">当前关系<select id="relation-filter"><option value="all">全部</option><option value="1">我领先</option><option value="0">持平</option><option value="-1">我落后</option></select></label>
-          <label for="equity-filter">最低权益（%）<input id="equity-filter" type="number" min="0" max="100" step="any" placeholder="0"></label>
+<body class="camp-home">
+  <header class="topbar"><div class="frame topbar-inner">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">♠</span>GTO训练营</div>
+    <span class="offline"><i></i>本地离线</span>
+  </div></header>
+  <main class="frame camp-desk">
+    <section class="camp-hero" aria-labelledby="train-title">
+      <div class="camp-hero-copy">
+        <p class="camp-model">6 人现金桌 <span>／</span> 100 BB</p>
+        <h1 id="train-title">翻前决策训练</h1>
+        <p class="camp-description">每轮 10 手，练习开池、面对开池与应对 3-bet。</p>
+        <div class="camp-cta">
+          <a id="start-training" class="primary" href="training/index.html">开始训练</a>
+          <a class="camp-review" href="training/index.html#review">错题本 <span aria-hidden="true">↗</span></a>
         </div>
       </div>
-      <div class="table-scroll" tabindex="0" aria-label="可横向滚动的对手组合表">
-        <table><thead><tr><th scope="col">对手手牌</th><th scope="col">当前关系</th><th scope="col">独赢率</th><th scope="col">平局率</th><th scope="col">输率</th><th scope="col">我的权益</th><th scope="col">权重</th><th scope="col" id="counts-heading" hidden>终局计数</th></tr></thead><tbody id="rows"></tbody></table>
+      <div class="camp-art" aria-hidden="true"><span class="back-card far"></span><span class="back-card near"><b>♠</b></span></div>
+    </section>
+    <section class="camp-tools" aria-labelledby="study-title">
+      <h2 id="study-title">学习工具</h2>
+      <div class="tool-grid">
+        <a class="tool-card" id="open-preflop" href="preflop/index.html">
+          <span class="tool-icon grid-icon" aria-hidden="true">▦</span>
+          <div><h3>查翻前范围</h3><p>169 类起手牌 · 位置对照</p></div><span class="tool-go" aria-hidden="true">↗</span>
+        </a>
+        <a class="tool-card" id="open-equity" href="equity.html">
+          <span class="tool-icon equity-icon" aria-hidden="true">◔</span>
+          <div><h3>权益复盘</h3><p>独赢、平局与底池权益</p></div><span class="tool-go" aria-hidden="true">↗</span>
+        </a>
+        <a class="tool-card" id="open-strategy" href="strategy/index.html" hidden>
+          <span class="tool-icon river-icon" aria-hidden="true">⑂</span>
+          <div><h3>河牌策略</h3><p>行动树、频率与 EV</p></div><span class="tool-go" aria-hidden="true">↗</span>
+        </a>
       </div>
-      <p id="no-rows" class="hint" hidden>没有符合筛选条件的组合。</p>
-      <div class="pagination" id="pagination" hidden><button id="prev-page" type="button" class="secondary">上一页</button><span id="page-number"></span><button id="next-page" type="button" class="secondary">下一页</button></div>
     </section>
   </main>
-  <dialog id="picker" aria-labelledby="picker-title">
-    <div class="dialog-head"><h2 id="picker-title">选择手牌</h2><button id="picker-close" type="button" class="icon-button" aria-label="关闭选牌">×</button></div>
-    <div id="deck" class="deck"></div>
-    <div class="dialog-actions"><button id="clear-slot" type="button" class="secondary">移除这张牌</button></div>
-  </dialog>
-  <dialog id="history-dialog" aria-labelledby="history-title">
-    <div class="dialog-head"><h2 id="history-title">历史记录</h2><button id="history-close" type="button" class="icon-button" aria-label="关闭历史记录">×</button></div>
-    <div id="history-list"></div><p id="history-note" class="hint" role="status"></p>
-  </dialog>
 </body>
 </html>

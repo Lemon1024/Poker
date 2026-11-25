@@ -7,7 +7,6 @@ import android.graphics.Insets;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.webkit.WebResourceRequest;
@@ -26,7 +25,11 @@ import java.util.Map;
 public final class MainActivity extends Activity {
     private static final String HOST = "appassets.androidplatform.net";
     private static final String HOME = "https://" + HOST + "/index.html";
+    private static final String EQUITY = "https://" + HOST + "/equity.html";
+    private static final String PREFLOP = "https://" + HOST + "/preflop/index.html";
+    private static final String TRAINING = "https://" + HOST + "/training/index.html";
     private static final String STRATEGY = "https://" + HOST + "/strategy/index.html";
+    private static final int BACKGROUND = 0xff101b19;
     private WebView browser;
     private HistoryStore history;
 
@@ -50,10 +53,9 @@ public final class MainActivity extends Activity {
         browser.addJavascriptInterface(history, "RiverHistory");
 
         FrameLayout root = new FrameLayout(this);
-        root.setBackgroundColor(0xfffafaf6);
+        root.setBackgroundColor(BACKGROUND);
+        browser.setBackgroundColor(BACKGROUND);
         root.addView(browser);
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         if (Build.VERSION.SDK_INT >= 35) {
             root.setOnApplyWindowInsetsListener((view, insets) -> {
                 Insets edges = insets.getInsets(WindowInsets.Type.systemBars()
@@ -62,8 +64,8 @@ public final class MainActivity extends Activity {
                 return WindowInsets.CONSUMED;
             });
         } else {
-            getWindow().setStatusBarColor(0xfffafaf6);
-            getWindow().setNavigationBarColor(0xfffafaf6);
+            getWindow().setStatusBarColor(BACKGROUND);
+            getWindow().setNavigationBarColor(BACKGROUND);
         }
         setContentView(root);
         browser.loadUrl(HOME);
@@ -87,17 +89,17 @@ public final class MainActivity extends Activity {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-            String url = request.getUrl().toString();
-            return !request.isForMainFrame() || !(HOME.equals(url) || (hasStrategy && STRATEGY.equals(url)));
+            String url = request.getUrl().buildUpon().fragment(null).build().toString();
+            return !request.isForMainFrame() || !(HOME.equals(url) || EQUITY.equals(url)
+                    || PREFLOP.equals(url) || TRAINING.equals(url)
+                    || (hasStrategy && STRATEGY.equals(url)));
         }
 
         @Override
         public void onPageFinished(WebView view, String url) {
-            if (hasStrategy && HOME.equals(url)) {
-                view.evaluateJavascript("(function(){var slot=document.querySelector('.top-actions .offline');"
-                        + "if(!slot)return;var link=document.createElement('a');link.id='open-strategy';"
-                        + "link.className='quiet-button';link.textContent='河牌策略';"
-                        + "link.href='/strategy/index.html';slot.replaceWith(link);})()", null);
+            if (hasStrategy && HOME.equals(Uri.parse(url).buildUpon().fragment(null).build().toString())) {
+                view.evaluateJavascript("var link=document.getElementById('open-strategy');"
+                        + "if(link)link.hidden=false;", null);
             }
         }
 
@@ -113,10 +115,23 @@ public final class MainActivity extends Activity {
             String mime;
             switch (path) {
                 case "/index.html":
+                case "/equity.html":
+                case "/preflop/index.html":
+                case "/training/index.html":
                 case "/strategy/index.html": mime = "text/html"; break;
                 case "/web/style.css":
+                case "/web/camp.css":
+                case "/preflop/style.css":
+                case "/training/style.css":
                 case "/strategy/style.css": mime = "text/css"; break;
+                case "/preflop/ranges.js":
+                case "/preflop/advice.js":
+                case "/preflop/ui.js":
+                case "/training/session.js":
+                case "/training/ui.js":
+                case "/web/home.js":
                 case "/strategy/evaluate.js":
+                case "/strategy/insights.js":
                 case "/strategy/runner.js":
                 case "/strategy/solver.js":
                 case "/strategy/ui.js":

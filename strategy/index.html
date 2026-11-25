@@ -3,23 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light">
-  <title>河牌策略研究 · 河牌手记</title>
+  <meta name="color-scheme" content="dark">
+  <title>河牌策略研究 · GTO训练营</title>
   <link rel="stylesheet" href="../web/style.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../web/camp.css">
   <script defer src="../web/equity.js"></script>
   <script defer src="solver.js"></script>
   <script defer src="evaluate.js"></script>
+  <script defer src="insights.js"></script>
   <script defer src="runner.js"></script>
   <script defer src="ui.js"></script>
 </head>
 <body>
   <header class="topbar"><div class="frame topbar-inner">
-    <div class="brand"><span class="brand-mark" aria-hidden="true">♠</span>河牌手记</div>
-    <a class="quiet-button" href="../index.html">返回权益复盘</a>
+    <div class="brand"><span class="brand-mark" aria-hidden="true">♠</span>GTO训练营</div>
+    <a class="quiet-button" href="../index.html">返回工作台</a>
   </div></header>
   <main class="frame research">
-    <div class="intro"><h1>河牌策略研究</h1><p>给定双方范围和下注树，求解单挑河牌的平均策略，再用独立最佳响应检验误差。先行动方记作 OOP，后行动方记作 IP。</p></div>
+    <div class="intro"><h1>河牌策略研究</h1><p>选好五张公共牌，比较过牌、下注和跟注能拿回多少筹码。先行动方（OOP）先表态，后行动方（IP）随后回应。</p></div>
     <div class="model-layout">
       <section class="panel">
         <h2>局面与行动树</h2>
@@ -28,7 +30,7 @@
           <h3 id="gto-board-label">河牌公共牌</h3>
           <div id="gto-board" class="cards-preview board-field" role="group" aria-labelledby="gto-board-label"></div>
           <div class="paired">
-            <label>根底池<input id="gto-pot" type="number" min="1" step="1" required></label>
+            <label>河牌开始时的底池<input id="gto-pot" type="number" min="1" step="1" required></label>
             <label>双方剩余筹码<input id="gto-stack" type="number" min="1" step="1" required></label>
           </div>
           <details id="range-editor"><summary>编辑双方范围与下注尺度</summary>
@@ -60,19 +62,46 @@
       </section>
       <section class="result-panel solve-card">
         <div class="result-head"><h2>求解状态</h2><span class="method" id="gto-badge">待求解</span></div>
-        <div class="measure"><span>实测可利用度 / 根底池</span><strong id="gto-error">—</strong><small>目标 ≤ 0.1%</small></div>
+        <div class="measure"><span>模型误差（占起始底池）</span><strong id="gto-error">—</strong><small>目标 ≤ 0.1%</small></div>
         <dl class="solve-metrics">
-          <div><dt>绝对可利用度</dt><dd id="gto-chips">—</dd></div>
+          <div><dt>模型误差折合筹码</dt><dd id="gto-chips">—</dd></div>
           <div><dt>已完成迭代</dt><dd id="gto-iterations">—</dd></div>
           <div><dt>算法版本</dt><dd id="gto-algorithm">—</dd></div>
-          <div><dt>OOP / IP 根 EV</dt><dd id="gto-root-ev">—</dd></div>
+          <div><dt>先行动方 / 后行动方的起始平均收益</dt><dd id="gto-root-ev">—</dd></div>
         </dl>
         <p id="gto-status" role="status">选择基准或编辑局面后开始求解。</p>
       </section>
     </div>
     <section id="gto-results" class="panel strategy-results" hidden>
-      <div class="section-head"><div><h2>节点与手牌策略</h2><p id="gto-actor" class="hint"></p></div>
-        <label>公共行动历史<select id="gto-history"></select></label>
+      <div class="section-head"><h2>这手牌现在怎么打</h2></div>
+      <div class="river-selectors">
+        <label>已经发生的行动<select id="gto-history"></select></label>
+        <label>行动方的两张牌<select id="gto-hand"></select></label>
+      </div>
+      <section id="gto-readout" class="river-readout" aria-label="当前手牌解读" aria-live="polite">
+        <p id="gto-actor"></p>
+        <h3 id="gto-recommendation" hidden></h3>
+        <p id="gto-interpretation-note" hidden></p>
+        <p id="gto-decision-context"></p>
+        <p id="gto-pot-odds"></p>
+        <h4>和当前对手范围摊牌</h4>
+        <dl id="gto-equity-breakdown" class="river-equities"></dl>
+        <p class="hint">赢牌拿走整个底池，平局各拿一半。底池权益等于独赢率加上一半的平局率。</p>
+      </section>
+      <section class="river-section" aria-labelledby="gto-options-title">
+        <h3 id="gto-options-title">不同打法差多少</h3>
+        <p class="hint">收益差表示在同一局面反复这样打，每次比收益最高的动作平均少拿多少筹码。</p>
+        <div id="gto-size-comparison" class="river-options"></div>
+      </section>
+      <section id="gto-response-panel" class="river-section" aria-labelledby="gto-response-title" hidden>
+        <div class="section-head"><div><h3 id="gto-response-title">对手拿什么牌继续</h3><p class="hint">固定你的两张牌，查看对手在不同金额下的回应。</p></div>
+          <label>我的动作<select id="gto-response-size"></select></label>
+        </div>
+        <div id="gto-responses" aria-live="polite"></div>
+      </section>
+      <div class="river-section">
+        <h3>行动方的整体范围</h3><p class="hint">一起看所有能走到这里的手牌。更常到达这里的组合占比更大。</p>
+        <div id="gto-range-mix"></div>
       </div>
       <div class="policy-layout">
         <div>
@@ -80,12 +109,12 @@
           <p id="gto-matrix-help" class="hint">选择有底色的牌类，再查看具体花色。上三角为同花，下三角为非同花。</p>
           <div class="matrix-scroll"><div id="gto-matrix" aria-label="行动方范围矩阵" aria-describedby="gto-matrix-help"></div></div>
         </div>
-        <div class="hand-policy">
-          <label>具体组合<select id="gto-hand"></select></label>
+        <details id="gto-advanced" class="hand-policy">
+          <summary>详细频率与行动 EV</summary>
           <p class="hint" id="gto-reach"></p>
           <table id="gto-action-table"><thead><tr><th scope="col">动作</th><th scope="col">行动频率</th><th scope="col">行动 EV</th></tr></thead><tbody id="gto-actions"></tbody></table>
-          <p class="hint">EV 以筹码表示，使用从河牌根节点开始的增量收益口径。</p>
-        </div>
+          <p class="hint">EV 表示在相同条件下反复这样打，平均能拿到多少筹码。这里从河牌开始时算起，扣除这一轮自己投入的筹码。</p>
+        </details>
       </div>
     </section>
   </main>

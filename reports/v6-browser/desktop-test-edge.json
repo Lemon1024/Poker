@@ -1,0 +1,670 @@
+{
+  "startedAt": "2026-11-25T04:04:59.857Z",
+  "entryProtocol": "file:",
+  "entryPath": ".work\\v6-edge-apk-66991d1adfb202d38d33c0443e1e2399760098e7ee4eeea077ae2abe0f2a85bf\\assets\\index.html",
+  "scenarios": [
+    {
+      "name": "fresh offline browser opens file and compares fixed hole cards",
+      "status": "passed",
+      "elapsedMs": 9293
+    },
+    {
+      "name": "mouse replaces selected hero and opponent slots immediately; close leaves the deal intact",
+      "status": "passed",
+      "elapsedMs": 529
+    },
+    {
+      "name": "flop and turn report probabilities and current hand relation",
+      "status": "passed",
+      "elapsedMs": 1232
+    },
+    {
+      "name": "river uniform aggregate, pagination, filters and unchanged aggregate",
+      "status": "passed",
+      "elapsedMs": 703
+    },
+    {
+      "name": "weighted input omits blockers and zero weights, rejects duplicates",
+      "status": "passed",
+      "elapsedMs": 967
+    },
+    {
+      "name": "full board 2s 7s Td",
+      "status": "passed",
+      "elapsedMs": 2099
+    },
+    {
+      "name": "full board 2s 7s Td 3h",
+      "status": "passed",
+      "elapsedMs": 81
+    },
+    {
+      "name": "full flop and turn complete offline and publish every legal opponent",
+      "status": "passed",
+      "elapsedMs": 2765
+    },
+    {
+      "name": "cancel a running full-range flop worker and supersede another by editing input",
+      "status": "passed",
+      "elapsedMs": 740
+    },
+    {
+      "name": "saved completed result survives full browser restart",
+      "status": "passed",
+      "elapsedMs": 5040
+    },
+    {
+      "name": "narrow display and enlarged text keep controls reachable",
+      "status": "passed",
+      "elapsedMs": 131
+    },
+    {
+      "name": "R1 exact turn, row reuse, cancellation, filtering and named range persistence",
+      "status": "passed",
+      "elapsedMs": 4542
+    },
+    {
+      "name": "offline preflop chart, mixed actions and portrait navigation",
+      "status": "passed",
+      "elapsedMs": 1220
+    },
+    {
+      "name": "ten offline hands: legal moves, instant grading, chart round-trip and resume",
+      "status": "passed",
+      "elapsedMs": 2728
+    },
+    {
+      "name": "review filters two spots and removes only the corrected answer",
+      "status": "passed",
+      "elapsedMs": 871
+    },
+    {
+      "name": "touch the last matrix row, compare BTN 99 and practice either opener",
+      "status": "passed",
+      "elapsedMs": 761
+    },
+    {
+      "name": "river strategy opens from home and publishes engine frequencies and EV",
+      "status": "passed",
+      "elapsedMs": 787
+    },
+    {
+      "name": "equity card picker has four suit rows and thirteen rank columns at 320, 360, 375 and desktop",
+      "status": "passed",
+      "elapsedMs": 2282
+    },
+    {
+      "name": "river card picker has four suit rows and thirteen rank columns at 320, 360, 375 and desktop",
+      "status": "passed",
+      "elapsedMs": 3463
+    },
+    {
+      "name": "converged river analysis links the selected hand, bet size, response range and incremental pot odds",
+      "status": "passed",
+      "elapsedMs": 2845
+    },
+    {
+      "name": "a listed hand blocked by every opponent has no recommendation or showdown percentages",
+      "status": "passed",
+      "elapsedMs": 655
+    },
+    {
+      "name": "editing, pausing, or reaching the iteration limit cannot show a settled recommendation",
+      "status": "passed",
+      "elapsedMs": 248
+    },
+    {
+      "name": "storage denial is visible without disabling computation",
+      "status": "passed",
+      "elapsedMs": 280
+    }
+  ],
+  "externalRequests": [],
+  "consoleProblems": [],
+  "pageErrors": [],
+  "localRequestFailures": [],
+  "browser": "Edg/158.0.4370.33",
+  "r1Runs": [
+    {
+      "name": "weighted cold",
+      "rows": 2,
+      "hits": 0,
+      "progress": 0,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 11.100000023841858,
+      "frames": 2,
+      "maxFrameGapMs": 8
+    },
+    {
+      "name": "weights only",
+      "rows": 2,
+      "hits": 2,
+      "progress": 0,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 10.5,
+      "frames": 0,
+      "maxFrameGapMs": 10.5
+    },
+    {
+      "name": "expand to uniform",
+      "rows": 1035,
+      "hits": 2,
+      "progress": 8,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 46.5,
+      "frames": 4,
+      "maxFrameGapMs": 17.40000001192095
+    },
+    {
+      "name": "cancel after exact progress",
+      "rows": 1035,
+      "hits": 0,
+      "progress": 1,
+      "partial": false,
+      "terminated": true,
+      "cancelMs": 0.19999998807907104,
+      "status": "已取消计算",
+      "elapsedMs": 13.800000011920929,
+      "frames": 2,
+      "maxFrameGapMs": 7.400000000000091
+    },
+    {
+      "name": "uniform cold",
+      "rows": 1035,
+      "hits": 0,
+      "progress": 8,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 44.90000003576279,
+      "frames": 5,
+      "maxFrameGapMs": 8.100000000000023
+    },
+    {
+      "name": "current tie",
+      "rows": 1,
+      "hits": 1,
+      "progress": 0,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 9.699999988079071,
+      "frames": 1,
+      "maxFrameGapMs": 5.8999999880791165
+    }
+  ],
+  "training": {
+    "firstQuestionMs": 976,
+    "feedbackMs": [
+      76,
+      71,
+      76,
+      61,
+      56,
+      55,
+      67,
+      52,
+      54,
+      54
+    ],
+    "measurement": "Playwright tap to visible content and two animation frames, 360x800, offline",
+    "counts": {
+      "high": 6,
+      "low": 2,
+      "avoid": 2
+    },
+    "coveredModes": [
+      "vsThreeBet",
+      "open",
+      "vsOpen"
+    ]
+  },
+  "v6": {
+    "decks": [
+      {
+        "picker": "equity",
+        "width": 320,
+        "rows": 4,
+        "columns": 13,
+        "columnCenters": [
+          23,
+          46,
+          69,
+          92,
+          114,
+          137,
+          160,
+          183,
+          206,
+          228,
+          251,
+          274,
+          297
+        ],
+        "rowCenters": [
+          327,
+          374,
+          421,
+          468
+        ],
+        "touches": [
+          "As",
+          "2s",
+          "Ad",
+          "2d",
+          "8h",
+          "Th"
+        ]
+      },
+      {
+        "picker": "equity",
+        "width": 360,
+        "rows": 4,
+        "columns": 13,
+        "columnCenters": [
+          25,
+          51,
+          77,
+          102,
+          128,
+          154,
+          180,
+          206,
+          232,
+          258,
+          283,
+          309,
+          335
+        ],
+        "rowCenters": [
+          327,
+          374,
+          421,
+          468
+        ],
+        "touches": [
+          "As",
+          "2s",
+          "Ad",
+          "2d",
+          "8h",
+          "Th"
+        ]
+      },
+      {
+        "picker": "equity",
+        "width": 375,
+        "rows": 4,
+        "columns": 13,
+        "columnCenters": [
+          26,
+          53,
+          80,
+          107,
+          134,
+          161,
+          188,
+          215,
+          242,
+          269,
+          296,
+          323,
+          350
+        ],
+        "rowCenters": [
+          327,
+          374,
+          421,
+          468
+        ],
+        "touches": [
+          "As",
+          "2s",
+          "Ad",
+          "2d",
+          "8h",
+          "Th"
+        ]
+      },
+      {
+        "picker": "equity",
+        "width": 1280,
+        "rows": 4,
+        "columns": 13,
+        "columnCenters": [
+          401,
+          441,
+          481,
+          520,
+          560,
+          600,
+          640,
+          680,
+          720,
+          760,
+          799,
+          839,
+          879
+        ],
+        "rowCenters": [
+          375,
+          423,
+          471,
+          519
+        ],
+        "touches": [
+          "As",
+          "2s",
+          "Ad",
+          "2d",
+          "8h",
+          "Th"
+        ]
+      },
+      {
+        "picker": "river",
+        "width": 320,
+        "rows": 4,
+        "columns": 13,
+        "columnCenters": [
+          23,
+          46,
+          69,
+          92,
+          114,
+          137,
+          160,
+          183,
+          206,
+          228,
+          251,
+          274,
+          297
+        ],
+        "rowCenters": [
+          353,
+          400,
+          447,
+          494
+        ],
+        "touches": [
+          "As",
+          "2s",
+          "Ad",
+          "2d",
+          "8h",
+          "Th"
+        ]
+      },
+      {
+        "picker": "river",
+        "width": 360,
+        "rows": 4,
+        "columns": 13,
+        "columnCenters": [
+          25,
+          51,
+          77,
+          102,
+          128,
+          154,
+          180,
+          206,
+          232,
+          258,
+          283,
+          309,
+          335
+        ],
+        "rowCenters": [
+          353,
+          400,
+          447,
+          494
+        ],
+        "touches": [
+          "As",
+          "2s",
+          "Ad",
+          "2d",
+          "8h",
+          "Th"
+        ]
+      },
+      {
+        "picker": "river",
+        "width": 375,
+        "rows": 4,
+        "columns": 13,
+        "columnCenters": [
+          26,
+          53,
+          80,
+          107,
+          134,
+          161,
+          188,
+          215,
+          242,
+          269,
+          296,
+          323,
+          350
+        ],
+        "rowCenters": [
+          353,
+          400,
+          447,
+          494
+        ],
+        "touches": [
+          "As",
+          "2s",
+          "Ad",
+          "2d",
+          "8h",
+          "Th"
+        ]
+      },
+      {
+        "picker": "river",
+        "width": 1280,
+        "rows": 4,
+        "columns": 13,
+        "columnCenters": [
+          401,
+          441,
+          481,
+          520,
+          560,
+          600,
+          640,
+          680,
+          720,
+          760,
+          799,
+          839,
+          879
+        ],
+        "rowCenters": [
+          401,
+          449,
+          497,
+          545
+        ],
+        "touches": [
+          "As",
+          "2s",
+          "Ad",
+          "2d",
+          "8h",
+          "Th"
+        ]
+      }
+    ],
+    "solves": [
+      {
+        "preset": "equal",
+        "elapsedMs": 495,
+        "iterations": "16,384",
+        "exploitability": "0.0820%"
+      },
+      {
+        "preset": "weighted",
+        "elapsedMs": 391,
+        "iterations": "12,288",
+        "exploitability": "0.0922%"
+      }
+    ],
+    "showdowns": [
+      {
+        "path": "root",
+        "hand": "Qs As",
+        "actual": {
+          "win": 62.5,
+          "tie": 12.5,
+          "loss": 25,
+          "equity": 68.75
+        }
+      },
+      {
+        "path": "root",
+        "hand": "Qh Ah",
+        "actual": {
+          "win": 50,
+          "tie": 16.67,
+          "loss": 33.33,
+          "equity": 58.33
+        }
+      },
+      {
+        "path": "check/bet:50",
+        "hand": "Qs As",
+        "actual": {
+          "win": 38.92,
+          "tie": 60.6,
+          "loss": 0.48,
+          "equity": 69.22
+        }
+      },
+      {
+        "path": "root",
+        "hand": "Qs As",
+        "actual": {
+          "win": 100,
+          "tie": 0,
+          "loss": 0,
+          "equity": 100
+        }
+      }
+    ],
+    "responses": [
+      {
+        "preset": "river_small_v1",
+        "hand": "Qs As",
+        "bet": "bet:50",
+        "values": {
+          "fold": 33.74,
+          "call": 33.79,
+          "raise:100": 32.47
+        }
+      },
+      {
+        "preset": "river_small_v1",
+        "hand": "Qs As",
+        "bet": "bet:100",
+        "values": {
+          "fold": 50.44,
+          "call": 49.56
+        }
+      },
+      {
+        "preset": "river_weighted_v1",
+        "hand": "Qs As",
+        "bet": "bet:50",
+        "values": {
+          "fold": 30.77,
+          "call": 39.78,
+          "raise:100": 29.45
+        }
+      }
+    ],
+    "potOdds": [
+      {
+        "path": "bet:50",
+        "due": 50,
+        "threshold": 25,
+        "text": "跟注还需补 50，跟注后底池共 200。打平需要 25% 权益（50 ÷ 200）。"
+      },
+      {
+        "path": "check/bet:50",
+        "due": 50,
+        "threshold": 25,
+        "text": "跟注还需补 50，跟注后底池共 200。打平需要 25% 权益（50 ÷ 200）。"
+      },
+      {
+        "path": "bet:100",
+        "due": 100,
+        "threshold": 33.333333333333336,
+        "text": "跟注还需补 100，跟注后底池共 300。打平需要 33.33% 权益（100 ÷ 300）。"
+      },
+      {
+        "path": "bet:50/raise:100",
+        "due": 50,
+        "threshold": 16.666666666666668,
+        "text": "跟注还需补 50，跟注后底池共 300。打平需要 16.67% 权益（50 ÷ 300）。"
+      },
+      {
+        "path": "check/bet:50/raise:100",
+        "due": 50,
+        "threshold": 16.666666666666668,
+        "text": "跟注还需补 50，跟注后底池共 300。打平需要 16.67% 权益（50 ÷ 300）。"
+      }
+    ]
+  },
+  "status": "passed",
+  "verifiedApk": {
+    "path": "dist/poker-strategy-android-v6.apk",
+    "sha256": "66991d1adfb202d38d33c0443e1e2399760098e7ee4eeea077ae2abe0f2a85bf",
+    "assetCount": 24,
+    "assetsSha256": "fdbca1e88ea03d52b197003e8512424e41d9a7ceffc74a70cdb597eb98b7fef0",
+    "fingerprintMethod": "SHA-256 of UTF-8 sorted relative path + TAB + lowercase content SHA-256 + LF",
+    "files": {
+      "equity.html": "2da1bdac8f79747e72c541b3fd6bfc206adb34bd74071f145bc7bd712be4f5cc",
+      "index.html": "840f2e5e69fae51e848e949573629d6dd2339e9065f3c43b4814f982f1189d87",
+      "preflop/advice.js": "100a01cde843480d8e63e7446ddf411e22f9fa5fbdbe307f44cbc0538420b72d",
+      "preflop/index.html": "5ef8ca41f8f1c46e3b738caa46541d992b1940f4ec13e5dd2f53d1b2094cb5ec",
+      "preflop/ranges.js": "25d910d01acf11aabd5dde44ab11d9202a664e19a4920997459d6516382d932a",
+      "preflop/style.css": "5a309fb974afef5e28c158e3ab7b47f81803192dc73a69115aa446d6f9daf3a1",
+      "preflop/ui.js": "f0432753611ee4d0fb2e7f33d222fd512eac098a76d2978bf7bbe88aaa3a1c8e",
+      "strategy/evaluate.js": "692b162032788e7d61e26379b146681edd9d9241f66401a26e58f740161849ff",
+      "strategy/index.html": "be63980edbbf8b2eca835d933fdf681fd4e9706105dc866e080ccd9fdb9d0721",
+      "strategy/insights.js": "222c71b50bc65f7d847928f8c89cabffbe2d90152a74204b2db71140c99c6fe3",
+      "strategy/runner.js": "2ffc350cf16001fe364560b3088b0bb277ffd42b80e97d40ed3ac2b7926fc7ed",
+      "strategy/solver.js": "2a205ce07714d286be986b66d1565cd5fcebbdad71325cb85876d90240c505c7",
+      "strategy/style.css": "a3cddb43e275ebe1f65da0266526ce641f1fca9d042546c7af029fd845a0aea9",
+      "strategy/ui.js": "e10f17afbe8e2670926ee9092d64f86067ff1b5b31102e19292b1c56e326c4cf",
+      "training/index.html": "20ec49c402c708a370360e3c52f167f77e0bbb09de2608b8abd63f47ca0e1e11",
+      "training/session.js": "5e9a03fcb923b95e51819aacb8f3097bb99c46721a658b7b8425cc79e0c87882",
+      "training/style.css": "8ae9cae9695bd45bfde426c09824b79e42a35f715a68397b5f6e93e8b9abca6a",
+      "training/ui.js": "d5de8c71523d6a40b3b4cdc2cce0f2f3cd7513579deada96b6d2c2abfb0446c6",
+      "web/app.js": "962bfe4f31507718db10f63aa584349b4681e86729519432ff4ee771a40efc07",
+      "web/camp.css": "ad2b3490342005ea93bec42c202d016935e01993ec8e172efacf147894952902",
+      "web/equity.js": "90b3028fbf3fbb2b663b2ec1068572142ee226d7b6a32d08f2aaf7f7b6d8bb76",
+      "web/home.js": "1c241bf2a9fe572c723cf44101d4fae41a843d370c1e9e0f47bde874a5aeec14",
+      "web/runner.js": "09d1560a32d7dda45244d392bfebad81469e2a7d053eab7d27c6a066ccb319a1",
+      "web/style.css": "869d3eb90d491e3213b647c6e920daa8b0b745205c42b6b819f4993fbfb0e971"
+    }
+  },
+  "verifiedDesktop": {
+    "path": "dist/gto-training-camp-desktop-v6.zip",
+    "sha256": "08a3921083706913142246c3e2c48624c9edd8b416ee3963312480695def460c",
+    "assetsMatchApkAndSource": true
+  }
+}

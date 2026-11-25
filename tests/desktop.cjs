@@ -8,7 +8,8 @@ const {performance} = require('node:perf_hooks');
 const {once} = require('node:events');
 
 const root = path.resolve(__dirname,'..');
-const entry = pathToFileURL(process.env.POKER_ENTRY || path.join(root,'index.html')).href;
+const entryPath = path.resolve(process.env.POKER_ENTRY || path.join(root,'index.html'));
+const entry = pathToFileURL(entryPath).href;
 const scratch = path.join(root,'.work','desktop-test');
 fs.mkdirSync(scratch,{recursive:true});
 // Playwright and Chromium each allocate transient files before the profile is ready.
@@ -17,7 +18,7 @@ process.env.TEMP = process.env.TMP = process.env.TMPDIR = scratch;
 const {chromium} = require(process.env.POKER_PLAYWRIGHT || 'playwright');
 const profile = fs.mkdtempSync(path.join(scratch,'profile-'));
 const fields = ['win','tie','loss','equity'];
-const report = {startedAt:new Date().toISOString(), entryProtocol:'file:', scenarios:[],
+const report = {startedAt:new Date().toISOString(), entryProtocol:'file:', entryPath:path.relative(root,entryPath), scenarios:[],
   externalRequests:[], consoleProblems:[], pageErrors:[], localRequestFailures:[]};
 let context, page;
 const {setHand,setCombos} = require('./card-controls.cjs')({
@@ -28,7 +29,7 @@ const {setHand,setCombos} = require('./card-controls.cjs')({
 });
 
 function reportFile(name) {
-  return path.join(process.env.POKER_REPORT_DIR || path.join(root,'reports'),'desktop-test' + (process.env.POKER_TEST_EDGE ? '-edge' : '') + name);
+  return path.join(process.env.POKER_REPORT_DIR || path.join(root,'reports','v6-browser'),'desktop-test' + (process.env.POKER_TEST_EDGE ? '-edge' : '') + name);
 }
 function connect(page) {
   page.on('console',message => {
@@ -42,7 +43,7 @@ async function launch() {
     channel:executablePath ? undefined : 'chrome',executablePath,headless:true,
     args:['--disable-breakpad','--disable-crash-reporter'],offline:true,
     env:{...process.env,TEMP:scratch,TMP:scratch,TMPDIR:scratch},
-    viewport:{width:1280,height:900}
+    viewport:{width:1280,height:900},hasTouch:true
   });
   context.setDefaultTimeout(12000);
   context.setDefaultNavigationTimeout(90000);
@@ -60,6 +61,10 @@ async function launch() {
   await page.goto(entry);
   assert.equal(await page.evaluate(() => window.location.protocol),'file:');
   assert.equal(await page.evaluate(() => navigator.onLine),false);
+  await page.locator('#open-equity').waitFor();
+  assert.equal(await page.locator('#run, script[src$="equity.js"]').count(),0,'home does not load the equity calculator');
+  assert.match(await page.title(),/GTO训练营/);
+  await page.locator('#open-equity').click();
 }
 async function complete() {
   await page.waitForFunction(() => !document.querySelector('#save').disabled);
@@ -251,9 +256,31 @@ async function main() {
       await context.close();context=null;await launch();await complete();return js;
     });
   });
+  await scenario('offline preflop chart, mixed actions and portrait navigation',async () => {
+    await page.setViewportSize({width:360,height:800});
+    const js=expression=>page.evaluate(expression);
+    js.tap=selector=>page.locator(selector).tap();
+    js.select=(selector,value)=>page.locator(selector).selectOption(value);
+    await require('./preflop-ui.cjs')(js, expression=>page.waitForFunction(expression));
+  });
+  await require('./training-browser.cjs')({page,scenario,report,reportFile});
+  await scenario('river strategy opens from home and publishes engine frequencies and EV',async () => {
+    await page.locator('#open-strategy').tap();
+    await page.waitForFunction(() => document.querySelectorAll('#gto-board [data-card]').length===5);
+    await page.locator('#gto-run').tap();
+    await page.waitForFunction(() => document.querySelector('#gto-badge').textContent==='已达标',null,{timeout:90000});
+    assert.equal(await page.locator('#gto-matrix button').count(),169);
+    assert.ok(parseFloat(await page.locator('#gto-error').innerText())<=0.1);
+    if (!await page.locator('#gto-actions').isVisible()) await page.locator('#gto-advanced summary').tap();
+    await page.locator('#gto-history').selectOption('check/bet:50');
+    assert.match(await page.locator('#gto-actions').innerText(),/弃牌/);
+    assert.match(await page.locator('#gto-actions td').last().innerText(),/\d/);
+  });
+  await require('./river-v6-browser.cjs')({page,entry,scenario,report,reportFile});
   await scenario('storage denial is visible without disabling computation',async () => {
     await page.addInitScript(() => { Storage.prototype.setItem = () => { throw new DOMException('test quota','QuotaExceededError'); }; });
-    await page.reload(); await complete();
+    await page.goto(entry);
+    await page.locator('#open-equity').click(); await complete();
     await page.locator('#save').click();
     await page.waitForFunction(() => /存储|空间|保存失败|无法保存/.test(
       document.querySelector('#feedback').innerText + document.querySelector('#job-status').innerText));

@@ -5,12 +5,17 @@ from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ASSETS = ("index.html", "web/style.css", "web/equity.js", "web/runner.js", "web/app.js")
+ASSETS = ("index.html", "equity.html", "web/style.css", "web/camp.css", "web/home.js",
+          "web/equity.js", "web/runner.js", "web/app.js")
+ASSETS += tuple("preflop/" + name for name in ("index.html", "style.css", "ranges.js", "advice.js", "ui.js"))
+ASSETS += tuple("training/" + name for name in ("index.html", "style.css", "session.js", "ui.js"))
+STRATEGY_ASSETS = tuple("strategy/" + name for name in (
+    "index.html", "style.css", "ui.js", "runner.js", "solver.js", "evaluate.js", "insights.js"))
 
 
 def main():
-    files = {name: (ROOT / name).read_bytes() for name in ASSETS}
-    destination = ROOT / "dist" / "poker-equity-desktop-v1.zip"
+    files = {name: (ROOT / name).read_bytes() for name in ASSETS + STRATEGY_ASSETS}
+    destination = ROOT / "dist" / "gto-training-camp-desktop-v6.zip"
     destination.parent.mkdir(exist_ok=True)
     temporary = destination.with_suffix(".zip.tmp")
     with ZipFile(temporary, "w") as bundle:

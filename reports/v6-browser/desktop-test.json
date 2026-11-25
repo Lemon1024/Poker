@@ -1,0 +1,632 @@
+{
+  "startedAt": "2026-11-25T04:03:36.589Z",
+  "entryProtocol": "file:",
+  "entryPath": "index.html",
+  "scenarios": [
+    {
+      "name": "fresh offline browser opens file and compares fixed hole cards",
+      "status": "passed",
+      "elapsedMs": 6613
+    },
+    {
+      "name": "mouse replaces selected hero and opponent slots immediately; close leaves the deal intact",
+      "status": "passed",
+      "elapsedMs": 514
+    },
+    {
+      "name": "flop and turn report probabilities and current hand relation",
+      "status": "passed",
+      "elapsedMs": 1249
+    },
+    {
+      "name": "river uniform aggregate, pagination, filters and unchanged aggregate",
+      "status": "passed",
+      "elapsedMs": 700
+    },
+    {
+      "name": "weighted input omits blockers and zero weights, rejects duplicates",
+      "status": "passed",
+      "elapsedMs": 861
+    },
+    {
+      "name": "full board 2s 7s Td",
+      "status": "passed",
+      "elapsedMs": 2137
+    },
+    {
+      "name": "full board 2s 7s Td 3h",
+      "status": "passed",
+      "elapsedMs": 79
+    },
+    {
+      "name": "full flop and turn complete offline and publish every legal opponent",
+      "status": "passed",
+      "elapsedMs": 2771
+    },
+    {
+      "name": "cancel a running full-range flop worker and supersede another by editing input",
+      "status": "passed",
+      "elapsedMs": 772
+    },
+    {
+      "name": "saved completed result survives full browser restart",
+      "status": "passed",
+      "elapsedMs": 8380
+    },
+    {
+      "name": "narrow display and enlarged text keep controls reachable",
+      "status": "passed",
+      "elapsedMs": 142
+    },
+    {
+      "name": "R1 exact turn, row reuse, cancellation, filtering and named range persistence",
+      "status": "passed",
+      "elapsedMs": 5609
+    },
+    {
+      "name": "offline preflop chart, mixed actions and portrait navigation",
+      "status": "passed",
+      "elapsedMs": 857
+    },
+    {
+      "name": "ten offline hands: legal moves, instant grading, chart round-trip and resume",
+      "status": "passed",
+      "elapsedMs": 2171
+    },
+    {
+      "name": "review filters two spots and removes only the corrected answer",
+      "status": "passed",
+      "elapsedMs": 792
+    },
+    {
+      "name": "touch the last matrix row, compare BTN 99 and practice either opener",
+      "status": "passed",
+      "elapsedMs": 759
+    },
+    {
+      "name": "river strategy opens from home and publishes engine frequencies and EV",
+      "status": "passed",
+      "elapsedMs": 754
+    },
+    {
+      "name": "equity card picker has four suit rows and thirteen rank columns at 320, 360, 375 and desktop",
+      "status": "passed",
+      "elapsedMs": 2210
+    },
+    {
+      "name": "river card picker has four suit rows and thirteen rank columns at 320, 360, 375 and desktop",
+      "status": "passed",
+      "elapsedMs": 3134
+    },
+    {
+      "name": "converged river analysis links the selected hand, bet size, response range and incremental pot odds",
+      "status": "passed",
+      "elapsedMs": 2458
+    },
+    {
+      "name": "a listed hand blocked by every opponent has no recommendation or showdown percentages",
+      "status": "passed",
+      "elapsedMs": 739
+    },
+    {
+      "name": "editing, pausing, or reaching the iteration limit cannot show a settled recommendation",
+      "status": "passed",
+      "elapsedMs": 212
+    },
+    {
+      "name": "storage denial is visible without disabling computation",
+      "status": "passed",
+      "elapsedMs": 286
+    }
+  ],
+  "externalRequests": [],
+  "consoleProblems": [],
+  "pageErrors": [],
+  "localRequestFailures": [],
+  "browser": "Chrome/158.0.8127.37",
+  "r1Runs": [
+    {
+      "name": "weighted cold",
+      "rows": 2,
+      "hits": 0,
+      "progress": 0,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 12.599999964237213,
+      "frames": 2,
+      "maxFrameGapMs": 8
+    },
+    {
+      "name": "weights only",
+      "rows": 2,
+      "hits": 2,
+      "progress": 0,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 15.099999964237213,
+      "frames": 0,
+      "maxFrameGapMs": 15.099999964237213
+    },
+    {
+      "name": "expand to uniform",
+      "rows": 1035,
+      "hits": 2,
+      "progress": 8,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 49.5,
+      "frames": 4,
+      "maxFrameGapMs": 23.397999964237215
+    },
+    {
+      "name": "cancel after exact progress",
+      "rows": 1035,
+      "hits": 0,
+      "progress": 1,
+      "partial": false,
+      "terminated": true,
+      "cancelMs": 0.30000001192092896,
+      "status": "已取消计算",
+      "elapsedMs": 16.19999998807907,
+      "frames": 2,
+      "maxFrameGapMs": 7.2000000000000455
+    },
+    {
+      "name": "uniform cold",
+      "rows": 1035,
+      "hits": 0,
+      "progress": 8,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 45.60000002384186,
+      "frames": 6,
+      "maxFrameGapMs": 8.5
+    },
+    {
+      "name": "current tie",
+      "rows": 1,
+      "hits": 1,
+      "progress": 0,
+      "partial": false,
+      "terminated": true,
+      "status": "计算完成",
+      "elapsedMs": 12.199999988079071,
+      "frames": 2,
+      "maxFrameGapMs": 8
+    }
+  ],
+  "training": {
+    "firstQuestionMs": 443,
+    "feedbackMs": [
+      63,
+      76,
+      78,
+      54,
+      53,
+      53,
+      61,
+      67,
+      53,
+      65
+    ],
+    "measurement": "Playwright tap to visible content and two animation frames, 360x800, offline",
+    "counts": {
+      "high": 5,
+      "low": 3,
+      "avoid": 2
+    },
+    "coveredModes": [
+      "vsOpen",
+      "open",
+      "vsThreeBet"
+    ]
+  },
+  "v6": {
+    "decks": [
+      {
+        "picker": "equity",
+        "width": 320,
+        "rows": 4,
+        "columns": 13,
+        "columnCenters": [
+          23,
+          46,
+          69,
+          92,
+          114,
+          137,
+          160,
+          183,
+          206,
+          228,
+          251,
+          274,
+          297
+        ],
+        "rowCenters": [
+          327,
+          374,
+          421,
+          468
+        ],
+        "touches": [
+          "As",
+          "2s",
+          "Ad",
+          "2d",
+          "8h",
+          "Th"
+        ]
+      },
+      {
+        "picker": "equity",
+        "width": 360,
+        "rows": 4,
+        "columns": 13,
+        "columnCenters": [
+          25,
+          51,
+          77,
+          102,
+          128,
+          154,
+          180,
+          206,
+          232,
+          258,
+          283,
+          309,
+          335
+        ],
+        "rowCenters": [
+          327,
+          374,
+          421,
+          468
+        ],
+        "touches": [
+          "As",
+          "2s",
+          "Ad",
+          "2d",
+          "8h",
+          "Th"
+        ]
+      },
+      {
+        "picker": "equity",
+        "width": 375,
+        "rows": 4,
+        "columns": 13,
+        "columnCenters": [
+          26,
+          53,
+          80,
+          107,
+          134,
+          161,
+          188,
+          215,
+          242,
+          269,
+          296,
+          323,
+          350
+        ],
+        "rowCenters": [
+          327,
+          374,
+          421,
+          468
+        ],
+        "touches": [
+          "As",
+          "2s",
+          "Ad",
+          "2d",
+          "8h",
+          "Th"
+        ]
+      },
+      {
+        "picker": "equity",
+        "width": 1280,
+        "rows": 4,
+        "columns": 13,
+        "columnCenters": [
+          401,
+          441,
+          481,
+          520,
+          560,
+          600,
+          640,
+          680,
+          720,
+          760,
+          799,
+          839,
+          879
+        ],
+        "rowCenters": [
+          375,
+          423,
+          471,
+          519
+        ],
+        "touches": [
+          "As",
+          "2s",
+          "Ad",
+          "2d",
+          "8h",
+          "Th"
+        ]
+      },
+      {
+        "picker": "river",
+        "width": 320,
+        "rows": 4,
+        "columns": 13,
+        "columnCenters": [
+          23,
+          46,
+          69,
+          92,
+          114,
+          137,
+          160,
+          183,
+          206,
+          228,
+          251,
+          274,
+          297
+        ],
+        "rowCenters": [
+          353,
+          400,
+          447,
+          494
+        ],
+        "touches": [
+          "As",
+          "2s",
+          "Ad",
+          "2d",
+          "8h",
+          "Th"
+        ]
+      },
+      {
+        "picker": "river",
+        "width": 360,
+        "rows": 4,
+        "columns": 13,
+        "columnCenters": [
+          25,
+          51,
+          77,
+          102,
+          128,
+          154,
+          180,
+          206,
+          232,
+          258,
+          283,
+          309,
+          335
+        ],
+        "rowCenters": [
+          353,
+          400,
+          447,
+          494
+        ],
+        "touches": [
+          "As",
+          "2s",
+          "Ad",
+          "2d",
+          "8h",
+          "Th"
+        ]
+      },
+      {
+        "picker": "river",
+        "width": 375,
+        "rows": 4,
+        "columns": 13,
+        "columnCenters": [
+          26,
+          53,
+          80,
+          107,
+          134,
+          161,
+          188,
+          215,
+          242,
+          269,
+          296,
+          323,
+          350
+        ],
+        "rowCenters": [
+          353,
+          400,
+          447,
+          494
+        ],
+        "touches": [
+          "As",
+          "2s",
+          "Ad",
+          "2d",
+          "8h",
+          "Th"
+        ]
+      },
+      {
+        "picker": "river",
+        "width": 1280,
+        "rows": 4,
+        "columns": 13,
+        "columnCenters": [
+          401,
+          441,
+          481,
+          520,
+          560,
+          600,
+          640,
+          680,
+          720,
+          760,
+          799,
+          839,
+          879
+        ],
+        "rowCenters": [
+          401,
+          449,
+          497,
+          545
+        ],
+        "touches": [
+          "As",
+          "2s",
+          "Ad",
+          "2d",
+          "8h",
+          "Th"
+        ]
+      }
+    ],
+    "solves": [
+      {
+        "preset": "equal",
+        "elapsedMs": 526,
+        "iterations": "16,384",
+        "exploitability": "0.0820%"
+      },
+      {
+        "preset": "weighted",
+        "elapsedMs": 377,
+        "iterations": "12,288",
+        "exploitability": "0.0922%"
+      }
+    ],
+    "showdowns": [
+      {
+        "path": "root",
+        "hand": "Qs As",
+        "actual": {
+          "win": 62.5,
+          "tie": 12.5,
+          "loss": 25,
+          "equity": 68.75
+        }
+      },
+      {
+        "path": "root",
+        "hand": "Qh Ah",
+        "actual": {
+          "win": 50,
+          "tie": 16.67,
+          "loss": 33.33,
+          "equity": 58.33
+        }
+      },
+      {
+        "path": "check/bet:50",
+        "hand": "Qs As",
+        "actual": {
+          "win": 38.92,
+          "tie": 60.6,
+          "loss": 0.48,
+          "equity": 69.22
+        }
+      },
+      {
+        "path": "root",
+        "hand": "Qs As",
+        "actual": {
+          "win": 100,
+          "tie": 0,
+          "loss": 0,
+          "equity": 100
+        }
+      }
+    ],
+    "responses": [
+      {
+        "preset": "river_small_v1",
+        "hand": "Qs As",
+        "bet": "bet:50",
+        "values": {
+          "fold": 33.74,
+          "call": 33.79,
+          "raise:100": 32.47
+        }
+      },
+      {
+        "preset": "river_small_v1",
+        "hand": "Qs As",
+        "bet": "bet:100",
+        "values": {
+          "fold": 50.44,
+          "call": 49.56
+        }
+      },
+      {
+        "preset": "river_weighted_v1",
+        "hand": "Qs As",
+        "bet": "bet:50",
+        "values": {
+          "fold": 30.77,
+          "call": 39.78,
+          "raise:100": 29.45
+        }
+      }
+    ],
+    "potOdds": [
+      {
+        "path": "bet:50",
+        "due": 50,
+        "threshold": 25,
+        "text": "跟注还需补 50，跟注后底池共 200。打平需要 25% 权益（50 ÷ 200）。"
+      },
+      {
+        "path": "check/bet:50",
+        "due": 50,
+        "threshold": 25,
+        "text": "跟注还需补 50，跟注后底池共 200。打平需要 25% 权益（50 ÷ 200）。"
+      },
+      {
+        "path": "bet:100",
+        "due": 100,
+        "threshold": 33.333333333333336,
+        "text": "跟注还需补 100，跟注后底池共 300。打平需要 33.33% 权益（100 ÷ 300）。"
+      },
+      {
+        "path": "bet:50/raise:100",
+        "due": 50,
+        "threshold": 16.666666666666668,
+        "text": "跟注还需补 50，跟注后底池共 300。打平需要 16.67% 权益（50 ÷ 300）。"
+      },
+      {
+        "path": "check/bet:50/raise:100",
+        "due": 50,
+        "threshold": 16.666666666666668,
+        "text": "跟注还需补 50，跟注后底池共 300。打平需要 16.67% 权益（50 ÷ 300）。"
+      }
+    ]
+  },
+  "status": "passed"
+}
